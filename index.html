@@ -6,180 +6,155 @@
 
 <title>Andrew Veda — Assistant Professor, Writer & Developer</title>
 
-<!-- SEO META TAGS -->
-<meta name="description" content="Official homepage of Andrew Veda — Assistant Professor of English at SRM Valliammai Engineering College, chess player, creative educator, and developer of the SRM-VEC English PWA." />
-<meta name="keywords" content="Andrew Veda, SRM Valliammai Engineering College, Assistant Professor, English, SRM VEC, PWA, English learning app, chess player, educator, digital learning, gamified learning" />
-<meta name="author" content="Andrew Veda" />
-
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: "Segoe UI", Arial, sans-serif;
     background: #f5f5f5;
-    overflow: hidden; /* No scroll */
+    overflow: hidden;
   }
 
+  /* HEADER */
   header {
     text-align: center;
-    padding: 30px 20px;
+    padding: 20px 10px;
     background: linear-gradient(135deg, #4a148c, #880e4f);
     color: white;
   }
 
   .profile-pic {
-    width: 110px;
-    height: 110px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid rgba(255, 255, 255, 0.7);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border: 3px solid rgba(255,255,255,0.7);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
     margin-bottom: 10px;
   }
 
+  h1 { font-size: 1.6rem; }
+  h3 { font-size: 0.9rem; margin-top: 5px; }
+  em { font-size: 0.8rem; opacity: 0.9; display: block; margin-top: 8px; }
+
+  /* PAGES */
   .page {
     position: absolute;
-    top: 200px;
-    left: 100vw; 
+    top: 170px;
+    left: 100vw;
     width: 100vw;
-    height: calc(100vh - 260px); 
+    height: calc(100vh - 230px);
     background: #ffffff;
     padding: 20px;
-    overflow: hidden;
-    transition: transform 0.4s ease;
+    overflow-y: auto;
+    transition: transform 0.35s ease;
   }
 
+  .page h2 { color: #4a148c; margin-bottom: 10px; }
+
+  /* Active page shown */
   .active {
-    left: 0;
-    transform: translateX(0);
+    transform: translateX(-100vw);
   }
 
-  .slide-in {
-    transform: translateX(0);
-  }
-
-  .slide-out {
-    transform: translateX(100vw);
-  }
-
-  h2 {
-    color: #4a148c;
-    margin-bottom: 10px;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-
-  ul {
-    margin-top: 10px;
-    margin-left: 20px;
-  }
-
-  /* Bottom Navigation Bar */
+  /* NAVIGATION BAR */
   .navbar {
     position: fixed;
     bottom: 0;
     left: 0;
+    height: 60px;
     width: 100%;
     background: white;
+    border-top: 2px solid #ddd;
     display: flex;
     justify-content: space-around;
-    border-top: 2px solid #ddd;
-    padding: 10px 0;
+    align-items: center;
   }
 
   .nav-btn {
     background: none;
     border: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #4a148c;
     font-weight: 700;
-    cursor: pointer;
   }
 
-  .nav-btn:active {
-    opacity: 0.6;
+  .nav-btn:active { opacity: 0.6; }
+
+  /* MOBILE FIXES */
+  @media (max-width: 480px) {
+    header { padding: 15px 5px; }
+    .profile-pic { width: 75px; height: 75px; }
+    h1 { font-size: 1.3rem; }
+    h3 { font-size: 0.8rem; }
+    em { font-size: 0.7rem; }
+    .page { top: 150px; height: calc(100vh - 210px); }
   }
 </style>
-
 </head>
 
 <body>
 
 <header>
-  <img src="andrewveda.jpeg" class="profile-pic" alt="Andrew Veda">
+  <img src="images/andrewveda.jpeg" class="profile-pic" alt="Andrew Veda">
   <h1>Andrew Veda</h1>
   <h3>Assistant Professor of English at SRM Valliammai Engineering College</h3>
-  <p>Chess player • Creative educator • Builder of curious, confident thinkers</p>
+  <p style="margin-top:5px;">Chess player • Creative educator • Builder of curious, confident thinkers</p>
   <em>"Ever tried. Ever failed. No matter. Try again. Fail again. Fail better."</em>
 </header>
 
-<!-- HOME PAGE -->
+<!-- HOME -->
 <div id="home" class="page active">
-  <h2>🌟 Featured Project: SRM-VEC English PWA</h2>
-  <p>A fast, clean, gamified progressive web app designed for engineering students at SRM-VEC.</p>
+  <h2>🌟 SRM-VEC English PWA</h2>
+  <p>A clean, fast, gamified progressive web app designed for engineering students.</p>
 
-  <ul>
-    <li>Daily quests & XP system</li>
-    <li>Video & story quests</li>
-    <li>Speaking practice tasks</li>
-    <li>Leaderboard & streak features</li>
-    <li>Offline-friendly PWA</li>
+  <ul style="margin-top:10px;margin-left:20px;">
+    <li>Daily quests and XP</li>
+    <li>Video quests & story quests</li>
+    <li>Speaking tasks</li>
+    <li>Leaderboard</li>
+    <li>Offline-friendly</li>
   </ul>
 
   <p style="margin-top:15px;">
     👉 <a href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank" 
-       style="font-weight:bold;color:#4a148c;">
-       Try the SRM-VEC English PWA
-    </a>
+       style="font-weight:bold;color:#4a148c;">Try the SRM-VEC English PWA</a>
   </p>
 </div>
 
-<!-- ABOUT PAGE -->
+<!-- ABOUT -->
 <div id="about" class="page">
   <h2>About Me</h2>
   <p>
-    I am an Assistant Professor of English who treats learning as the highest form of 
-    self-creation. As a chess player, I bring clarity, discipline, and logic into the classroom,
-    guiding students to express themselves boldly and purposefully.
+    I am an Assistant Professor of English who treats learning as the highest form of self-creation.
+    As a chess player, I bring clarity, discipline, and logic into the classroom.
   </p>
   <br>
   <p>
     My mission is to gamify the learning journey so students fall in love with learning through 
-    curiosity and intrinsic motivation. Every class and activity is designed to help students 
-    grow into the best version of themselves.
+    curiosity, challenge, and intrinsic motivation.
   </p>
 </div>
 
-<!-- CHESS PAGE -->
+<!-- CHESS -->
 <div id="chess" class="page">
-  <h2>♟️ Chess Profile</h2>
-  <p>Competitive rapid, blitz, and bullet player striving to improve a little every day.</p>
+  <h2>♟️ Chess</h2>
+  <p>Competitive rapid, blitz, and bullet player striving to improve every day.</p>
   <br>
-  <p>👉 
-    <a href="https://www.chess.com/member/andrewveda" target="_blank"
-       style="font-weight:bold;color:#4a148c;">
-       Visit my Chess.com profile
-    </a>
-  </p>
+  <p>👉 <a href="https://www.chess.com/member/andrewveda" target="_blank"
+        style="font-weight:bold;color:#4a148c;">Visit my Chess.com profile</a></p>
 </div>
 
-<!-- TEACHING PAGE -->
+<!-- TEACHING -->
 <div id="teaching" class="page">
   <h2>🧭 Teaching Philosophy</h2>
   <p>
-    Students learn best when they feel safe to experiment, reflect, fail, and improve.
-    My classrooms are built around curiosity, structure, clarity, creativity, and student agency.
+    Students learn best when they feel safe to explore, question, reflect, fail, and improve.
+    My teaching is built around clarity, curiosity, creativity, and student agency.
   </p>
 </div>
 
-<!-- BOTTOM NAVIGATION BAR -->
+<!-- NAV BAR -->
 <div class="navbar">
   <button class="nav-btn" onclick="showPage('home')">Home</button>
   <button class="nav-btn" onclick="showPage('about')">About</button>
@@ -190,10 +165,8 @@
 <script>
   function showPage(pageId) {
     const pages = document.querySelectorAll('.page');
-    pages.forEach(pg => {
-      pg.style.transform = "translateX(100vw)";
-    });
-    document.getElementById(pageId).style.transform = "translateX(0)";
+    pages.forEach(pg => pg.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
   }
 </script>
 
