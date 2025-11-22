@@ -6,188 +6,221 @@
 <title>Andrew Veda — Assistant Professor of English</title>
 
 <!-- SEO -->
-<meta name="description" content="Official website of Andrew Veda — Assistant Professor of English at SRM Valliammai Engineering College, chess player, creative educator, and developer of the SRM-VEC English PWA." />
-<meta name="keywords" content="Andrew Veda, SRM Valliammai Engineering College, English Professor, SRM VEC, PWA developer, Chess player, Creative educator, Digital learning, English teaching" />
-<meta name="author" content="Andrew Veda" />
+<meta name="description" content="Official website of Andrew Veda — Assistant Professor of English at SRM Valliammai Engineering College, chess player, creative educator, and developer of the SRM-VEC English PWA.">
+<meta name="keywords" content="Andrew Veda, SRM Valliammai Engineering College, English Professor, PWA developer, Chess player, Creative educator">
+<meta name="author" content="Andrew Veda">
 
 <style>
   * {
-    margin: 0; padding: 0; box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
   body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    line-height: 1.7;
-    color: #333;
-    background: #fafafa;
+    font-family: "Inter", "Segoe UI", sans-serif;
+    background: #f5f5f7;
+    color: #222;
   }
 
-  /* TOP NAVIGATION BAR */
+  /* NAV */
   nav {
-    width: 100%;
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    background: white;
-    border-bottom: 2px solid #e5e5e5;
+    z-index: 1000;
+    background: #ffffffee;
+    backdrop-filter: blur(10px);
     padding: 12px 0;
-    z-index: 2000;
+    border-bottom: 1px solid #e0e0e0;
   }
 
   nav ul {
-    list-style: none;
     display: flex;
-    justify-content: center;
-    gap: 25px;
+    justify-content: space-around;
+    list-style: none;
   }
 
   nav a {
     text-decoration: none;
-    color: #4a148c;
+    color: #5a189a;
     font-weight: 600;
-    font-size: 0.95rem;
-  }
-
-  nav a:hover {
-    text-decoration: underline;
+    font-size: 0.9rem;
   }
 
   /* HEADER */
   header {
-    padding: 120px 20px 50px 20px; /* space for nav */
     text-align: center;
-    background: linear-gradient(135deg, #4a148c, #880e4f);
+    padding: 80px 20px 40px;
+    background: linear-gradient(160deg, #5a189a, #9d4edd);
     color: white;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
   }
 
   .profile-pic {
-    width: 120px;
-    height: 120px;
+    width: 135px;
+    height: 135px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid rgba(255,255,255,0.75);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-    margin-bottom: 15px;
+    border: 4px solid rgba(255,255,255,0.8);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   }
 
   h1 {
-    font-size: 2rem;
-    margin-bottom: 5px;
+    font-size: 1.9rem;
+    margin-top: 12px;
   }
 
   h3 {
-    font-size: 1.05rem;
-    font-weight: 400;
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-top: 5px;
+    line-height: 1.4;
   }
 
+  .tagline {
+    margin-top: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .quote {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    opacity: 0.85;
+  }
+
+  /* SECTIONS */
   section {
-    max-width: 900px;
+    padding: 50px 20px;
+    max-width: 800px;
     margin: auto;
-    padding: 60px 20px;
   }
 
   h2 {
-    color: #4a148c;
-    margin-bottom: 15px;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+    color: #5a189a;
   }
 
   p {
     font-size: 1.05rem;
+    line-height: 1.6;
     margin-bottom: 12px;
   }
 
   ul {
-    margin-left: 20px;
-    margin-top: 10px;
+    margin: 10px 0 0 20px;
   }
 
-  /* SMOOTH SCROLL */
-  html {
-    scroll-behavior: smooth;
+  /* CARD STYLE */
+  .card {
+    background: white;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    margin-top: 20px;
   }
 
-  /* MOBILE OPTIMISATION */
+  /* LINKS */
+  a.link-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 20px;
+    background: #5a189a;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+
+  a.link-btn:hover {
+    opacity: 0.9;
+  }
+
   @media (max-width: 600px) {
-    nav ul { gap: 12px; }
+    h1 { font-size: 1.7rem; }
+    h2 { font-size: 1.25rem; }
     nav a { font-size: 0.8rem; }
-    h1 { font-size: 1.6rem; }
-    h3 { font-size: 0.9rem; }
-    .profile-pic { width: 95px; height: 95px; }
   }
 </style>
-
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
+<!-- NAVBAR -->
 <nav>
   <ul>
     <li><a href="#home">Home</a></li>
-    <li><a href="#about">About Me</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#chess">Chess</a></li>
     <li><a href="#teaching">Teaching</a></li>
   </ul>
 </nav>
 
-<!-- HEADER / HOME -->
+<!-- HEADER -->
 <header id="home">
-  <img src="images/andrewveda.jpeg" alt="Andrew Veda" class="profile-pic">
-
+  <img src="images/andrewveda.jpeg" class="profile-pic" alt="Andrew Veda">
   <h1>Andrew Veda</h1>
-  <h3>Assistant Professor of English at SRM Valliammai Engineering College</h3>
+  <h3>Assistant Professor of English<br>SRM Valliammai Engineering College</h3>
 
-  <p style="margin-top:10px;">Chess player • Creative educator • Builder of curious, confident thinkers</p>
-
-  <em style="display:block; margin-top:8px; font-size:0.95rem;">
-    "Ever tried. Ever failed. No matter. Try again. Fail again. Fail better."
-  </em>
+  <div class="tagline">Chess player • Creative educator • Builder of thinkers</div>
+  <div class="quote">"Ever tried. Ever failed. No matter. Try again. Fail again. Fail better."</div>
 </header>
 
-<!-- HOME CONTENT -->
+<!-- FEATURED PROJECT -->
 <section>
   <h2>🌟 Featured Project: SRM-VEC English PWA</h2>
-  <p>A fast, clean, gamified progressive web app designed for engineering students at SRM Valliammai Engineering College to learn English smarter.</p>
 
-  <ul>
-    <li>Daily XP quests</li>
-    <li>Video & story quests</li>
-    <li>Speaking practice tasks</li>
-    <li>Leaderboard & streak rewards</li>
-    <li>Offline-friendly PWA</li>
-  </ul>
+  <div class="card">
+    <p>A fast, clean, gamified English-learning PWA for SRM Valliammai Engineering College.</p>
 
-  <p style="margin-top:15px;">
-    👉 <a href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank" style="color:#4a148c; font-weight:700;">
-      Try the SRM-VEC English PWA
+    <ul>
+      <li>Daily XP quests</li>
+      <li>Speaking, video & story quests</li>
+      <li>Leaderboard & streak rewards</li>
+      <li>Offline-friendly</li>
+    </ul>
+
+    <a class="link-btn" href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank">
+      Open the English PWA
     </a>
-  </p>
+  </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
   <h2>About Me</h2>
-  <p>I am an Assistant Professor of English who treats learning as the highest form of self-creation. As a chess player, I bring clarity, discipline, and logic into the classroom to help students think boldly and communicate with confidence.</p>
-  <p>My teaching is built on curiosity-driven learning. I design gamified tasks and innovative activities so that students fall in love with the process of growing into their best selves.</p>
+
+  <div class="card">
+    <p>I treat learning as the highest form of self-creation. As a chess player, I bring clarity, logic, and strategic thinking into the classroom.</p>
+
+    <p>I design gamified, curiosity-driven learning experiences that help students grow into confident communicators.</p>
+  </div>
 </section>
 
 <!-- CHESS -->
 <section id="chess">
   <h2>♟️ Chess</h2>
-  <p>I am an active rapid, 2100+ blitz, and 2200+ bullet player (ranked in the top 0.3% globally), committed to daily improvement and strategic thinking.</p>
 
-  <p style="margin-top:15px;">
-    👉 <a href="https://www.chess.com/member/andrewveda" target="_blank" style="color:#4a148c; font-weight:700;">
-      Visit my Chess.com profile
+  <div class="card">
+    <p>I am an active rapid player, 2100+ blitz, and 2200+ bullet (top 0.3% globally). Chess keeps my mind sharp and my teaching sharper.</p>
+
+    <a class="link-btn" href="https://www.chess.com/member/andrewveda" target="_blank">
+      Visit my Chess.com Profile
     </a>
-  </p>
+  </div>
 </section>
 
 <!-- TEACHING -->
 <section id="teaching">
   <h2>🧭 Teaching Philosophy</h2>
-  <p>I believe students learn best when they feel safe to explore, experiment, question, reflect, fail, and improve. My teaching is built around clarity, curiosity, creativity, and student agency. Every student deserves a learning space that inspires them to think deeply and communicate with purpose.</p>
+
+  <div class="card">
+    <p>I believe students learn best when they feel safe to explore, question, experiment, and improve. My teaching blends clarity, curiosity, creativity, and agency.</p>
+  </div>
 </section>
 
 </body>
