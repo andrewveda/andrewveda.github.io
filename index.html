@@ -1,232 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Andrew Veda — Assistant Professor of English</title>
 
-<!-- SEO -->
-<meta name="description" content="Official website of Andrew Veda — Assistant Professor of English at SRM Valliammai Engineering College. Researcher, educator, chess player, and designer of game-based learning.">
+<meta name="description" content="Andrew Veda — Assistant Professor of English at SRM Valliammai Engineering College. Research, pedagogy, chess, aesthetics, and game-based learning.">
 <meta name="author" content="Andrew Veda">
 
+<!-- TYPOGRAPHY -->
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: "Inter", "Segoe UI", sans-serif;
-  background: #f5f5f7;
-  color: #222;
+:root{
+  --bg:#fbf7f2;            /* light cream */
+  --ink:#111;
+  --muted:#666;
+  --accent:#5a189a;
+  --border:#e4ded6;
 }
 
-/* NAV */
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #ffffffee;
-  backdrop-filter: blur(10px);
-  padding: 12px 0;
-  border-bottom: 1px solid #e0e0e0;
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Inter,system-ui,sans-serif;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
 }
 
-nav ul {
-  display: flex;
-  justify-content: space-around;
-  list-style: none;
+/* HERO */
+header{
+  max-width:720px;
+  margin:auto;
+  padding:48px 20px 40px;
+  text-align:center;
 }
 
-nav a {
-  text-decoration: none;
-  color: #5a189a;
-  font-weight: 600;
-  font-size: 0.9rem;
+.hero-photo{
+  display:flex;
+  justify-content:center;
+  margin-bottom:20px;
 }
 
-/* HEADER */
-header {
-  text-align: center;
-  padding: 80px 20px 40px;
-  background: linear-gradient(160deg, #5a189a, #9d4edd);
-  color: white;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
+.hero-photo img{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 18px 36px rgba(0,0,0,0.18);
 }
 
-.profile-pic {
-  width: 135px;
-  height: 135px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid rgba(255,255,255,0.8);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+.hero-meta{
+  font-size:0.8rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:10px;
 }
 
-h1 {
-  font-size: 1.9rem;
-  margin-top: 12px;
+header h1{
+  font-family:"Source Serif 4",serif;
+  font-size:clamp(2.4rem,6vw,3rem);
+  font-weight:700;
+  line-height:1.1;
 }
 
-h3 {
-  font-size: 1rem;
-  opacity: 0.9;
-  margin-top: 5px;
-  line-height: 1.4;
+header h3{
+  margin-top:10px;
+  font-weight:400;
+  color:var(--muted);
+  line-height:1.4;
 }
 
-.tagline {
-  margin-top: 12px;
-  font-size: 1rem;
-  font-weight: 500;
+.hero-quote{
+  margin-top:18px;
+  font-size:0.9rem;
+  color:var(--muted);
 }
 
-.quote {
-  margin-top: 12px;
-  font-size: 0.85rem;
-  opacity: 0.85;
+/* MAIN CONTENT */
+main{
+  max-width:780px;
+  margin:auto;
+  padding:0 20px 120px;
 }
 
-/* SECTIONS */
-section {
-  padding: 50px 20px;
-  max-width: 900px;
-  margin: auto;
+section{
+  margin-top:90px;
 }
 
-h2 {
-  font-size: 1.4rem;
-  margin-bottom: 14px;
-  color: #5a189a;
+section h2{
+  font-family:"Source Serif 4",serif;
+  font-size:2.1rem;
+  font-weight:700;
+  margin-bottom:26px;
 }
 
-p {
-  font-size: 1.05rem;
-  line-height: 1.65;
-  margin-bottom: 14px;
-}
-
-/* CARD */
-.card {
-  background: white;
-  border-radius: 18px;
-  padding: 24px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  margin-top: 20px;
+section p{
+  font-size:1.08rem;
+  margin-bottom:18px;
 }
 
 /* BUTTON */
-a.link-btn {
-  display: inline-block;
-  margin-top: 14px;
-  padding: 12px 20px;
-  background: #5a189a;
-  color: white;
-  text-decoration: none;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 0.95rem;
+.btn{
+  display:inline-block;
+  margin-top:16px;
+  padding:12px 18px;
+  background:var(--accent);
+  color:white;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:600;
+  font-size:0.95rem;
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:18px;
+  margin-top:24px;
+}
+
+.gallery img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);
+  padding:50px 20px;
+  text-align:center;
+  font-size:0.9rem;
+  color:var(--muted);
+}
+
+/* FLOATING MENU */
+.menu-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  background:var(--accent);
+  color:white;
+  font-size:1.4rem;
+  border:none;
+  cursor:pointer;
+  box-shadow:0 10px 24px rgba(0,0,0,0.25);
+  z-index:999;
+}
+
+.menu{
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  background:white;
+  border-radius:14px;
+  box-shadow:0 16px 40px rgba(0,0,0,0.25);
+  padding:14px 18px;
+  display:none;
+  z-index:998;
+}
+
+.menu a{
+  display:block;
+  text-decoration:none;
+  color:var(--ink);
+  font-size:0.95rem;
+  margin:10px 0;
+  font-weight:500;
 }
 
 /* MOBILE */
-@media (max-width: 600px) {
-  header { padding: 40px 16px 24px; border-radius: 0 0 24px 24px; }
-  .profile-pic { width: 105px; height: 105px; }
-  h1 { font-size: 1.55rem; }
-  h2 { font-size: 1.25rem; }
+@media(max-width:600px){
+  section{
+    margin-top:70px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<nav>
-  <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#teaching">Teaching</a></li>
-    <li><a href="#chess">Chess</a></li>
-  </ul>
-</nav>
+<header>
+  <div class="hero-photo">
+    <img src="images/andrewveda.jpeg" alt="Andrew Veda">
+  </div>
 
-<!-- HEADER -->
-<header id="home">
-  <img src="images/andrewveda.jpeg" class="profile-pic" alt="Andrew Veda">
+  <div class="hero-meta"> Chess · Pedagogy · Poetry </div>
+
   <h1>Andrew Veda</h1>
-  <h3>Assistant Professor of English<br>SRM Valliammai Engineering College</h3>
 
-  <div class="tagline"> Chess nerd ♟️ Pedagogy Hacker 😍</div>
-
+  <h3>
+    Assistant Professor of English<br>
+    SRM Valliammai Engineering College
+  </h3>
+<p></p>
   <div class="quote"> Builder of curious, confident thinkers ✨ Motivating my students to grow into their best versions. </div>
-  <div class="quote">“Ever tried. Ever failed. No matter. Try again. Fail again. Fail better.” — Samuel Beckett</div>
+  <div class="tagline"> Live long and prosper!✨♟️🖖 </div>
+  <div class="hero-quote">
+    “Ever tried. Ever failed. No matter. Try again. Fail again. Fail better.”
+    — Samuel Beckett
+  </div>
 </header>
 
-<!-- ABOUT -->
+<main>
+
 <section id="about">
-  <h2>About Me</h2>
-  <div class="card">
-    <p>
-      I am an English academic with interdisciplinary interests spanning literature,
-      language pedagogy, environmental humanities, and aesthetics.
-      I teach English not as a static subject, but as a living system of choices.
-    </p>
-    <p>
-      My work centres on pattern-recognition — the same cognitive skill that connects
-      grammar, chess, poetry, and problem-solving. I believe learning is not absorption,
-      but self-creation.
-    </p>
-  </div>
+<h2>About Me</h2>
+<p>
+I treat learning as the highest form of self-creation. As a chess player, I bring clarity,
+logic, and strategic thinking into the classroom.
+</p>
+<p>
+I design gamified, curiosity-driven learning experiences that help students grow into
+confident communicators.
+</p>
 </section>
 
-<!-- RESEARCH -->
 <section id="research">
-  <h2>Research & Intellectual Work</h2>
-  <div class="card">
-    <p>
-      My research engages with environmental humanities, especially zoosemiotics and
-      phytosemiotics, arguing that nature itself participates in meaning-making.
-    </p>
-    <p>
-      I work extensively on classical Tamil literature, particularly <em>Kuṟuntokai</em>,
-      foregrounding female gaze, emotional agency, and narrative dominance. I have
-      translated the entire text into acrostic verse.
-    </p>
-    <p>
-      I am also developing an aesthetic theory that equates aesthetics with individuality
-      and growth rather than surface beauty.
-    </p>
-  </div>
+<h2>Research & Intellectual Work</h2>
+<p>
+My research explores environmental humanities with a focus on zoosemiotics and
+phytosemiotics, arguing that nature itself participates in meaning-making rather than
+remaining a passive backdrop.
+</p>
+<p>
+I work extensively on classical Tamil literature, particularly <em>Kuṟuntokai</em>,
+foregrounding female gaze, emotional agency, and narrative dominance. I have translated
+the entire collection into acrostic verse.
+</p>
+<p>
+I am also developing a theory of aesthetics that equates aesthetics with individuality
+and growth rather than surface beauty.
+</p>
 </section>
 
-<!-- TEACHING -->
 <section id="teaching">
-  <h2>Teaching Philosophy</h2>
-  <div class="card">
-    <p>
-      I design gamified, ICT-based learning experiences for engineering students,
-      blending clarity, curiosity, creativity, and agency.
-    </p>
-    <p>
-      My classrooms treat communication as performance, grammar as intuition, and
-      assessment as play — especially for ESL students. I believe students learn best when they feel safe to explore, question, experiment, and improve. My teaching blends clarity, curiosity, creativity, and agency. Everything I do is aimed at instilling in my students the desire to become the best version of who they can be.
-    </p>
-  </div>
+<h2>Teaching Philosophy</h2>
+<p>
+I believe students learn best when they feel safe to explore, question, experiment,
+and improve. My teaching blends clarity, curiosity, creativity, and agency.
+</p>
+<p>
+Everything I do is aimed at instilling in my students the desire to become the best
+version of who they can be.
+</p>
 </section>
 
-<!-- CHESS -->
-<section id="chess">
-  <h2>♟️ Chess & Cognitive Play</h2>
-  <div class="card">
-    <p>
-      I am ranked among the top one percentile (top 0.3%) of bullet and blitz players online.
-      Chess sharpens my teaching philosophy - decision-making under pressure and disciplined imagination.
-    </p>
+<section id="publications">
+<h2>Publications & Talks</h2>
+<p>
+My academic work spans journal articles, conference papers, invited lectures,
+and workshops across literature, pedagogy, and interdisciplinary studies.
+</p>
 
-    <a class="link-btn" href="https://www.chess.com/member/andrewveda" target="_blank">
+<a class="btn" href="https://scholar.google.com/citations?user=CU7TljcAAAAJ" target="_blank">
+View Google Scholar
+</a>
+
+<div class="gallery">
+  <img src="images/talk1.jpg" alt="Talk">
+  <img src="images/talk2.jpg" alt="Invited lecture">
+  <img src="images/talk3.jpg" alt="Workshop">
+  <img src="images/talk4.jpg" alt="Translation">
+</div>
+</section>
+
+<section id="chess">
+<h2>Chess</h2>
+<p>
+I am an active rapid player, 2100+ blitz, and 2200+ bullet (top 0.3% globally).
+Chess keeps my mind sharp and (I hope) my teaching sharper!
+</p>
+   <a class="btn" href="https://www.chess.com/member/andrewveda" target="_blank">
       Visit my Chess.com Profile
     </a>
-  </div>
 </section>
+
+</main>
+
+<footer>
+© Andrew Veda
+</footer>
+
+<!-- FLOATING MENU -->
+<button class="menu-btn" onclick="toggleMenu()">≡</button>
+
+<div class="menu" id="menu">
+  <a href="#about">About</a>
+  <a href="#research">Research</a>
+  <a href="#teaching">Teaching</a>
+  <a href="#publications">Publications</a>
+  <a href="#chess">Chess</a>
+</div>
+
+<script>
+function toggleMenu(){
+  const menu = document.getElementById("menu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+</script>
 
 </body>
 </html>
