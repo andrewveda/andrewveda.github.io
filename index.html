@@ -184,125 +184,98 @@ footer{
     margin-top:70px;
   }
 }
-  /* =========================
-   MOBILE OVERRIDES (CLEAN)
+/* =========================
+   HERO CARD DESIGN
    ========================= */
 
-@media (max-width: 600px) {
+/* Wrap the text visually as a card */
+header{
+  position:relative;
+}
 
-  /* BODY */
-  body{
-    line-height:1.6;
-  }
+/* Soft card container effect */
+header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,0.75),
+    rgba(255,255,255,0.92)
+  );
+  border-radius:22px;
+  z-index:-1;
+}
 
-  /* HEADER COMPRESSION */
-  header{
-    padding:28px 16px 24px;
-  }
+/* Main identity card */
+header h1,
+header h3,
+.quote,
+.tagline,
+.hero-quote{
+  background:white;
+  border-radius:16px;
+  padding:14px 18px;
+  margin-left:auto;
+  margin-right:auto;
+  max-width:420px;
+  box-shadow:0 10px 28px rgba(0,0,0,0.08);
+}
 
-  .hero-photo{
-    margin-bottom:14px;
-  }
+/* Stack spacing */
+header h1{ margin-bottom:10px; }
+header h3{ margin-bottom:12px; }
+.quote{ margin-top:14px; }
+.tagline{ margin-top:8px; }
+.hero-quote{ margin-top:14px; }
 
-  .hero-photo img{
-    width:120px;
-    height:120px;
-    box-shadow:0 10px 24px rgba(0,0,0,0.16);
-  }
+/* Visual hierarchy */
+header h1{
+  font-family:"Source Serif 4",serif;
+  font-size:1.9rem;
+}
 
-  .hero-meta{
-    font-size:0.7rem;
-    letter-spacing:0.1em;
-    margin-bottom:6px;
-  }
+header h3{
+  font-size:0.95rem;
+  color:var(--muted);
+}
 
-  header h1{
-    font-size:1.8rem;
-  }
+/* Mission card */
+.quote{
+  font-size:0.95rem;
+  line-height:1.5;
+}
 
-  header h3{
-    font-size:0.9rem;
-    line-height:1.35;
-  }
+/* Personality card */
+.tagline{
+  font-size:0.85rem;
+  color:var(--muted);
+}
 
-  /* HERO TEXT TIGHTENING */
+/* Philosophy card */
+.hero-quote{
+  font-size:0.8rem;
+  font-style:italic;
+  color:var(--muted);
+}
+
+/* MOBILE POLISH */
+@media (max-width:600px){
+  header h1,
+  header h3,
   .quote,
-  .tagline{
-    font-size:0.85rem;
-    margin-top:10px;
-  }
-
+  .tagline,
   .hero-quote{
-    font-size:0.8rem;
-    margin-top:14px;
-  }
-
-  /* MAIN CONTENT */
-  main{
-    padding:0 16px 120px;
-  }
-
-  section{
-    margin-top:56px;
-  }
-
-  section h2{
-    font-size:1.5rem;
-    margin-bottom:18px;
-  }
-
-  section p{
-    font-size:0.95rem;
-    margin-bottom:14px;
-    text-align:left;
-  }
-
-  /* BUTTONS: THUMB-FIRST */
-  .btn{
-    display:block;
-    width:100%;
-    text-align:center;
+    max-width:100%;
     padding:14px 16px;
-    font-size:0.95rem;
-    border-radius:14px;
-  }
-
-  /* GALLERY */
-  .gallery{
-    grid-template-columns:1fr;
-    gap:14px;
-  }
-
-  .gallery img{
-    height:180px;
-  }
-
-  /* FLOATING MENU */
-  .menu-btn{
-    width:56px;
-    height:56px;
-    font-size:1.6rem;
-    bottom:18px;
-    right:18px;
-  }
-
-  .menu{
-    bottom:84px;
-    right:16px;
-    width:220px;
-  }
-
-  .menu a{
-    font-size:0.95rem;
-    padding:6px 0;
-  }
-
-  /* FOOTER */
-  footer{
-    padding:36px 16px;
-    font-size:0.85rem;
   }
 }
+.quote:hover,
+.hero-quote:hover{
+  transform:translateY(-2px);
+  transition:0.2s ease;
+}
+
 
 </style>
 </head>
