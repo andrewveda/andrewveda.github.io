@@ -743,6 +743,93 @@ a.contact-btn:hover { background: var(--gold); }
     background: transparent;
   }
 }
+
+  /* ─── CLICKABLE CARDS + VISIBLE CTA (DESKTOP + MOBILE) ───────── */
+
+/* make full card clickable via overlay link */
+.proj {
+  position: relative;
+  cursor: pointer;
+}
+
+/* overlay link (whole card clickable) */
+.proj a.proj-link {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  text-indent: -9999px;   /* hide text but keep accessibility */
+  overflow: hidden;
+}
+
+/* actual visible CTA label */
+.proj::before {
+  content: attr(data-cta); /* set via HTML: data-cta="Read" / "Try" / "Open" */
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold-rule);
+  z-index: 2;
+  pointer-events: none;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+/* hover feedback */
+.proj:hover::before {
+  color: var(--ink);
+  border-color: var(--rule);
+}
+
+/* ensure content stays above background but below overlay */
+.proj-name,
+.proj-desc,
+.proj-icon {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── MOBILE: KEEP CTA + REMOVE GRID LOOK ───────── */
+@media (max-width: 820px) {
+
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background: none;
+    border: none;
+  }
+
+  .proj,
+  .proj-wide {
+    padding: 0;
+    background: transparent;
+    border: none;
+  }
+
+  .proj::after {
+    display: none;
+  }
+
+  /* slightly bigger CTA on mobile */
+  .proj::before {
+    font-size: 0.78rem;
+    bottom: 6px;
+    right: 0;
+  }
+
+  /* restore readable flow */
+  .proj-name {
+    font-size: 1.05rem;
+  }
+
+  .proj-desc {
+    font-size: 0.95rem;
+  }
+}
 </style>
 </head>
 <body>
