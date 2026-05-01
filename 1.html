@@ -5,83 +5,136 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Andrew Veda</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
+/* ================= BASE ================= */
+
 :root{
-  --bg:#f4f1ea;
-  --ink:#1a1a18;
-  --muted:#6f6a5f;
-  --gold:#b8922a;
   --teal:#0e2a35;
+  --gold:#b8922a;
+  --cream:#f7f3ec;
+  --ink:#1a1a18;
+  --muted:#7a7468;
+  --serif:'Playfair Display', serif;
+  --sans:'Instrument Sans', sans-serif;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-  height:100vh;
-  overflow:hidden;
-  background:var(--bg);
-  font-family:Inter, sans-serif;
+  font-family:var(--sans);
+  background:var(--cream);
   color:var(--ink);
-  display:flex;
-  flex-direction:column;
+  scroll-behavior:smooth;
 }
 
-/* HERO */
+/* ================= PAGE 1 ================= */
 
-header{
-  padding:40px 60px 20px;
+.hero{
+  min-height:100vh;
   background:var(--teal);
   color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:80px 60px 40px;
 }
 
-.top{
+.hero-top{
   display:flex;
   align-items:center;
   gap:18px;
+  margin-bottom:20px;
 }
 
-.top img{
-  width:60px;
-  height:60px;
+.hero-top img{
+  width:70px;
+  height:70px;
   object-fit:cover;
   border-radius:2px;
 }
 
 h1{
-  font-family:Playfair Display, serif;
-  font-size:2.8rem;
-  line-height:1;
+  font-family:var(--serif);
+  font-size:3.5rem;
 }
 
-.meta{
+.hero-role{
+  font-size:0.8rem;
+  opacity:0.5;
+}
+
+.hero-body{
+  font-family:var(--serif);
+  font-style:italic;
+  max-width:45ch;
+  margin:20px 0 30px;
+  opacity:0.8;
+}
+
+/* BUILDING APPS (UNCHANGED STRUCTURE) */
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:20px;
+}
+
+.proj{
+  background:white;
+  color:black;
+  padding:16px;
+  border-radius:4px;
+}
+
+.proj-name{
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+.proj-desc{
+  font-size:0.8rem;
+  margin-bottom:10px;
+}
+
+.proj a{
+  font-size:0.75rem;
+  color:var(--gold);
+}
+
+/* SCROLL DOWN */
+
+.scroll-down{
+  margin-top:40px;
   font-size:0.75rem;
   opacity:0.6;
 }
 
-.tagline{
-  margin-top:12px;
-  font-style:italic;
-  max-width:40ch;
-  opacity:0.85;
+/* ================= PAGE 2 ================= */
+
+.slideshow{
+  height:100vh;
+  background:white;
+  display:flex;
+  flex-direction:column;
 }
 
 /* TABS */
 
 .tabs{
   display:flex;
-  gap:20px;
-  padding:16px 60px;
-  background:white;
+  gap:24px;
+  padding:18px 60px;
   border-bottom:1px solid rgba(0,0,0,0.08);
 }
 
 .tab{
   font-size:0.75rem;
-  letter-spacing:0.1em;
   text-transform:uppercase;
+  letter-spacing:0.12em;
   cursor:pointer;
   color:var(--muted);
 }
@@ -89,47 +142,51 @@ h1{
 .tab.active{
   color:var(--gold);
   border-bottom:2px solid var(--gold);
-  padding-bottom:4px;
 }
 
-/* CONTENT WINDOW */
+/* CONTENT */
 
 .viewer{
   flex:1;
-  padding:30px 60px;
+  padding:40px 60px;
   overflow:auto;
-  max-height:100%;
 }
-
-/* slides */
 
 .slide{
   display:none;
-  max-width:700px;
+  max-width:720px;
 }
 
 .slide.active{
   display:block;
 }
 
-/* typography */
-
 .slide h2{
-  font-family:Playfair Display, serif;
-  font-size:1.8rem;
-  margin-bottom:14px;
+  font-family:var(--serif);
+  font-size:2rem;
+  margin-bottom:16px;
 }
 
 .slide p{
-  font-size:0.95rem;
+  margin-bottom:14px;
   line-height:1.7;
-  margin-bottom:12px;
 }
 
-/* smooth feel */
+/* FADE EFFECT */
 
-.viewer{
-  transition:all 0.3s ease;
+.slide{
+  opacity:0;
+  transition:opacity 0.4s ease;
+}
+
+.slide.active{
+  opacity:1;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+  .projects{grid-template-columns:1fr;}
 }
 
 </style>
@@ -137,72 +194,96 @@ h1{
 
 <body>
 
-<header>
-  <div class="top">
+<!-- PAGE 1 -->
+
+<section class="hero">
+
+  <div class="hero-top">
     <img src="images/andrewveda.jpeg">
     <div>
       <h1>Andrew Veda</h1>
-      <div class="meta">Assistant Professor · SRM Valliammai Engineering College</div>
+      <div class="hero-role">SRM Valliammai Engineering College · Chennai</div>
     </div>
   </div>
 
-  <div class="tagline">
+  <div class="hero-body">
     Teacher. Translator. Builder of tools that make thinking irresistible.
   </div>
-</header>
 
-<div class="tabs">
-  <div class="tab active" onclick="show('about',this)">About</div>
-  <div class="tab" onclick="show('pedagogy',this)">Pedagogy</div>
-  <div class="tab" onclick="show('research',this)">Research</div>
-  <div class="tab" onclick="show('teaching',this)">Teaching</div>
-  <div class="tab" onclick="show('publications',this)">Publications</div>
-  <div class="tab" onclick="show('chess',this)">Chess</div>
-</div>
+  <!-- BUILDING APPS -->
+  <div class="projects">
 
-<div class="viewer">
+    <div class="proj">
+      <div class="proj-name">SRM VEC English — Student Learning App</div>
+      <div class="proj-desc">A full ecosystem of vocabulary games and tools.</div>
+      <a href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank">Open →</a>
+    </div>
 
-  <div id="about" class="slide active">
-    <h2>About</h2>
-    <p>I treat learning as the highest form of self-creation. As a chess player, I bring clarity, logic, and strategic thinking into the classroom.</p>
-    <p>I design gamified, curiosity-driven learning experiences that help students grow into confident communicators.</p>
+    <div class="proj">
+      <div class="proj-name">Cryptic Clues</div>
+      <div class="proj-desc">Crosswords for ESL learners.</div>
+      <a href="https://andrewveda.github.io/cryptic/" target="_blank">Try →</a>
+    </div>
+
+    <div class="proj">
+      <div class="proj-name">A Quote A Day</div>
+      <div class="proj-desc">Student-generated wisdom archive.</div>
+      <a href="https://andrewveda.github.io/a-quote-a-day/" target="_blank">Read →</a>
+    </div>
+
   </div>
 
-  <div id="pedagogy" class="slide">
-    <h2>Pedagogy in Practice</h2>
-    <p>I maintain a reflective teaching log where I document classroom experiments, failures, insights, and small victories.</p>
-    <p>These essays are written for teachers, students, and anyone interested in how curiosity can be engineered.</p>
+  <div class="scroll-down">Scroll ↓</div>
+
+</section>
+
+<!-- PAGE 2 -->
+
+<section class="slideshow">
+
+  <div class="tabs">
+    <div class="tab active" onclick="show('about',this)">About</div>
+    <div class="tab" onclick="show('research',this)">Research</div>
+    <div class="tab" onclick="show('teaching',this)">Teaching</div>
+    <div class="tab" onclick="show('pedagogy',this)">Pedagogy</div>
+    <div class="tab" onclick="show('chess',this)">Chess</div>
   </div>
 
-  <div id="research" class="slide">
-    <h2>Research</h2>
-    <p>My research explores environmental humanities with a focus on zoosemiotics and phytosemiotics.</p>
-    <p>I work on classical Tamil literature, especially Kuṟuntokai, foregrounding female agency.</p>
-    <p>I am developing a theory of aesthetics equating aesthetics with individuality and growth.</p>
+  <div class="viewer">
+
+    <div id="about" class="slide active">
+      <h2>About</h2>
+      <p>English professor. Classical Tamil reader and writer. Chess player in the top 0.3% globally.</p>
+      <p>Builder of learning software. None of these are separate pursuits — they are the same curiosity.</p>
+    </div>
+
+    <div id="research" class="slide">
+      <h2>Research</h2>
+      <p>Nature is an active participant in meaning-making.</p>
+      <p>Zoosemiotics. Phytosemiotics. Aesthetics as individuality.</p>
+    </div>
+
+    <div id="teaching" class="slide">
+      <h2>Teaching</h2>
+      <p>The classroom is a design problem.</p>
+      <p>Curiosity can be engineered.</p>
+    </div>
+
+    <div id="pedagogy" class="slide">
+      <h2>Pedagogy</h2>
+      <p>Game-based learning. Cryptic ambiguity. Deep thinking.</p>
+    </div>
+
+    <div id="chess" class="slide">
+      <h2>Chess</h2>
+      <p>Top 0.3% globally. Strategy as cognition.</p>
+    </div>
+
   </div>
 
-  <div id="teaching" class="slide">
-    <h2>Teaching Philosophy</h2>
-    <p>I believe students learn best when they feel safe to explore, question, experiment, and improve.</p>
-    <p>Everything I do aims to help students become the best version of themselves.</p>
-  </div>
-
-  <div id="publications" class="slide">
-    <h2>Publications & Talks</h2>
-    <p>My academic work spans journal articles, conference papers, lectures, and workshops.</p>
-    <p>Work includes interdisciplinary research across literature, pedagogy, and semiotics.</p>
-  </div>
-
-  <div id="chess" class="slide">
-    <h2>Chess</h2>
-    <p>I am a 2200+ blitz and bullet player, in the top 0.3% globally.</p>
-    <p>Chess sharpens my thinking—and my teaching.</p>
-  </div>
-
-</div>
+</section>
 
 <script>
-
 function show(id, el){
   document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -210,7 +291,6 @@ function show(id, el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
 }
-
 </script>
 
 </body>
