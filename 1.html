@@ -875,6 +875,68 @@ a.contact-btn:hover { background: var(--gold); }
   right: 12px;
   z-index: 3;
 }
+  /* ─── IMPROVED MOBILE PROJECT CARDS ───────── */
+@media (max-width: 820px) {
+  /* Remove the main wrapper border, use gaps instead */
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: transparent;
+    border: none;
+  }
+
+  /* Style each item as a standalone tactile card */
+  .proj,
+  .proj-wide {
+    background: var(--bg-right); /* Contrast against the left panel */
+    border: 1px solid var(--rule);
+    border-radius: 8px; /* Softer corners for mobile */
+    padding: 16px 16px 36px 16px; /* Extra bottom padding for the CTA */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(30, 27, 21, 0.04);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  /* Touch feedback */
+  .proj:active {
+    transform: scale(0.98);
+    background: var(--gold-fill);
+  }
+
+  /* Hide desktop hover bar */
+  .proj::after {
+    display: none;
+  }
+
+  /* Make text flow and readable */
+  .proj-name {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+
+  .proj-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* Position the visible fallback CTA nicely inside the card */
+  .proj-link {
+    bottom: 14px;
+    right: 16px;
+    font-size: 0.75rem;
+    opacity: 1; /* Ensure fallback text is visible if ::before fails */
+  }
+
+  /* Adjust the injected ::before CTA to match */
+  .proj::before {
+    bottom: 14px;
+    right: 16px;
+    font-size: 0.75rem;
+  }
+}
+
 </style>
 </head>
 <body>
