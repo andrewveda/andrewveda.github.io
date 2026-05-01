@@ -651,6 +651,28 @@ a.contact-btn:hover { background: var(--gold); }
 .left-footer a {
   font-size: 0.85rem;
 }
+  /* ─── FIX EMPTY SPACE IN PROJECT GRID ─────────── */
+
+/* allow grid items to stretch and fill height */
+.projects {
+  grid-auto-rows: 1fr;     /* all rows equal height */
+  align-content: stretch;  /* remove top-stacking gap */
+}
+
+/* make each card fully occupy its grid cell */
+.proj {
+  height: 100%;
+}
+
+/* ensure wide card doesn't break flow */
+.proj-wide {
+  grid-column: span 3;
+}
+
+/* optional: tighten overall spacing if needed */
+.left-inner {
+  justify-content: space-between;
+}
 </style>
 </head>
 <body>
