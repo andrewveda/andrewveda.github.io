@@ -269,7 +269,64 @@ h1{
   }
 
 }
+/* ===== BODY ===== */
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden; /* kill page scroll */
+  font-family:var(--sans);
+}
 
+/* ===== MAIN ===== */
+.main{
+  display:flex;
+  height:100vh;
+}
+
+/* ===== LEFT (SCROLLABLE) ===== */
+.left{
+  width:50%;
+  height:100vh;
+  overflow-y:auto;   /* ONLY THIS SCROLLS */
+  padding:60px;
+  background:var(--bg);
+}
+
+/* ===== RIGHT (FIXED) ===== */
+.right{
+  width:50%;
+  height:100vh;
+  overflow:hidden;   /* locked */
+  background:white;
+  display:flex;
+  flex-direction:column;
+}
+
+/* tabs stay fixed inside right */
+.tabs{
+  position:sticky;
+  top:0;
+  background:white;
+  z-index:10;
+}
+
+/* content scrolls INSIDE right if needed */
+.viewer{
+  overflow-y:auto;
+  flex:1;
+  padding:40px;
+}
+
+/* ===== FOOTER (INSIDE LEFT FLOW) ===== */
+.footer-links{
+  display:flex;
+  gap:28px;
+  padding:30px 0;
+  border-top:1px solid rgba(0,0,0,0.08);
+
+  overflow-x:auto;
+  white-space:nowrap;
+}
 </style>
 </head>
 
@@ -331,7 +388,14 @@ h1{
       </div>
 
     </div>
-
+<div class="footer-links">
+  <a href="https://andrewveda.github.io/" target="_blank">Website</a>
+  <a href="https://orcid.org/0000-0002-1226-6856" target="_blank">ORCID</a>
+  <a href="https://medium.com/@andrewveda" target="_blank">Medium</a>
+  <a href="https://www.chess.com/member/andrewveda" target="_blank">Chess.com</a>
+  <a href="https://x.com/andrewveda" target="_blank">@andrewveda</a>
+  <a href="https://lichess.org/av94" target="_blank">Lichess</a>
+</div>
   </div>
 
 
@@ -381,16 +445,6 @@ h1{
 
 </div>
 
-
-<!-- ✅ SHARED FOOTER (SPANS BOTH PAGES) -->
-<div class="footer-links">
-  <a href="https://andrewveda.github.io/" target="_blank">Website</a>
-  <a href="https://orcid.org/0000-0002-1226-6856" target="_blank">ORCID</a>
-  <a href="https://medium.com/@andrewveda" target="_blank">Medium</a>
-  <a href="https://www.chess.com/member/andrewveda" target="_blank">Chess.com</a>
-  <a href="https://x.com/andrewveda" target="_blank">@andrewveda</a>
-  <a href="https://lichess.org/av94" target="_blank">Lichess</a>
-</div>
 
 
 <script>
