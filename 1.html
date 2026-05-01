@@ -7,8 +7,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-<style>
-
 /* ================= ROOT ================= */
 
 :root{
@@ -22,33 +20,43 @@
   --sans:'Instrument Sans', sans-serif;
 }
 
+/* ================= RESET ================= */
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
 }
 
-/* ================= GLOBAL ================= */
+/* ================= BODY ================= */
 
 body{
   font-family:var(--sans);
   background:var(--bg);
   color:var(--ink);
+  height:100vh;
+  overflow:hidden; /* prevent page scroll */
 }
 
 /* ================= MAIN SPLIT ================= */
 
 .main{
   display:flex;
-  align-items:stretch;
+  height:100vh;
 }
 
-/* ================= LEFT ================= */
+/* ================= LEFT (FIXED PANEL) ================= */
 
 .left{
   width:50%;
+  height:100vh;
   padding:60px;
   background:var(--bg);
+
+  position:sticky;
+  top:0;
+
+  overflow:hidden;
 }
 
 /* HEADER */
@@ -133,15 +141,18 @@ h1{
   color:var(--gold);
 }
 
-/* ================= RIGHT ================= */
+/* ================= RIGHT (SCROLLABLE) ================= */
 
 .right{
   width:50%;
+  height:100vh;
+  overflow-y:auto;
   background:white;
+
   border-left:1px solid var(--border); /* magazine spine */
 }
 
-/* TABS */
+/* ================= TABS ================= */
 
 .tabs{
   position:sticky;
@@ -168,7 +179,7 @@ h1{
   border-bottom:2px solid var(--gold);
 }
 
-/* CONTENT */
+/* ================= CONTENT ================= */
 
 .viewer{
   padding:40px;
@@ -198,12 +209,12 @@ h1{
   font-size:0.95rem;
 }
 
-/* ================= FOOTER ================= */
+/* ================= FOOTER (INSIDE RIGHT SCROLL) ================= */
 
 .footer-links{
   display:flex;
   gap:28px;
-  padding:20px 40px;
+  padding:30px 40px;
   border-top:1px solid var(--border);
   background:var(--bg);
 
@@ -213,17 +224,6 @@ h1{
   font-family:var(--serif);
   font-style:italic;
 }
-
-/* scrollbar (subtle) */
-.footer-links::-webkit-scrollbar{
-  height:6px;
-}
-.footer-links::-webkit-scrollbar-thumb{
-  background:rgba(0,0,0,0.15);
-  border-radius:3px;
-}
-
-/* links */
 
 .footer-links a{
   font-size:0.72rem;
@@ -240,7 +240,6 @@ h1{
 }
 
 /* separators */
-
 .footer-links a::after{
   content:"·";
   margin-left:28px;
@@ -251,83 +250,39 @@ h1{
   content:"";
 }
 
+/* scrollbar subtle */
+.footer-links::-webkit-scrollbar{
+  height:6px;
+}
+.footer-links::-webkit-scrollbar-thumb{
+  background:rgba(0,0,0,0.15);
+  border-radius:3px;
+}
+
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:900px){
 
+  body{
+    overflow:auto;
+  }
+
   .main{
     flex-direction:column;
+    height:auto;
   }
 
   .left,
   .right{
     width:100%;
+    height:auto;
+    position:relative;
   }
 
   .projects{
     grid-template-columns:1fr;
   }
-
 }
-/* ===== BODY ===== */
-body{
-  margin:0;
-  height:100vh;
-  overflow:hidden; /* kill page scroll */
-  font-family:var(--sans);
-}
-
-/* ===== MAIN ===== */
-.main{
-  display:flex;
-  height:100vh;
-}
-
-/* ===== LEFT (SCROLLABLE) ===== */
-.left{
-  width:50%;
-  height:100vh;
-  overflow-y:auto;   /* ONLY THIS SCROLLS */
-  padding:60px;
-  background:var(--bg);
-}
-
-/* ===== RIGHT (FIXED) ===== */
-.right{
-  width:50%;
-  height:100vh;
-  overflow:hidden;   /* locked */
-  background:white;
-  display:flex;
-  flex-direction:column;
-}
-
-/* tabs stay fixed inside right */
-.tabs{
-  position:sticky;
-  top:0;
-  background:white;
-  z-index:10;
-}
-
-/* content scrolls INSIDE right if needed */
-.viewer{
-  overflow-y:auto;
-  flex:1;
-  padding:40px;
-}
-
-/* ===== FOOTER (INSIDE LEFT FLOW) ===== */
-.footer-links{
-  display:flex;
-  gap:28px;
-  padding:30px 0;
-  border-top:1px solid rgba(0,0,0,0.08);
-
-  overflow-x:auto;
-  white-space:nowrap;
-}
-</style>
 </head>
 
 <body>
@@ -388,14 +343,7 @@ body{
       </div>
 
     </div>
-<div class="footer-links">
-  <a href="https://andrewveda.github.io/" target="_blank">Website</a>
-  <a href="https://orcid.org/0000-0002-1226-6856" target="_blank">ORCID</a>
-  <a href="https://medium.com/@andrewveda" target="_blank">Medium</a>
-  <a href="https://www.chess.com/member/andrewveda" target="_blank">Chess.com</a>
-  <a href="https://x.com/andrewveda" target="_blank">@andrewveda</a>
-  <a href="https://lichess.org/av94" target="_blank">Lichess</a>
-</div>
+
   </div>
 
 
@@ -442,7 +390,14 @@ body{
     </div>
 
   </div>
-
+<div class="footer-links">
+  <a href="https://andrewveda.github.io/" target="_blank">Website</a>
+  <a href="https://orcid.org/0000-0002-1226-6856" target="_blank">ORCID</a>
+  <a href="https://medium.com/@andrewveda" target="_blank">Medium</a>
+  <a href="https://www.chess.com/member/andrewveda" target="_blank">Chess.com</a>
+  <a href="https://x.com/andrewveda" target="_blank">@andrewveda</a>
+  <a href="https://lichess.org/av94" target="_blank">Lichess</a>
+</div>
 </div>
 
 
