@@ -9,6 +9,8 @@
 
 <style>
 
+/* ================= ROOT ================= */
+
 :root{
   --teal:#0e2a35;
   --gold:#b8922a;
@@ -20,24 +22,33 @@
   --sans:'Instrument Sans', sans-serif;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* ================= GLOBAL ================= */
 
 body{
   font-family:var(--sans);
-  display:flex;
-  height:100vh;
+  background:var(--bg);
+  color:var(--ink);
 }
 
-/* ================= LEFT PAGE (FIXED) ================= */
+/* ================= MAIN SPLIT ================= */
+
+.main{
+  display:flex;
+  align-items:stretch;
+}
+
+/* ================= LEFT ================= */
 
 .left{
   width:50%;
-  background:var(--bg);
   padding:60px;
-  position:sticky;
-  top:0;
-  height:100vh;
-  overflow:hidden;
+  background:var(--bg);
 }
 
 /* HEADER */
@@ -87,10 +98,15 @@ h1{
   border-right:1px solid var(--border);
   border-bottom:1px solid var(--border);
   background:white;
+  transition:background 0.2s ease;
 }
 
 .card:nth-child(2n){
   border-right:none;
+}
+
+.card:hover{
+  background:#faf8f2;
 }
 
 .card h3{
@@ -106,18 +122,23 @@ h1{
 }
 
 .card a{
-  font-size:0.75rem;
+  font-size:0.72rem;
   color:var(--teal);
   text-transform:uppercase;
+  letter-spacing:0.08em;
+  text-decoration:none;
 }
 
-/* ================= RIGHT PAGE (SCROLLABLE) ================= */
+.card a:hover{
+  color:var(--gold);
+}
+
+/* ================= RIGHT ================= */
 
 .right{
   width:50%;
-  height:100vh;
-  overflow-y:auto;
   background:white;
+  border-left:1px solid var(--border); /* magazine spine */
 }
 
 /* TABS */
@@ -135,10 +156,11 @@ h1{
 
 .tab{
   font-size:0.75rem;
-  letter-spacing:0.1em;
+  letter-spacing:0.12em;
   text-transform:uppercase;
   cursor:pointer;
   color:var(--muted);
+  padding-bottom:4px;
 }
 
 .tab.active{
@@ -154,11 +176,14 @@ h1{
 
 .slide{
   display:none;
-  max-width:600px;
+  max-width:640px;
+  opacity:0;
+  transition:opacity 0.35s ease;
 }
 
 .slide.active{
   display:block;
+  opacity:1;
 }
 
 .slide h2{
@@ -169,105 +194,27 @@ h1{
 
 .slide p{
   margin-bottom:14px;
-  line-height:1.7;
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:900px){
-  body{flex-direction:column;}
-  .left,.right{width:100%;height:auto;position:relative;}
-}
-/* ================= FOOTER ================= */
-
-.footer-links {
-  display: flex;
-  gap: 24px;
-  padding: 20px 40px;
-  border-top: 1px solid rgba(0,0,0,0.08);
-
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
-/* hide ugly scrollbar (optional, clean look) */
-.footer-links::-webkit-scrollbar {
-  height: 6px;
-}
-.footer-links::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.15);
-  border-radius: 3px;
-}
-
-/* links */
-.footer-links a {
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-decoration: none;
-
-  transition: color 0.2s ease;
-}
-
-.footer-links a:hover {
-  color: var(--gold);
-}
-  .footer-links a::after {
-  content: "·";
-  margin-left: 24px;
-  color: rgba(0,0,0,0.2);
-}
-
-.footer-links a:last-child::after {
-  content: "";
-}
-  /* ================= LAYOUT ================= */
-
-body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  font-family:var(--sans);
-}
-
-/* MAIN SPLIT AREA */
-.main{
-  display:flex;
-  flex:1;
-  overflow:hidden;
-}
-
-/* LEFT + RIGHT */
-.left{
-  width:50%;
-  height:100%;
-  overflow:hidden;
-}
-
-.right{
-  width:50%;
-  height:100%;
-  overflow-y:auto;
+  line-height:1.75;
+  font-size:0.95rem;
 }
 
 /* ================= FOOTER ================= */
 
 .footer-links{
-  width:100%;
   display:flex;
   gap:28px;
-  padding:16px 40px;
-
-  border-top:1px solid rgba(0,0,0,0.08);
+  padding:20px 40px;
+  border-top:1px solid var(--border);
   background:var(--bg);
 
   overflow-x:auto;
   white-space:nowrap;
+
+  font-family:var(--serif);
+  font-style:italic;
 }
 
-/* scrollbar (clean) */
+/* scrollbar (subtle) */
 .footer-links::-webkit-scrollbar{
   height:6px;
 }
@@ -277,6 +224,7 @@ body{
 }
 
 /* links */
+
 .footer-links a{
   font-size:0.72rem;
   letter-spacing:0.12em;
@@ -284,7 +232,6 @@ body{
   color:var(--muted);
   text-decoration:none;
   flex-shrink:0;
-
   transition:color 0.2s ease;
 }
 
@@ -292,133 +239,37 @@ body{
   color:var(--gold);
 }
 
-/* OPTIONAL: editorial separators */
-.footer-links a::after{
-  content:"·";
-  margin-left:28px;
-  color:rgba(0,0,0,0.2);
-}
-.footer-links a:last-child::after{
-  content:"";
-}
-  .footer-links{
-  font-family:var(--serif);
-  font-style:italic;
-}
-  /* ===== GLOBAL LAYOUT ===== */
-
-body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  font-family:var(--sans);
-}
-
-/* MAIN SPLIT */
-.main{
-  flex:1;
-  display:flex;
-  overflow:hidden;
-}
-
-/* LEFT PAGE */
-.left{
-  width:50%;
-  height:100%;
-  overflow:hidden;
-  background:var(--bg);
-  padding:60px;
-}
-
-/* RIGHT PAGE */
-.right{
-  width:50%;
-  height:100%;
-  overflow-y:auto;
-  background:white;
-}
-
-/* FOOTER (SHARED) */
-.footer-links{
-  width:100%;
-  display:flex;
-  gap:28px;
-  padding:16px 40px;
-  border-top:1px solid rgba(0,0,0,0.08);
-  background:var(--bg);
-
-  overflow-x:auto;
-  white-space:nowrap;
-}
-
-/* links */
-.footer-links a{
-  font-size:0.72rem;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  color:var(--muted);
-  text-decoration:none;
-  flex-shrink:0;
-}
-
-.footer-links a:hover{
-  color:var(--gold);
-}
-
 /* separators */
+
 .footer-links a::after{
   content:"·";
   margin-left:28px;
   color:rgba(0,0,0,0.2);
 }
+
 .footer-links a:last-child::after{
   content:"";
 }
-  /* ===== GLOBAL ===== */
-body{
-  margin:0;
-  font-family:var(--sans);
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+  .main{
+    flex-direction:column;
+  }
+
+  .left,
+  .right{
+    width:100%;
+  }
+
+  .projects{
+    grid-template-columns:1fr;
+  }
+
 }
 
-/* ===== MAIN SPLIT ===== */
-.main{
-  display:flex;
-  align-items:stretch; /* equal height columns */
-}
-
-/* LEFT */
-.left{
-  width:50%;
-  padding:60px;
-  background:var(--bg);
-}
-
-/* RIGHT */
-.right{
-  width:50%;
-  background:white;
-}
-
-/* ===== TABS (STICKY STILL WORKS) ===== */
-.tabs{
-  position:sticky;
-  top:0;
-  background:white;
-  z-index:10;
-}
-
-/* ===== FOOTER ===== */
-.footer-links{
-  display:flex;
-  gap:28px;
-  padding:20px 40px;
-  border-top:1px solid rgba(0,0,0,0.08);
-  background:var(--bg);
-
-  overflow-x:auto;
-  white-space:nowrap;
-}
 </style>
 </head>
 
