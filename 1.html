@@ -936,6 +936,41 @@ a.contact-btn:hover { background: var(--gold); }
     font-size: 0.75rem;
   }
 }
+  /* ─── RESTORE "TRY / READ" BUTTONS ON MOBILE ───────── */
+  .proj a.proj-link {
+    /* Stretch the link over the whole card for full clickability */
+    position: absolute;
+    inset: 0;
+    
+    /* Bring the text back (overriding desktop 'transparent' color) */
+    color: var(--gold); 
+    
+    /* Push the text and icon to the bottom right corner */
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 16px; /* Matches the card's padding */
+    
+    /* Typography */
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    z-index: 3;
+  }
+
+  /* Make sure the SVG arrow aligns neatly with the text */
+  .proj a.proj-link svg {
+    margin-left: 4px;
+    margin-bottom: 2px;
+    color: var(--gold);
+  }
+
+  /* Hide the broken ::before/::after labels from desktop */
+  .proj::before,
+  .proj-link::after {
+    display: none !important;
+  }
 
 </style>
 </head>
