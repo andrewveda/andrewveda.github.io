@@ -26,17 +26,18 @@ body{
   font-family:var(--sans);
   display:flex;
   height:100vh;
-  overflow:hidden;
 }
 
-/* ================= LEFT PAGE ================= */
+/* ================= LEFT PAGE (FIXED) ================= */
 
 .left{
   width:50%;
   background:var(--bg);
   padding:60px;
-  display:flex;
-  flex-direction:column;
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow:hidden;
 }
 
 /* HEADER */
@@ -78,7 +79,6 @@ h1{
 .projects{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:0;
   border:1px solid var(--border);
 }
 
@@ -111,22 +111,26 @@ h1{
   text-transform:uppercase;
 }
 
-/* ================= RIGHT PAGE ================= */
+/* ================= RIGHT PAGE (SCROLLABLE) ================= */
 
 .right{
   width:50%;
+  height:100vh;
+  overflow-y:auto;
   background:white;
-  display:flex;
-  flex-direction:column;
 }
 
 /* TABS */
 
 .tabs{
+  position:sticky;
+  top:0;
+  background:white;
   display:flex;
   gap:20px;
   padding:20px 40px;
   border-bottom:1px solid var(--border);
+  z-index:10;
 }
 
 .tab{
@@ -145,9 +149,7 @@ h1{
 /* CONTENT */
 
 .viewer{
-  flex:1;
   padding:40px;
-  overflow:auto;
 }
 
 .slide{
@@ -166,26 +168,15 @@ h1{
 }
 
 .slide p{
-  margin-bottom:12px;
+  margin-bottom:14px;
   line-height:1.7;
-}
-
-/* SMOOTH FADE */
-
-.slide{
-  opacity:0;
-  transition:opacity 0.3s ease;
-}
-
-.slide.active{
-  opacity:1;
 }
 
 /* ================= MOBILE ================= */
 
 @media(max-width:900px){
   body{flex-direction:column;}
-  .left,.right{width:100%;height:auto;}
+  .left,.right{width:100%;height:auto;position:relative;}
 }
 
 </style>
@@ -209,44 +200,42 @@ h1{
     Teacher. Translator. Builder of tools that make thinking irresistible.
   </div>
 
-  <!-- PROJECTS (MATCHING YOUR SCREENSHOT STYLE) -->
-
   <div class="projects">
 
     <div class="card">
       <h3>SRM VEC English — Student Learning App</h3>
-      <p>A Progressive Web App housing vocabulary games, short plays, forums and more.</p>
-      <a href="#">Open App →</a>
+      <p>A Progressive Web App housing vocabulary games, short plays, and more.</p>
+      <a href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank">Open App →</a>
     </div>
 
     <div class="card">
       <h3>Cryptic Clues</h3>
-      <p>Department-specific cryptic crosswords. Miniature Turing tests for ESL learners.</p>
-      <a href="#">Try Live →</a>
+      <p>Department-specific cryptic crosswords.</p>
+      <a href="https://andrewveda.github.io/cryptic/" target="_blank">Try Live →</a>
     </div>
 
     <div class="card">
       <h3>A Quote A Day</h3>
-      <p>A student-contributed quote archive. A living document of classroom thought.</p>
-      <a href="#">Read Today →</a>
+      <p>A student-contributed quote archive.</p>
+      <a href="https://andrewveda.github.io/a-quote-a-day/" target="_blank">Read Today →</a>
     </div>
 
     <div class="card">
       <h3>Wordle Blitz</h3>
-      <p>5-minute countdown Wordle sprint. Vocabulary under pressure.</p>
-      <a href="#">Play →</a>
+      <p>5-minute countdown Wordle sprint.</p>
+      <a href="https://andrewveda.github.io/SRM-VEC-English-PWA/wordleblitz" target="_blank">Play →</a>
     </div>
 
     <div class="card">
       <h3>Vox Velocity</h3>
-      <p>IELTS & GRE-level vocabulary game. Learn by doing.</p>
-      <a href="#">Play →</a>
+      <p>IELTS & GRE-level vocabulary game.</p>
+      <a href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/vox-velocity-directory" target="_blank">Play →</a>
     </div>
 
     <div class="card">
       <h3>Short Plays</h3>
-      <p>Dialogue-based learning exploring philosophy and psychology.</p>
-      <a href="#">Read →</a>
+      <p>Dialogue-based learning exploring philosophy.</p>
+      <a href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/stories" target="_blank">Read →</a>
     </div>
 
   </div>
@@ -275,7 +264,7 @@ h1{
 
     <div id="research" class="slide">
       <h2>Research</h2>
-      <p>Nature is not a passive backdrop — it is an active participant in meaning-making.</p>
+      <p>Nature is an active participant in meaning-making.</p>
       <p>Zoosemiotics. Phytosemiotics. Aesthetics as individuality.</p>
     </div>
 
