@@ -3,311 +3,642 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andrew Veda — Assistant Professor of English</title>
-
-<meta name="description" content="Andrew Veda — Assistant Professor of English at SRM Valliammai Engineering College. Research, pedagogy, chess, aesthetics, and game-based learning.">
-<meta name="author" content="Andrew Veda">
-
-<!-- TYPOGRAPHY -->
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+<title>Andrew Veda</title>
+<meta name="description" content="Andrew Veda — Assistant Professor of English, SRM Valliammai Engineering College.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#fbf7f2;            /* light cream */
-  --ink:#111;
-  --muted:#666;
-  --accent:#5a189a;
-  --border:#e4ded6;
+:root {
+  --teal:       #0e2a35;
+  --teal-mid:   #1c4a5c;
+  --teal-soft:  rgba(14,42,53,0.06);
+  --gold:       #b8922a;
+  --gold-pale:  rgba(184,146,42,0.13);
+  --cream:      #f7f3ec;
+  --paper:      #ffffff;
+  --ink:        #1a1a18;
+  --ink-2:      #3d3a34;
+  --ink-3:      #7a7468;
+  --rule:       rgba(26,26,24,0.1);
+  --serif:      'Playfair Display', Georgia, serif;
+  --sans:       'Instrument Sans', system-ui, sans-serif;
+  --max:        1100px;
 }
-
-*{margin:0;padding:0;box-sizing:border-box;}
-
-body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:Inter,system-ui,sans-serif;
-  line-height:1.75;
-  -webkit-font-smoothing:antialiased;
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
+a { color:inherit; text-decoration:none; }
+img { display:block; max-width:100%; }
+
+/* PROGRESS */
+#bar { position:fixed; top:0; left:0; height:2px; width:0%; background:var(--gold); z-index:1000; transition:width 0.1s linear; }
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:900;
+  background:rgba(14,42,53,0.96); backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(184,146,42,0.18);
+  height:48px; display:flex; align-items:center; padding:0 32px; gap:0;
+}
+.nav-logo { font-family:var(--serif); font-size:0.95rem; font-weight:700; color:#e8d9b8; margin-right:auto; }
+.nav-links { display:flex; gap:0; list-style:none; }
+.nav-links a {
+  display:block; padding:0 16px;
+  font-size:0.72rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase;
+  color:rgba(255,255,255,0.42); transition:color 0.15s; line-height:48px;
+}
+.nav-links a:hover { color:#e8d9b8; }
+.burger { display:none; background:none; border:none; cursor:pointer; flex-direction:column; gap:5px; padding:4px; }
+.burger span { display:block; width:22px; height:1.5px; background:rgba(255,255,255,0.7); border-radius:1px; }
+.mob-menu {
+  display:none; position:fixed; inset:0;
+  background:var(--teal); z-index:800;
+  flex-direction:column; align-items:center; justify-content:center; gap:32px;
+}
+.mob-menu.open { display:flex; }
+.mob-menu a { font-family:var(--serif); font-size:1.8rem; color:var(--cream); transition:color 0.15s; }
+.mob-menu a:hover { color:#e8d9b8; }
+.mob-close { position:absolute; top:20px; right:24px; font-size:1.6rem; color:rgba(255,255,255,0.4); background:none; border:none; cursor:pointer; }
 
 /* HERO */
-header{
-  max-width:720px;
-  margin:auto;
-  padding:48px 20px 40px;
-  text-align:center;
+.hero {
+  min-height:100vh; background:var(--teal);
+  display:grid; grid-template-columns:1fr 360px;
+  padding-top:48px; position:relative; overflow:hidden;
+}
+.hero::after {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 60% 80% at 55% 50%, rgba(28,74,92,0.45) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-text {
+  padding:60px 52px 60px 60px;
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative; z-index:1;
+}
+.hero-kicker {
+  font-size:0.7rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:18px;
+  display:flex; align-items:center; gap:10px;
+}
+.hero-kicker::before { content:''; display:block; width:22px; height:1px; background:var(--gold); flex-shrink:0; }
+h1 {
+  font-family:var(--serif);
+  font-size:clamp(2.8rem, 4.5vw, 4.8rem);
+  font-weight:700; line-height:1.0; letter-spacing:-0.02em;
+  color:var(--cream); margin-bottom:4px;
+}
+h1 em { display:block; font-style:italic; font-weight:500; color:rgba(232,217,184,0.65); }
+.hero-role { font-size:0.76rem; letter-spacing:0.07em; color:rgba(255,255,255,0.3); margin-bottom:32px; }
+.hero-body {
+  font-family:var(--serif); font-size:1rem; font-style:italic;
+  line-height:1.75; color:rgba(255,255,255,0.58); max-width:40ch; margin-bottom:32px;
+}
+.threads { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:36px; }
+.thread {
+  font-size:0.67rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  color:rgba(184,146,42,0.72); border:1px solid rgba(184,146,42,0.2); padding:4px 10px;
+  border-radius:2px; transition:all 0.15s;
+}
+.thread:hover { color:var(--gold); border-color:rgba(184,146,42,0.45); background:var(--gold-pale); }
+.hero-cta {
+  display:inline-flex; align-items:center; gap:8px; width:fit-content;
+  padding:10px 20px; background:var(--gold); color:var(--teal);
+  font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
+  border-radius:2px; transition:all 0.2s;
+}
+.hero-cta:hover { background:#c9a43a; transform:translateY(-1px); }
+.hero-cta svg { transition:transform 0.15s; }
+.hero-cta:hover svg { transform:translateX(3px); }
+.hero-photo { position:relative; z-index:1; overflow:hidden; }
+.hero-photo img { width:100%; height:100%; object-fit:cover; object-position:top center; filter:sepia(8%) contrast(1.05) brightness(0.93); }
+.hero-photo::before {
+  content:''; position:absolute; top:15%; left:0;
+  width:1px; height:70%;
+  background:linear-gradient(to bottom, transparent, rgba(184,146,42,0.28), transparent);
+  z-index:2;
 }
 
-.hero-photo{
-  display:flex;
-  justify-content:center;
-  margin-bottom:20px;
+/* SHARED */
+.wrap { max-width:var(--max); margin:0 auto; padding:0 32px; }
+.sec-label { font-size:0.67rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:5px; }
+h2 { font-family:var(--serif); font-size:clamp(1.45rem, 2.2vw, 2rem); font-weight:700; line-height:1.1; letter-spacing:-0.01em; color:var(--teal); }
+
+/* ABOUT */
+.about { padding:52px 0; border-bottom:1px solid var(--rule); }
+.about .wrap { display:grid; grid-template-columns:240px 1fr; gap:44px; align-items:start; }
+.about-left p { font-size:0.87rem; line-height:1.78; color:var(--ink-2); margin-top:12px; }
+.about-right {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden;
+}
+.stat { background:var(--paper); padding:18px 16px; transition:background 0.15s; }
+.stat:hover { background:var(--cream); }
+.stat-n { font-family:var(--serif); font-size:1.6rem; font-weight:700; color:var(--teal); line-height:1; margin-bottom:3px; }
+.stat-l { font-size:0.65rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-3); }
+.about-pull {
+  grid-column:1 / -1; background:var(--teal); padding:16px 18px;
+  font-family:var(--serif); font-style:italic; font-size:0.85rem;
+  line-height:1.65; color:rgba(232,217,184,0.58);
+  border-top:1px solid rgba(184,146,42,0.12);
 }
 
-.hero-photo img{
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  object-fit:cover;
-  box-shadow:0 18px 36px rgba(0,0,0,0.18);
+/* DESK */
+.desk { background:var(--teal); padding:44px 0; border-bottom:1px solid rgba(184,146,42,0.1); }
+.desk .wrap { display:grid; grid-template-columns:140px 1fr; gap:28px; align-items:start; }
+.desk-head .sec-label { color:rgba(184,146,42,0.65); }
+.desk-head p { font-size:0.78rem; color:rgba(255,255,255,0.22); line-height:1.5; margin-top:4px; }
+.desk-items {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1px; background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.06); border-radius:3px; overflow:hidden;
+}
+.desk-item { background:rgba(255,255,255,0.02); padding:16px 14px; transition:background 0.15s; }
+.desk-item:hover { background:rgba(255,255,255,0.05); }
+.desk-item-icon { font-size:1rem; margin-bottom:8px; line-height:1; }
+.desk-item-title { font-size:0.78rem; font-weight:600; color:rgba(232,217,184,0.82); margin-bottom:4px; line-height:1.25; }
+.desk-item-body { font-size:0.73rem; line-height:1.58; color:rgba(255,255,255,0.32); }
+
+/* RESEARCH */
+.research { padding:52px 0; border-bottom:1px solid var(--rule); }
+.research .wrap { display:grid; grid-template-columns:1fr 280px; gap:40px; align-items:start; }
+.research-main h2 { margin-bottom:12px; }
+.research-main p { font-size:0.87rem; line-height:1.8; color:var(--ink-2); margin-bottom:10px; }
+.research-main a.ilink {
+  font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--teal-mid); border-bottom:1px solid rgba(28,74,92,0.22); padding-bottom:1px;
+  transition:color 0.15s, border-color 0.15s;
+}
+.research-main a.ilink:hover { color:var(--gold); border-color:var(--gold); }
+.kt-card { background:var(--teal); border-radius:3px; padding:22px 20px; position:relative; overflow:hidden; }
+.kt-watermark {
+  position:absolute; bottom:-10px; right:-4px;
+  font-family:var(--serif); font-size:3rem; font-weight:700;
+  color:rgba(184,146,42,0.05); white-space:nowrap; pointer-events:none; line-height:1; user-select:none;
+}
+.kt-card .sec-label { color:var(--gold); margin-bottom:8px; }
+.kt-card h3 { font-family:var(--serif); font-size:0.95rem; font-weight:700; color:var(--cream); margin-bottom:8px; line-height:1.25; }
+.kt-card p { font-size:0.76rem; line-height:1.7; color:rgba(255,255,255,0.42); font-style:italic; margin-bottom:12px; }
+.kt-pill {
+  display:inline-block; font-size:0.62rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  padding:3px 9px; border:1px solid rgba(184,146,42,0.28); border-radius:2px; color:rgba(184,146,42,0.6);
 }
 
-.hero-meta{
-  font-size:0.8rem;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  color:var(--accent);
-  margin-bottom:10px;
+/* BUILDING */
+.building { padding:52px 0; background:var(--paper); border-bottom:1px solid var(--rule); }
+.building-sub { font-size:0.78rem; color:var(--ink-3); margin-bottom:20px; font-style:italic; margin-top:3px; }
+.projects {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden;
 }
+.proj { background:var(--paper); padding:20px 18px; display:flex; flex-direction:column; transition:background 0.15s; position:relative; }
+.proj:hover { background:var(--cream); }
+.proj::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, var(--teal-mid), var(--gold));
+  transform:scaleX(0); transform-origin:left; transition:transform 0.25s;
+}
+.proj:hover::after { transform:scaleX(1); }
+.proj.wide { grid-column:span 2; flex-direction:row; gap:18px; align-items:flex-start; }
+.proj.wide .proj-body { flex:1; }
+.proj-icon { font-size:1rem; margin-bottom:9px; line-height:1; flex-shrink:0; }
+.proj-name { font-family:var(--serif); font-size:0.92rem; font-weight:700; color:var(--teal); margin-bottom:5px; line-height:1.2; }
+.proj-desc { font-size:0.76rem; line-height:1.62; color:var(--ink-3); flex:1; margin-bottom:12px; }
+.proj-link { display:inline-flex; align-items:center; gap:4px; font-size:0.66rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal-mid); transition:color 0.15s; }
+.proj-link:hover { color:var(--gold); }
+.proj-link svg { transition:transform 0.15s; }
+.proj-link:hover svg { transform:translateX(2px); }
 
-header h1{
-  font-family:"Source Serif 4",serif;
-  font-size:clamp(2.4rem,6vw,3rem);
-  font-weight:700;
-  line-height:1.1;
+/* PEDAGOGY */
+.pedagogy { background:var(--teal); padding:52px 0; border-bottom:1px solid rgba(184,146,42,0.1); }
+.pedagogy .wrap { display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:start; }
+.pedagogy-left .sec-label { color:rgba(184,146,42,0.65); }
+.pedagogy-left h2 { color:var(--cream); margin-bottom:12px; }
+.pedagogy-left p { font-size:0.85rem; line-height:1.8; color:rgba(255,255,255,0.46); margin-bottom:10px; }
+.pedagogy-left p strong { color:rgba(255,255,255,0.7); font-style:italic; font-weight:500; }
+.essay-btn {
+  display:inline-flex; align-items:center; gap:7px; margin-top:6px;
+  padding:8px 16px; border:1px solid rgba(184,146,42,0.32); border-radius:2px;
+  font-size:0.68rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  color:rgba(184,146,42,0.75); transition:all 0.18s;
 }
+.essay-btn:hover { background:var(--gold-pale); border-color:var(--gold); color:var(--gold); }
+.pedagogy-right h3 { font-family:var(--serif); font-size:0.92rem; font-weight:700; color:rgba(232,217,184,0.65); margin-bottom:10px; }
+.pedagogy-right p { font-size:0.8rem; line-height:1.75; color:rgba(255,255,255,0.35); margin-bottom:9px; font-style:italic; }
 
-header h3{
-  margin-top:10px;
-  font-weight:400;
-  color:var(--muted);
-  line-height:1.4;
+/* CHESS */
+.chess { padding:52px 0; border-bottom:1px solid var(--rule); }
+.chess .wrap { display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center; }
+.chess-left h2 { margin-bottom:10px; }
+.chess-left p { font-size:0.85rem; line-height:1.8; color:var(--ink-2); margin-bottom:14px; }
+.chess-stats { display:flex; gap:22px; margin-bottom:18px; }
+.chess-stat-n { font-family:var(--serif); font-size:1.45rem; font-weight:700; color:var(--teal); line-height:1; margin-bottom:2px; }
+.chess-stat-l { font-size:0.63rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); }
+.chess-link {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:8px 16px; background:var(--teal); color:rgba(232,217,184,0.85);
+  font-size:0.68rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  border-radius:2px; transition:background 0.18s;
 }
+.chess-link:hover { background:var(--teal-mid); }
+.chess-right {
+  font-family:var(--serif); font-style:italic; font-size:0.98rem;
+  line-height:1.75; color:var(--ink-3);
+  border-left:2px solid var(--gold); padding:14px 0 14px 18px;
+}
+.chess-right cite { display:block; margin-top:9px; font-style:normal; font-family:var(--sans); font-size:0.67rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); }
 
-.hero-quote{
-  margin-top:18px;
-  font-size:0.9rem;
-  color:var(--muted);
+/* PUBS */
+.pubs { padding:52px 0; border-bottom:1px solid var(--rule); background:var(--cream); }
+.pubs .wrap { display:grid; grid-template-columns:240px 1fr; gap:40px; align-items:start; }
+.pubs-left h2 { margin-bottom:10px; }
+.pubs-left p { font-size:0.85rem; line-height:1.75; color:var(--ink-2); margin-bottom:14px; }
+.pubs-btn {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:8px 16px; border:1px solid rgba(14,42,53,0.22); border-radius:2px;
+  font-size:0.68rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--teal); transition:all 0.18s;
 }
+.pubs-btn:hover { background:var(--teal); color:rgba(232,217,184,0.9); border-color:var(--teal); }
+.pubs-gallery { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; }
+.pubs-gallery img { width:100%; aspect-ratio:3/2; object-fit:cover; border-radius:2px; filter:sepia(12%); transition:filter 0.2s, transform 0.2s; }
+.pubs-gallery img:hover { filter:sepia(0%); transform:scale(1.02); }
 
-/* MAIN CONTENT */
-main{
-  max-width:780px;
-  margin:auto;
-  padding:0 20px 120px;
+/* CONTACT */
+.contact { background:var(--teal); padding:52px 0; }
+.contact .wrap { display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center; }
+.contact-left .sec-label { color:rgba(184,146,42,0.65); }
+.contact-left h2 { color:var(--cream); margin-bottom:10px; }
+.contact-left p { font-size:0.85rem; line-height:1.75; color:rgba(255,255,255,0.38); font-style:italic; }
+.contact-right { display:flex; flex-direction:column; gap:10px; align-items:flex-start; }
+.contact-btn {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 22px; background:var(--gold); color:var(--teal);
+  font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+  border-radius:2px; transition:all 0.2s;
 }
-
-section{
-  margin-top:90px;
-}
-
-section h2{
-  font-family:"Source Serif 4",serif;
-  font-size:2.1rem;
-  font-weight:700;
-  margin-bottom:26px;
-}
-
-section p{
-  font-size:1.08rem;
-  margin-bottom:18px;
-}
-
-/* BUTTON */
-.btn{
-  display:inline-block;
-  margin-top:16px;
-  padding:12px 18px;
-  background:var(--accent);
-  color:white;
-  text-decoration:none;
-  border-radius:10px;
-  font-weight:600;
-  font-size:0.95rem;
-}
-
-/* GALLERY */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:18px;
-  margin-top:24px;
-}
-
-.gallery img{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-  border-radius:14px;
-}
+.contact-btn:hover { background:#c9a43a; transform:translateY(-1px); box-shadow:0 5px 18px rgba(184,146,42,0.22); }
+.contact-note { font-size:0.7rem; color:rgba(255,255,255,0.2); font-style:italic; }
 
 /* FOOTER */
-footer{
-  border-top:1px solid var(--border);
-  padding:50px 20px;
-  text-align:center;
-  font-size:0.9rem;
-  color:var(--muted);
+footer {
+  background:#07181f; padding:16px 32px;
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
+  border-top:1px solid rgba(184,146,42,0.08);
 }
+.footer-name { font-family:var(--serif); font-size:0.85rem; color:rgba(232,217,184,0.6); }
+.footer-copy { font-size:0.66rem; color:rgba(255,255,255,0.16); letter-spacing:0.05em; }
 
-/* FLOATING MENU */
-.menu-btn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  background:var(--accent);
-  color:white;
-  font-size:1.4rem;
-  border:none;
-  cursor:pointer;
-  box-shadow:0 10px 24px rgba(0,0,0,0.25);
-  z-index:999;
+/* REVEAL */
+.r { opacity:0; transform:translateY(14px); transition:opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+.r.v { opacity:1; transform:none; }
+.r.d1 { transition-delay:0.07s; }
+.r.d2 { transition-delay:0.14s; }
+.r.d3 { transition-delay:0.21s; }
+.r.d4 { transition-delay:0.28s; }
+
+/* RESPONSIVE */
+@media (max-width:900px) {
+  nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .burger { display:flex; }
+  .hero { grid-template-columns:1fr; min-height:auto; }
+  .hero-text { padding:76px 24px 36px; }
+  .hero-photo { height:300px; }
+  .about .wrap, .research .wrap, .chess .wrap, .pubs .wrap, .contact .wrap, .pedagogy .wrap { grid-template-columns:1fr; gap:24px; }
+  .about-right { grid-template-columns:1fr 1fr; }
+  .desk .wrap { grid-template-columns:1fr; }
+  .desk-items { grid-template-columns:1fr 1fr; }
+  .projects { grid-template-columns:1fr 1fr; }
+  .proj.wide { grid-column:span 2; flex-direction:column; }
+  .pubs-gallery { grid-template-columns:1fr 1fr; }
+  footer { padding:14px 20px; }
 }
-
-.menu{
-  position:fixed;
-  bottom:90px;
-  right:20px;
-  background:white;
-  border-radius:14px;
-  box-shadow:0 16px 40px rgba(0,0,0,0.25);
-  padding:14px 18px;
-  display:none;
-  z-index:998;
-}
-
-.menu a{
-  display:block;
-  text-decoration:none;
-  color:var(--ink);
-  font-size:0.95rem;
-  margin:10px 0;
-  font-weight:500;
-}
-
-/* MOBILE */
-@media(max-width:600px){
-  section{
-    margin-top:70px;
-  }
+@media (max-width:560px) {
+  .wrap, .about .wrap, .desk .wrap, .research .wrap, .building .wrap, .pedagogy .wrap, .chess .wrap, .pubs .wrap, .contact .wrap { padding:0 18px; }
+  .desk-items { grid-template-columns:1fr; }
+  .projects { grid-template-columns:1fr; }
+  .proj.wide { grid-column:span 1; }
+  .about-right { grid-template-columns:1fr 1fr; }
+  h1 { font-size:2.6rem; }
+  .chess-stats { gap:14px; }
 }
 </style>
 </head>
-
 <body>
 
-<header>
+<div id="bar"></div>
+
+<nav>
+  <span class="nav-logo">Andrew Veda</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#building">Building</a></li>
+    <li><a href="#pedagogy">Pedagogy</a></li>
+    <li><a href="#chess">Chess</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="burger" onclick="openMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mob-menu" id="mob">
+  <button class="mob-close" onclick="closeMenu()">×</button>
+  <a href="#about"      onclick="closeMenu()">About</a>
+  <a href="#research"   onclick="closeMenu()">Research</a>
+  <a href="#building"   onclick="closeMenu()">Building</a>
+  <a href="#pedagogy"   onclick="closeMenu()">Pedagogy</a>
+  <a href="#chess"      onclick="closeMenu()">Chess</a>
+  <a href="#contact"    onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-kicker">Assistant Professor of English</div>
+    <h1>Andrew<em>Veda</em></h1>
+    <p class="hero-role">SRM Valliammai Engineering College &nbsp;·&nbsp; Chennai</p>
+    <p class="hero-body">Teacher. Translator. Builder of tools that make thinking irresistible.</p>
+    <div class="threads">
+      <span class="thread">Classical Tamil</span>
+      <span class="thread">Zoosemiotics</span>
+      <span class="thread">Chess</span>
+      <span class="thread">Game-Based Learning</span>
+      <span class="thread">Translation</span>
+      <span class="thread">Aesthetics</span>
+      <span class="thread">Critical Thinking</span>
+    </div>
+    <a class="hero-cta" href="#contact">
+      Invite me to speak
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5h10M7.5 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
   <div class="hero-photo">
     <img src="images/andrewveda.jpeg" alt="Andrew Veda">
   </div>
+</section>
 
-  <div class="hero-meta"> Chess · Pedagogy · Poetry </div>
-
-  <h1>Andrew Veda</h1>
-
-  <h3>
-    Assistant Professor of English<br>
-    SRM Valliammai Engineering College
-  </h3>
-<p></p>
-  <div class="quote"> Builder of curious, confident thinkers ✨ Motivating my students to grow into their best versions. </div>
-  <div class="tagline"> Live long and prosper!✨♟️🖖 </div>
-  <div class="hero-quote">
-    “Ever tried. Ever failed. No matter. Try again. Fail again. Fail better.”
-    — Samuel Beckett
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-left r">
+      <div class="sec-label">About</div>
+      <h2>One mind,<br>many disciplines.</h2>
+      <p>
+        English professor. Classical Tamil reader and writer. Chess player in the top 0.3% globally.
+        Builder of learning software. None of these are separate pursuits —
+        they are the same curiosity, looking in different directions.
+      </p>
+    </div>
+    <div class="about-right r d1">
+      <div class="stat">
+        <div class="stat-n">400+</div>
+        <div class="stat-l">Poems translated</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">2200+</div>
+        <div class="stat-l">Blitz &amp; Bullet</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">50+</div>
+        <div class="stat-l">GitHub repos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">Top 0.3%</div>
+        <div class="stat-l">Chess, globally</div>
+      </div>
+      <div class="about-pull">
+        "I build classrooms the way a chess player builds positions — with patience, intention, and an eye for what becomes possible three moves ahead."
+      </div>
+    </div>
   </div>
-</header>
-
-<main>
-
-<section id="about">
-<h2>About Me</h2>
-<p>
-I treat learning as the highest form of self-creation. As a chess player, I bring clarity,
-logic, and strategic thinking into the classroom.
-</p>
-<p>
-I design gamified, curiosity-driven learning experiences that help students grow into
-confident communicators.
-</p>
 </section>
 
-<section id="research">
-<h2>Research & Intellectual Work</h2>
-<p>
-My research explores environmental humanities with a focus on zoosemiotics and
-phytosemiotics, arguing that nature itself participates in meaning-making rather than
-remaining a passive backdrop.
-</p>
-<p>
-I work extensively on classical Tamil literature, particularly <em>Kuṟuntokai</em>,
-foregrounding female gaze, emotional agency, and narrative dominance. I have translated
-the entire collection into acrostic verse.
-</p>
-<p>
-I am also developing a theory of aesthetics that equates aesthetics with individuality
-and growth rather than surface beauty.
-</p>
+<!-- DESK -->
+<section class="desk">
+  <div class="wrap">
+    <div class="desk-head r">
+      <div class="sec-label">Currently</div>
+      <p>On my<br>desk</p>
+    </div>
+    <div class="desk-items">
+      <div class="desk-item r d1">
+        <div class="desk-item-icon">♟️</div>
+        <div class="desk-item-title">Chess Stories for Children</div>
+        <div class="desk-item-body">A series where the pieces come alive and teach strategy through narrative.</div>
+      </div>
+      <div class="desk-item r d2">
+        <div class="desk-item-icon">🎸</div>
+        <div class="desk-item-title">Math Rock &amp; Rap</div>
+        <div class="desk-item-body">Odd time signatures, polyrhythm, lyrical density — what complexity sounds like when it grooves.</div>
+      </div>
+      <div class="desk-item r d3">
+        <div class="desk-item-icon">🧩</div>
+        <div class="desk-item-title">Cryptic Crossword Platform</div>
+        <div class="desk-item-body">Teaching students to sit with ambiguity, delay closure, and enjoy not knowing yet.</div>
+      </div>
+      <div class="desk-item r d4">
+        <div class="desk-item-icon">💬</div>
+        <div class="desk-item-title">Philosophy Debate Forum</div>
+        <div class="desk-item-body">A platform where critical thinking is the only currency. Structured disagreement, deep inquiry.</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="teaching">
-<h2>Teaching Philosophy</h2>
-<p>
-I believe students learn best when they feel safe to explore, question, experiment,
-and improve. My teaching blends clarity, curiosity, creativity, and agency.
-</p>
-<p>
-Everything I do is aimed at instilling in my students the desire to become the best
-version of who they can be.
-</p>
+<!-- RESEARCH -->
+<section class="research" id="research">
+  <div class="wrap">
+    <div class="research-main r">
+      <div class="sec-label">Scholarship</div>
+      <h2>Research</h2>
+      <br>
+      <p>
+        My research argues that nature is not a passive backdrop to human meaning-making — it is an active participant.
+        Through zoosemiotics and phytosemiotics, I examine how animals, plants, and ecosystems generate and transmit signs.
+      </p>
+      <p>
+        I am also developing a theory of aesthetics that treats aesthetic experience not as taste, but as individuality in motion —
+        the moment a person becomes more fully themselves through encounter with beauty.
+      </p>
+      <div style="display: flex; gap: 20px; margin-top: 15px;">
+        <a class="ilink" href="https://scholar.google.com/citations?user=CU7TljcAAAAJ" target="_blank">Google Scholar →</a>
+        <a class="ilink" href="https://orcid.org/0000-0002-1226-6856" target="_blank">ORCID →</a>
+        <a class="ilink" href="https://medium.com/@andrewveda" target="_blank">Medium →</a>
+      </div>
+    </div>
+    <div class="r d2">
+      <div class="kt-card">
+        <div class="kt-watermark">குறுந்தொகை</div>
+        <div class="sec-label">Translation Project</div>
+        <h3>Kuṟuntokai in Acrostic Verse</h3>
+        <p>
+          A complete translation of the classical Tamil Sangam anthology into English acrostic verse —
+          all 400 poems, foregrounding female gaze, emotional agency, and narrative dominance.
+          Written from within the tradition.
+        </p>
+        <div class="kt-pill">In Progress · Unpublished</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="publications">
-<h2>Publications & Talks</h2>
-<p>
-My academic work spans journal articles, conference papers, invited lectures,
-and workshops across literature, pedagogy, and interdisciplinary studies.
-</p>
-
-<a class="btn" href="https://scholar.google.com/citations?user=CU7TljcAAAAJ" target="_blank">
-View Google Scholar
-</a>
-
-<div class="gallery">
-  <img src="images/talk1.jpg" alt="Talk">
-  <img src="images/talk2.jpg" alt="Invited lecture">
-  <img src="images/talk3.jpg" alt="Workshop">
-  <img src="images/talk4.jpg" alt="Translation">
-</div>
+<!-- BUILDING -->
+<section class="building" id="building">
+  <div class="wrap">
+    <div class="sec-label r">GitHub</div>
+    <h2 class="r d1">Building</h2>
+    <p class="building-sub r d1">An English professor who builds software. Each project is a pedagogical argument made in code.</p>
+    <div class="projects">
+      <div class="proj wide r d1">
+        <div class="proj-icon">📱</div>
+        <div class="proj-body">
+          <div class="proj-name">SRM VEC English — Student Learning App</div>
+          <div class="proj-desc">A Progressive Web App housing an entire pedagogical ecosystem: vocabulary games, short plays for concept exploration, philosophy forums, book insights, and more. Built for and with students.</div>
+          <a class="proj-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank">Open app <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+      <div class="proj r d1">
+        <div class="proj-icon">🧩</div>
+        <div class="proj-name">Cryptic Clues</div>
+        <div class="proj-desc">Department-specific cryptic crosswords — anagrams, acrostics, charades, homophones. Miniature Turing tests for ESL learners.</div>
+        <a class="proj-link" href="https://andrewveda.github.io/cryptic/" target="_blank">Try live <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="proj r d2">
+        <div class="proj-icon">✦</div>
+        <div class="proj-name">A Quote A Day</div>
+        <div class="proj-desc">A student-contributed quote archive. Wisdom, wit, and wonder collected daily — a living document of a classroom's intellectual life.</div>
+        <a class="proj-link" href="https://andrewveda.github.io/a-quote-a-day/" target="_blank">Read today's <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="proj r d1">
+        <div class="proj-icon">⚡</div>
+        <div class="proj-name">Wordle Blitz</div>
+        <div class="proj-desc">5-minute countdown Wordle sprint with bonus time for speed and efficiency. Vocabulary under pressure.</div>
+        <a class="proj-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/wordleblitz" target="_blank">Play <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="proj r d2">
+        <div class="proj-icon">🗣️</div>
+        <div class="proj-name">Vox Velocity</div>
+        <div class="proj-desc">IELTS &amp; GRE-level vocabulary game. Learn by doing, not memorising.</div>
+        <a class="proj-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/vox-velocity-directory" target="_blank">Play <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="proj r d3">
+        <div class="proj-icon">📖</div>
+        <div class="proj-name">Short Plays</div>
+        <div class="proj-desc">Dialogue-completion plays exploring Zen, psychology, and self-development. Concepts learned through character, not lecture.</div>
+        <a class="proj-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/stories" target="_blank">Read <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="chess">
-<h2>Chess</h2>
-<p>
-I am an active rapid player, 2100+ blitz, and 2200+ bullet (top 0.3% globally).
-Chess keeps my mind sharp and (I hope) my teaching sharper!
-</p>
-   <a class="btn" href="https://www.chess.com/member/andrewveda" target="_blank">
-      Visit my Chess.com Profile
-    </a>
+<!-- PEDAGOGY -->
+<section class="pedagogy" id="pedagogy">
+  <div class="wrap">
+    <div class="pedagogy-left r">
+      <div class="sec-label">Teaching</div>
+      <h2>Pedagogy<br>in Practice</h2>
+      <br>
+      <p>The classroom is a design problem. Every session is an intervention — <strong>designed to shift how a student thinks</strong>, not just what they know.</p>
+      <p>I document this work: failed experiments, small victories, the slow realisation that curiosity can be engineered.</p>
+      <a class="essay-btn" href="https://medium.com/@andrewveda/teachers-log-introducing-cryptic-crosswords-in-tertiary-level-esl-classrooms-13a500596038" target="_blank">
+        Read: Cryptic Crosswords in ESL →
+      </a>
+    </div>
+    <div class="pedagogy-right r d2">
+      <h3>Philosophy</h3>
+      <p>Students learn best when they feel safe to explore, question, experiment, and improve. My teaching blends clarity, curiosity, creativity, and agency.</p>
+      <p>My current obsession: the cryptic crossword as a pedagogy of ambiguity — training students to hold multiple meanings simultaneously, to delay closure, to enjoy not knowing yet.</p>
+      <p>Everything I do is aimed at instilling in my students the desire to become the best version of who they can be.</p>
+    </div>
+  </div>
 </section>
 
-</main>
+<!-- CHESS -->
+<section class="chess" id="chess">
+  <div class="wrap">
+    <div class="chess-left r">
+      <div class="sec-label">Chess</div>
+      <h2>The game that<br>sharpened everything.</h2>
+      <br>
+      <p>Chess taught me that clarity is not the absence of complexity — it is complexity made navigable. That lesson lives in every class I teach.</p>
+      <div class="chess-stats">
+        <div><div class="chess-stat-n">2200+</div><div class="chess-stat-l">Blitz</div></div>
+        <div><div class="chess-stat-n">2200+</div><div class="chess-stat-l">Bullet</div></div>
+        <div><div class="chess-stat-n">Top 0.3%</div><div class="chess-stat-l">Globally</div></div>
+      </div>
+      <a class="chess-link" href="https://www.chess.com/member/andrewveda" target="_blank">Chess.com profile →</a>
+    </div>
+    <div class="chess-right r d2">
+      "Ever tried. Ever failed. No matter. Try again. Fail again. Fail better."
+      <cite>— Samuel Beckett</cite>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="pubs" id="publications">
+  <div class="wrap">
+    <div class="pubs-left r">
+      <div class="sec-label">Academic Work</div>
+      <h2>Publications<br>&amp; Talks</h2>
+      <br>
+      <p>Journal articles, conference papers, invited lectures, and workshops across literature, semiotics, pedagogy, and translation — including a workshop on translation at Loyola College, Chennai.</p>
+      <a class="pubs-btn" href="https://scholar.google.com/citations?user=CU7TljcAAAAJ" target="_blank">Google Scholar →</a>
+    </div>
+    <div class="pubs-gallery r d2">
+      <img src="images/talk1.jpg" alt="Translation workshop, Loyola College">
+      <img src="images/talk2.jpg" alt="Translation workshop, Loyola College">
+      <img src="images/talk3.jpg" alt="Translation workshop, Loyola College">
+      <img src="images/talk4.jpg" alt="Translation workshop, Loyola College">
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-left r">
+      <div class="sec-label">Get in Touch</div>
+      <h2>Let's think<br>together.</h2>
+      <br>
+      <p>Available for talks, workshops, and collaborations on language, literature, pedagogy, semiotics, and game-based learning.</p>
+    </div>
+    <div class="contact-right r d2">
+      <a class="contact-btn" href="https://x.com/andrewveda" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.631 5.905-5.631zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+        Find me on X
+      </a>
+      <span class="contact-note">I respond to interesting ideas.</span>
+    </div>
+  </div>
+</section>
 
 <footer>
-© Andrew Veda
+  <span class="footer-name">Andrew Veda</span>
+  <span class="footer-copy">© 2026 · SRM Valliammai Engineering College · Chennai</span>
 </footer>
 
-<!-- FLOATING MENU -->
-<button class="menu-btn" onclick="toggleMenu()">≡</button>
-
-<div class="menu" id="menu">
-  <a href="#about">About</a>
-  <a href="#research">Research</a>
-  <a href="#teaching">Teaching</a>
-  <a href="#publications">Publications</a>
-  <a href="#chess">Chess</a>
-</div>
-
 <script>
-function toggleMenu(){
-  const menu = document.getElementById("menu");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
-}
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  document.getElementById('bar').style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+});
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('v'); obs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.r').forEach(el => obs.observe(el));
+function openMenu()  { document.getElementById('mob').classList.add('open'); }
+function closeMenu() { document.getElementById('mob').classList.remove('open'); }
 </script>
-
 </body>
 </html>
