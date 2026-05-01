@@ -830,6 +830,51 @@ a.contact-btn:hover { background: var(--gold); }
     font-size: 0.95rem;
   }
 }
+  /* ─── FULL CARD CLICKABLE + VISIBLE BUTTON ───────── */
+
+/* make card behave like a clickable surface */
+.proj {
+  position: relative;
+  cursor: pointer;
+}
+
+/* stretch link across the card */
+.proj a.proj-link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  /* keep it invisible but NOT destructive */
+  color: transparent;
+  background: transparent;
+}
+
+/* bring visible text above overlay */
+.proj-name,
+.proj-desc,
+.proj-icon,
+.proj-link svg {
+  position: relative;
+  z-index: 3;
+}
+
+/* ✨ recreate visible CTA text using the original link text */
+.proj-link::after {
+  content: attr(data-label); /* fallback handled below */
+}
+
+/* fallback: just show original inline text normally */
+.proj-link {
+  font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  z-index: 3;
+}
 </style>
 </head>
 <body>
