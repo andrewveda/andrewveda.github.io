@@ -375,6 +375,50 @@ body{
 .footer-links a:last-child::after{
   content:"";
 }
+  /* ===== GLOBAL ===== */
+body{
+  margin:0;
+  font-family:var(--sans);
+}
+
+/* ===== MAIN SPLIT ===== */
+.main{
+  display:flex;
+  align-items:stretch; /* equal height columns */
+}
+
+/* LEFT */
+.left{
+  width:50%;
+  padding:60px;
+  background:var(--bg);
+}
+
+/* RIGHT */
+.right{
+  width:50%;
+  background:white;
+}
+
+/* ===== TABS (STICKY STILL WORKS) ===== */
+.tabs{
+  position:sticky;
+  top:0;
+  background:white;
+  z-index:10;
+}
+
+/* ===== FOOTER ===== */
+.footer-links{
+  display:flex;
+  gap:28px;
+  padding:20px 40px;
+  border-top:1px solid rgba(0,0,0,0.08);
+  background:var(--bg);
+
+  overflow-x:auto;
+  white-space:nowrap;
+}
 </style>
 </head>
 
