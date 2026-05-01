@@ -574,6 +574,121 @@ footer {
     padding-bottom: 55px !important;
   }
 }
+  /* =========================
+   COMPACT HERO — MAGAZINE MODE
+   ========================= */
+
+/* Reduce hero height */
+.hero {
+  min-height: 72vh;
+  grid-template-columns: 1.4fr 0.6fr; /* less image dominance */
+}
+
+/* Tighten text block */
+.hero-text {
+  padding: 70px 60px 40px 80px;
+  max-width: 620px;
+}
+
+/* Make name slightly smaller but sharper */
+h1 {
+  font-size: clamp(3rem, 4.5vw, 4.8rem);
+  line-height: 0.95;
+}
+
+/* Reduce vertical gaps */
+.hero-body {
+  margin-bottom: 22px;
+  max-width: 38ch;
+}
+
+/* Threads more compact */
+.threads {
+  margin-bottom: 24px;
+}
+
+/* CTA tighter */
+.hero-cta {
+  padding: 8px 18px;
+  font-size: 0.68rem;
+}
+
+/* --- IMAGE: SMALLER, SHARPER, MAGAZINE STYLE --- */
+
+.hero-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 40px;
+}
+
+/* shrink image footprint */
+.hero-photo img {
+  width: 85%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 2px;
+
+  /* premium portrait feel */
+  filter: contrast(1.12) brightness(0.92) saturate(0.9);
+
+  /* subtle print-style frame */
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.18),
+    0 0 0 1px rgba(184,146,42,0.15);
+}
+
+/* remove heavy overlay */
+.hero-photo::after {
+  display: none;
+}
+
+/* soften vertical divider */
+.hero-photo::before {
+  opacity: 0.25;
+}
+
+/* --- MAKE HERO FEEL INFORMATION-DENSE --- */
+
+/* Add subtle separator under hero */
+.hero::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(28,74,92,0.4),
+    transparent 80%
+  );
+}
+
+/* --- TRANSITION INTO CONTENT FASTER --- */
+
+.about {
+  margin-top: -20px; /* slight pull-up effect */
+}
+
+/* --- OPTIONAL: ADD INLINE META LINE --- */
+
+.hero-role {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+}
+
+/* --- RESPONSIVE --- */
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .hero-photo {
+    padding: 0 24px 24px;
+  }
+
+  .hero-photo img {
+    width: 60%;
+  }
+}
 </style>
 </head>
 <body>
