@@ -5,200 +5,131 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Andrew Veda</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
-:root {
-  --teal:#0e2a35;
-  --gold:#b8922a;
-  --cream:#f4f1ea;
-  --paper:#ffffff;
+:root{
+  --bg:#f4f1ea;
   --ink:#1a1a18;
   --muted:#6f6a5f;
-  --serif:'Playfair Display', serif;
-  --sans:'Instrument Sans', sans-serif;
+  --gold:#b8922a;
+  --teal:#0e2a35;
 }
 
-* { box-sizing:border-box; margin:0; padding:0; }
+*{margin:0;padding:0;box-sizing:border-box;}
 
-body {
-  font-family:var(--sans);
-  background:var(--cream);
+body{
+  height:100vh;
+  overflow:hidden;
+  background:var(--bg);
+  font-family:Inter, sans-serif;
   color:var(--ink);
-}
-
-/* NAV */
-
-nav {
-  height:56px;
-  background:var(--teal);
-  color:#e8d9b8;
   display:flex;
-  align-items:center;
-  padding:0 40px;
+  flex-direction:column;
 }
 
 /* HERO */
 
-.hero {
-  display:grid;
-  grid-template-columns:1.2fr 0.8fr;
-  height:70vh;
+header{
+  padding:40px 60px 20px;
   background:var(--teal);
   color:white;
 }
 
-/* LEFT */
-
-.hero-text {
-  padding:60px 60px 40px 80px;
-}
-
-.hero-kicker {
-  color:var(--gold);
-  font-size:0.7rem;
-  letter-spacing:0.3em;
-  margin-bottom:14px;
-}
-
-/* INLINE TITLE */
-
-.hero-title-row {
+.top{
   display:flex;
   align-items:center;
   gap:18px;
-  margin-bottom:10px;
 }
 
-.hero-inline-photo {
-  height:64px;
-  width:64px;
+.top img{
+  width:60px;
+  height:60px;
   object-fit:cover;
   border-radius:2px;
-  box-shadow:0 6px 16px rgba(0,0,0,0.25);
 }
 
-h1 {
-  font-family:var(--serif);
-  font-size:3.2rem;
-  line-height:0.95;
+h1{
+  font-family:Playfair Display, serif;
+  font-size:2.8rem;
+  line-height:1;
 }
 
-.hero-role {
+.meta{
   font-size:0.75rem;
-  color:rgba(255,255,255,0.4);
-  margin-bottom:16px;
+  opacity:0.6;
 }
 
-.hero-body {
-  font-family:var(--serif);
+.tagline{
+  margin-top:12px;
   font-style:italic;
-  color:rgba(255,255,255,0.7);
-  max-width:38ch;
-  margin-bottom:18px;
+  max-width:40ch;
+  opacity:0.85;
 }
 
-.threads {
+/* TABS */
+
+.tabs{
   display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-bottom:18px;
-}
-
-.thread {
-  font-size:0.65rem;
-  border:1px solid rgba(184,146,42,0.3);
-  padding:3px 8px;
-  color:rgba(184,146,42,0.8);
-}
-
-.hero-cta {
-  display:inline-block;
-  padding:8px 18px;
-  background:var(--gold);
-  color:var(--teal);
-  font-size:0.7rem;
-  text-transform:uppercase;
-  letter-spacing:0.1em;
-}
-
-/* RIGHT SIDE PANEL */
-
-.hero-side {
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
-  padding:60px 40px;
-  align-content:center;
-}
-
-.side-card {
-  background:rgba(255,255,255,0.06);
-  padding:16px;
-  cursor:pointer;
-  transition:0.3s;
-  border:1px solid rgba(255,255,255,0.08);
-}
-
-.side-card:hover {
-  background:rgba(255,255,255,0.12);
-}
-
-.side-card h3 {
-  font-family:var(--serif);
-  font-size:1rem;
-  margin-bottom:6px;
-}
-
-.side-card p {
-  font-size:0.75rem;
-  color:rgba(255,255,255,0.5);
-}
-
-/* OVERLAY PANEL */
-
-.panel {
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.6);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-}
-
-.panel-content {
+  gap:20px;
+  padding:16px 60px;
   background:white;
-  max-width:700px;
-  padding:30px;
-  border-radius:4px;
+  border-bottom:1px solid rgba(0,0,0,0.08);
 }
 
-.panel h2 {
-  font-family:var(--serif);
-  margin-bottom:10px;
-}
-
-.panel p {
-  font-size:0.9rem;
-  line-height:1.7;
-  margin-bottom:10px;
-}
-
-.close {
-  margin-top:10px;
+.tab{
+  font-size:0.75rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
   cursor:pointer;
-  color:var(--gold);
+  color:var(--muted);
 }
 
-/* RESPONSIVE */
+.tab.active{
+  color:var(--gold);
+  border-bottom:2px solid var(--gold);
+  padding-bottom:4px;
+}
 
-@media(max-width:900px){
-  .hero {
-    grid-template-columns:1fr;
-    height:auto;
-  }
+/* CONTENT WINDOW */
+
+.viewer{
+  flex:1;
+  padding:30px 60px;
+  overflow:auto;
+  max-height:100%;
+}
+
+/* slides */
+
+.slide{
+  display:none;
+  max-width:700px;
+}
+
+.slide.active{
+  display:block;
+}
+
+/* typography */
+
+.slide h2{
+  font-family:Playfair Display, serif;
+  font-size:1.8rem;
+  margin-bottom:14px;
+}
+
+.slide p{
+  font-size:0.95rem;
+  line-height:1.7;
+  margin-bottom:12px;
+}
+
+/* smooth feel */
+
+.viewer{
+  transition:all 0.3s ease;
 }
 
 </style>
@@ -206,104 +137,78 @@ h1 {
 
 <body>
 
-<nav>Andrew Veda</nav>
-
-<section class="hero">
-
-  <!-- LEFT -->
-  <div class="hero-text">
-    <div class="hero-kicker">Assistant Professor of English</div>
-
-    <div class="hero-title-row">
-      <img src="images/andrewveda.jpeg" class="hero-inline-photo">
-      <div>
-        <h1>Andrew Veda</h1>
-        <div class="hero-role">SRM Valliammai Engineering College · Chennai</div>
-      </div>
-    </div>
-
-    <p class="hero-body">
-      Teacher. Translator. Builder of tools that make thinking irresistible.
-    </p>
-
-    <div class="threads">
-      <span class="thread">Classical Tamil</span>
-      <span class="thread">Zoosemiotics</span>
-      <span class="thread">Chess</span>
-      <span class="thread">Game-Based Learning</span>
-      <span class="thread">Translation</span>
-      <span class="thread">Aesthetics</span>
-    </div>
-
-    <div class="hero-cta">Contact</div>
-  </div>
-
-  <!-- RIGHT -->
-  <div class="hero-side">
-    <div class="side-card" onclick="openPanel('research')">
-      <h3>Research</h3>
-      <p>Nature as meaning-making system</p>
-    </div>
-
-    <div class="side-card" onclick="openPanel('teaching')">
-      <h3>Teaching</h3>
-      <p>Curiosity engineered</p>
-    </div>
-
-    <div class="side-card" onclick="openPanel('building')">
-      <h3>Building</h3>
-      <p>Pedagogy in code</p>
-    </div>
-
-    <div class="side-card" onclick="openPanel('chess')">
-      <h3>Chess</h3>
-      <p>Top 0.3% globally</p>
+<header>
+  <div class="top">
+    <img src="images/andrewveda.jpeg">
+    <div>
+      <h1>Andrew Veda</h1>
+      <div class="meta">Assistant Professor · SRM Valliammai Engineering College</div>
     </div>
   </div>
 
-</section>
-
-<!-- PANELS -->
-
-<div id="panel" class="panel" onclick="closePanel()">
-  <div class="panel-content" onclick="event.stopPropagation()">
-    <div id="panel-body"></div>
-    <div class="close" onclick="closePanel()">Close</div>
+  <div class="tagline">
+    Teacher. Translator. Builder of tools that make thinking irresistible.
   </div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" onclick="show('about',this)">About</div>
+  <div class="tab" onclick="show('pedagogy',this)">Pedagogy</div>
+  <div class="tab" onclick="show('research',this)">Research</div>
+  <div class="tab" onclick="show('teaching',this)">Teaching</div>
+  <div class="tab" onclick="show('publications',this)">Publications</div>
+  <div class="tab" onclick="show('chess',this)">Chess</div>
+</div>
+
+<div class="viewer">
+
+  <div id="about" class="slide active">
+    <h2>About</h2>
+    <p>I treat learning as the highest form of self-creation. As a chess player, I bring clarity, logic, and strategic thinking into the classroom.</p>
+    <p>I design gamified, curiosity-driven learning experiences that help students grow into confident communicators.</p>
+  </div>
+
+  <div id="pedagogy" class="slide">
+    <h2>Pedagogy in Practice</h2>
+    <p>I maintain a reflective teaching log where I document classroom experiments, failures, insights, and small victories.</p>
+    <p>These essays are written for teachers, students, and anyone interested in how curiosity can be engineered.</p>
+  </div>
+
+  <div id="research" class="slide">
+    <h2>Research</h2>
+    <p>My research explores environmental humanities with a focus on zoosemiotics and phytosemiotics.</p>
+    <p>I work on classical Tamil literature, especially Kuṟuntokai, foregrounding female agency.</p>
+    <p>I am developing a theory of aesthetics equating aesthetics with individuality and growth.</p>
+  </div>
+
+  <div id="teaching" class="slide">
+    <h2>Teaching Philosophy</h2>
+    <p>I believe students learn best when they feel safe to explore, question, experiment, and improve.</p>
+    <p>Everything I do aims to help students become the best version of themselves.</p>
+  </div>
+
+  <div id="publications" class="slide">
+    <h2>Publications & Talks</h2>
+    <p>My academic work spans journal articles, conference papers, lectures, and workshops.</p>
+    <p>Work includes interdisciplinary research across literature, pedagogy, and semiotics.</p>
+  </div>
+
+  <div id="chess" class="slide">
+    <h2>Chess</h2>
+    <p>I am a 2200+ blitz and bullet player, in the top 0.3% globally.</p>
+    <p>Chess sharpens my thinking—and my teaching.</p>
+  </div>
+
 </div>
 
 <script>
 
-const content = {
-  research: `
-    <h2>Research</h2>
-    <p>My research argues that nature is not a passive backdrop to human meaning-making — it is an active participant.</p>
-    <p>Through zoosemiotics and phytosemiotics, I examine how animals, plants, and ecosystems generate and transmit signs.</p>
-    <p>I am also developing a theory of aesthetics that treats aesthetic experience as individuality in motion.</p>
-  `,
-  teaching: `
-    <h2>Teaching</h2>
-    <p>The classroom is a design problem. Every session is an intervention.</p>
-    <p>I use game-based learning, cryptic crosswords, and structured ambiguity.</p>
-  `,
-  building: `
-    <h2>Building</h2>
-    <p>I build learning software: PWAs, vocabulary systems, crossword engines, and educational tools.</p>
-  `,
-  chess: `
-    <h2>Chess</h2>
-    <p>Top 0.3% globally in blitz and bullet.</p>
-    <p>Chess informs my thinking about clarity, complexity, and teaching.</p>
-  `
-};
+function show(id, el){
+  document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 
-function openPanel(key){
-  document.getElementById('panel-body').innerHTML = content[key];
-  document.getElementById('panel').style.display = 'flex';
-}
-
-function closePanel(){
-  document.getElementById('panel').style.display = 'none';
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
 }
 
 </script>
