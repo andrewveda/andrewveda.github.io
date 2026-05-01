@@ -3,331 +3,385 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andrew Veda | Terminal</title>
-<meta name="description" content="Andrew Veda — Assistant Professor of English.">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+<title>Andrew Veda | Portfolio</title>
+<meta name="description" content="Andrew Veda — Assistant Professor of English, SRM Valliammai Engineering College.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;0,900;1,400;1,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #050505;
-  --fg: #e5e5e5;
-  --dim: #444444;
-  --accent: #7A0019; /* Primary deep crimson */
-  --accent-hover: #a30022;
-  --mono: 'JetBrains Mono', monospace;
+  --ink: #111111;
+  --paper: #f4f3ef;
+  --paper-bright: #ffffff;
+  --accent: #7A0019; /* Deep Crimson */
+  --serif: 'Playfair Display', serif;
+  --sans: 'Instrument Sans', sans-serif;
+  --border-thin: 1px solid var(--ink);
+  --border-thick: 4px solid var(--ink);
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 18px; } /* Increased base size */
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--mono);
-  line-height: 1.2; /* Tighter line height */
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.15;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  text-transform: uppercase; /* Terminal vibe */
+  padding: 1vw;
 }
 
-a { color: inherit; text-decoration: none; }
-::selection { background: var(--accent); color: #fff; }
+a { color: inherit; text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--accent); }
 
-/* LAYOUT SKELETON - 1px Borders Everywhere */
-.term-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  border-left: 1px solid var(--dim);
-  border-right: 1px solid var(--dim);
-  min-height: 100vh;
+/* MASTHEAD (Magazine Cover Vibe) */
+.masthead {
+  border-bottom: var(--border-thick);
+  margin-bottom: 10px;
+  text-align: center;
+  padding-bottom: 10px;
 }
-
-.row {
-  border-bottom: 1px solid var(--dim);
+.issue-strip {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: var(--border-thin);
+  padding: 5px 0;
+  margin-bottom: -1vw;
 }
-.col {
-  padding: 10px 16px;
-  border-right: 1px solid var(--dim);
+.title-massive {
+  font-family: var(--serif);
+  font-size: 15vw; /* Fills the entire width */
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-top: 10px;
 }
-.col:last-child { border-right: none; }
+.sub-masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: var(--border-thin);
+  padding-top: 10px;
+  margin-top: 10px;
+  font-family: var(--serif);
+  font-size: 1.5vw;
+  font-style: italic;
+  font-weight: 600;
+}
 
 /* COMPACT NAV */
 nav {
-  position: sticky;
-  top: 0;
-  background: var(--bg);
-  border-bottom: 2px solid var(--accent);
   display: flex;
-  font-size: 0.85rem;
+  justify-content: space-between;
+  border-bottom: var(--border-thin);
+  padding: 10px 0;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
   font-weight: 700;
-  z-index: 100;
-  overflow-x: auto;
-  white-space: nowrap;
+  text-transform: uppercase;
 }
-nav a {
-  padding: 8px 16px;
-  border-right: 1px solid var(--dim);
-  transition: background 0.1s;
-}
-nav a:hover { background: var(--accent); color: #fff; }
-nav a.root { color: var(--accent); }
-nav a.root:hover { color: #fff; }
+nav a { flex: 1; text-align: center; border-right: var(--border-thin); }
+nav a:last-child { border-right: none; }
 
-/* TYPOGRAPHY */
-h1 {
-  font-size: clamp(3rem, 8vw, 6.5rem);
+/* EDITORIAL GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  border-bottom: var(--border-thick);
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+
+/* TYPOGRAPHY COMPONENTS */
+.section-head {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  border-bottom: var(--border-thin);
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+.headline {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5vw, 6rem);
   font-weight: 800;
   line-height: 0.9;
-  letter-spacing: -0.05em;
-  color: #fff;
-  padding: 20px 16px 10px;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
 }
-h2 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+.headline em { color: var(--accent); }
+
+/* THE "ABOUT" SPREAD */
+.about-text {
+  grid-column: span 8;
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.drop-cap::first-letter {
+  float: left;
+  font-size: 8.5vw;
+  line-height: 0.7;
+  padding-right: 15px;
+  padding-top: 10px;
+  font-weight: 900;
+  color: var(--accent);
+}
+.stats-sidebar {
+  grid-column: span 4;
+  border-left: var(--border-thin);
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.stat-block { border-bottom: var(--border-thin); padding-bottom: 10px; }
+.stat-block:last-child { border-bottom: none; }
+.stat-num { font-family: var(--serif); font-size: clamp(3rem, 5vw, 5rem); font-weight: 900; line-height: 0.9; color: var(--accent); }
+.stat-label { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-top: 5px; }
+
+/* TWO-COLUMN DENSITY (Research & Pedagogy) */
+.col-half { grid-column: span 6; }
+.col-half.bordered { border-left: var(--border-thin); padding-left: 20px; }
+
+.body-copy {
+  column-count: 2; /* Newspaper style columns */
+  column-gap: 20px;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  text-align: justify;
+}
+.body-copy p { margin-bottom: 15px; }
+.pull-quote {
+  font-family: var(--serif);
+  font-size: 2.2rem;
   font-weight: 800;
+  font-style: italic;
   line-height: 1;
   color: var(--accent);
-  padding: 16px 16px 8px;
-}
-p {
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  text-transform: none; /* Keep body readable */
-  padding: 12px 16px;
-}
-.label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--dim);
-  padding: 4px 16px;
-  background: #111;
-  border-bottom: 1px solid var(--dim);
+  margin: 20px 0;
+  border-top: var(--border-thin);
+  border-bottom: var(--border-thin);
+  padding: 15px 0;
 }
 
-/* BLINKING CURSOR */
-.cursor {
-  display: inline-block;
-  width: 0.6em;
-  height: 1em;
-  background: var(--accent);
-  vertical-align: text-bottom;
-  animation: blink 1s step-end infinite;
+/* DIRECTORY / CATALOG (Building / On Desk) */
+.catalog-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.catalog-item {
+  border-bottom: 1px dotted var(--ink);
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
 }
-@keyframes blink { 50% { opacity: 0; } }
+.catalog-title { font-family: var(--serif); font-size: 1.8rem; font-weight: 800; line-height: 1; margin-bottom: 5px; }
+.catalog-desc { font-size: 0.95rem; line-height: 1.3; }
+.catalog-link { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent); margin-top: 5px; }
 
-/* INLINE STATS */
-.sys-stats {
-  font-size: clamp(1rem, 1.8vw, 1.3rem);
-  font-weight: 700;
-  padding: 12px 16px;
-  background: var(--accent);
-  color: #fff;
-  border-bottom: 1px solid var(--dim);
+/* INLINE LINKS BLOCK */
+.links-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-style: italic;
+  margin-top: 20px;
 }
-
-/* DIRECTORY LISTINGS (TABLE VIBE) */
-.dir-item {
-  display: grid;
-  grid-template-columns: 250px 1fr auto;
-  border-bottom: 1px solid var(--dim);
-  transition: background 0.1s;
-}
-.dir-item:hover { background: #111; }
-.dir-name {
-  padding: 12px 16px;
-  font-weight: 700;
-  border-right: 1px solid var(--dim);
-  color: #fff;
-}
-.dir-desc {
-  padding: 12px 16px;
-  text-transform: none;
-  font-size: 1.1rem;
-}
-.dir-link {
-  padding: 12px 16px;
-  border-left: 1px solid var(--dim);
-  font-weight: 700;
-  color: var(--accent);
-  text-align: right;
-  white-space: nowrap;
-}
-.dir-link:hover { background: var(--accent); color: #fff; }
-
-/* HYPERLINKS */
-.a-link {
-  color: var(--accent);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
-}
-.a-link:hover { background: var(--accent); color: #fff; text-decoration: none; }
-
-/* UTILITIES */
-.prompt::before { content: '>'; color: var(--accent); margin-right: 10px; }
+.links-block a { border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .dir-item { grid-template-columns: 1fr; }
-  .dir-name { border-right: none; border-bottom: 1px dashed var(--dim); padding-bottom: 4px; }
-  .dir-link { border-left: none; border-top: 1px dashed var(--dim); text-align: left; padding-top: 8px;}
-  .sys-stats { font-size: 1rem; }
+  .about-text { grid-column: span 12; font-size: 2.5rem; }
+  .drop-cap::first-letter { font-size: 6rem; }
+  .stats-sidebar { grid-column: span 12; border-left: none; border-top: var(--border-thin); padding-left: 0; padding-top: 20px; flex-direction: row; flex-wrap: wrap; }
+  .stat-block { flex: 1; min-width: 150px; }
+  .col-half { grid-column: span 12; }
+  .col-half.bordered { border-left: none; border-top: var(--border-thin); padding-left: 0; padding-top: 20px; }
+  .body-copy { column-count: 1; }
+  .catalog-list { grid-template-columns: 1fr; }
+  nav { flex-wrap: wrap; }
+  nav a { flex: 50%; border-bottom: var(--border-thin); padding: 15px 0; }
+  nav a:nth-child(even) { border-right: none; }
 }
 </style>
 </head>
 <body>
 
-<div class="term-container">
-
-  <!-- NAV -->
-  <nav>
-    <a href="#sys" class="root">~/andrew_veda</a>
-    <a href="#about">./about</a>
-    <a href="#desk">./desk</a>
-    <a href="#research">./research</a>
-    <a href="#builds">./builds</a>
-    <a href="#pedagogy">./pedagogy</a>
-    <a href="#chess">./chess</a>
-    <a href="#contact">./contact</a>
-  </nav>
-
-  <!-- SYS INIT -->
-  <div id="sys" class="row" style="flex-direction: column;">
-    <div class="label">SYS_INIT :: AUTHORIZATION_ACCEPTED</div>
-    <h1>ANDREW VEDA<span class="cursor"></span></h1>
-    <p class="prompt" style="font-size: 1.5rem; font-weight: 700;">AP ENGLISH @ SRM VEC // CHENNAI</p>
-    <p style="color: var(--dim);">[ TEACHER. TRANSLATOR. BUILDER OF TOOLS THAT MAKE THINKING IRRESISTIBLE. ]</p>
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="issue-strip">
+    <span>Vol. 1 — The Portfolio</span>
+    <span>SRM Valliammai Engineering College</span>
+    <span>Chennai, TN</span>
   </div>
-
-  <!-- SINGLE LINE STATS -->
-  <div class="sys-stats">
-    DATA_STREAM :: 400+_POEMS_TRANSLATED | 2200+_BLITZ_BULLET | 50+_GITHUB_REPOS | TOP_0.3%_CHESS_GLOBALLY
+  <div class="title-massive">ANDREW VEDA</div>
+  <div class="sub-masthead">
+    <span>Teacher.</span>
+    <span>Translator.</span>
+    <span>Builder of tools that make thinking irresistible.</span>
   </div>
+</header>
 
-  <!-- ABOUT -->
-  <div id="about" class="row" style="flex-direction: column;">
-    <div class="label">~/about.txt</div>
-    <p>English professor. Classical Tamil reader and writer. Chess player in the top 0.3% globally. Builder of learning software. None of these are separate pursuits — they are the same curiosity, looking in different directions.</p>
-    <p class="prompt" style="font-style: italic; color: #fff;">"I build classrooms the way a chess player builds positions — with patience, intention, and an eye for what becomes possible three moves ahead."</p>
+<!-- NAV -->
+<nav>
+  <a href="#about">The Synthesis</a>
+  <a href="#research">Scholarship</a>
+  <a href="#building">Architecture of Thought</a>
+  <a href="#pedagogy">Pedagogy & The Board</a>
+  <a href="#contact">Directory</a>
+</nav>
+
+<!-- ABOUT SPREAD -->
+<section class="grid" id="about">
+  <div class="about-text drop-cap">
+    English professor. Classical Tamil reader and writer. Chess player in the top 0.3% globally. Builder of learning software. None of these are separate pursuits — they are the same curiosity, looking in entirely different directions.
   </div>
-
-  <!-- DESK -->
-  <div id="desk" class="row" style="flex-direction: column;">
-    <div class="label">~/desk/active_processes</div>
-    <h2>CURRENTLY</h2>
-    
-    <div class="dir-item">
-      <div class="dir-name">[♟️] CHESS_STORIES</div>
-      <div class="dir-desc">A series where pieces come alive and teach strategy through narrative.</div>
-      <div class="dir-link">RUNNING...</div>
+  <div class="stats-sidebar">
+    <div class="stat-block">
+      <div class="stat-num">400+</div>
+      <div class="stat-label">Poems Translated</div>
     </div>
-    <div class="dir-item">
-      <div class="dir-name">[🎸] MATH_ROCK_RAP</div>
-      <div class="dir-desc">Odd time signatures, polyrhythm, lyrical density — complexity that grooves.</div>
-      <div class="dir-link">RUNNING...</div>
+    <div class="stat-block">
+      <div class="stat-num">2200+</div>
+      <div class="stat-label">Blitz & Bullet ELO</div>
     </div>
-    <div class="dir-item">
-      <div class="dir-name">[🧩] CRYPTIC_XWORD</div>
-      <div class="dir-desc">Teaching students to sit with ambiguity, delay closure, and enjoy not knowing.</div>
-      <div class="dir-link">RUNNING...</div>
-    </div>
-    <div class="dir-item">
-      <div class="dir-name">[💬] PHILOSOPHY_FORUM</div>
-      <div class="dir-desc">A platform where critical thinking is the only currency. Deep inquiry.</div>
-      <div class="dir-link">RUNNING...</div>
+    <div class="stat-block">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">GitHub Repositories</div>
     </div>
   </div>
+</section>
 
-  <!-- RESEARCH -->
-  <div id="research" class="row" style="flex-direction: column;">
-    <div class="label">~/research/scholarship</div>
-    <h2>RESEARCH</h2>
-    <p>My research argues that nature is not a passive backdrop to human meaning-making — it is an active participant. Through zoosemiotics and phytosemiotics, I examine how animals, plants, and ecosystems generate and transmit signs.</p>
-    <p>I am also developing a theory of aesthetics that treats aesthetic experience not as taste, but as individuality in motion.</p>
-    <p class="prompt">
-      <a href="https://scholar.google.com/citations?user=CU7TljcAAAAJ" target="_blank" class="a-link">[GOOGLE_SCHOLAR]</a> 
-      <a href="https://orcid.org/0000-0002-1226-6856" target="_blank" class="a-link">[ORCID]</a> 
-      <a href="https://medium.com/@andrewveda" target="_blank" class="a-link">[MEDIUM]</a>
-    </p>
-    
-    <div class="label" style="border-top: 1px solid var(--dim);">~/research/projects/kuruntokai.exe</div>
-    <p><strong>[IN_PROGRESS] KURUNTOKAI IN ACROSTIC VERSE:</strong> A complete translation of the classical Tamil Sangam anthology into English acrostic verse — all 400 poems, foregrounding female gaze, emotional agency, and narrative dominance.</p>
-  </div>
-
-  <!-- BUILDS -->
-  <div id="builds" class="row" style="flex-direction: column;">
-    <div class="label">~/github/repositories</div>
-    <h2>BUILDING</h2>
-    <p style="color: var(--dim);">AN ENGLISH PROFESSOR WHO BUILDS SOFTWARE. EACH PROJECT IS A PEDAGOGICAL ARGUMENT MADE IN CODE.</p>
-    
-    <div class="dir-item">
-      <div class="dir-name">SRM_VEC_PWA</div>
-      <div class="dir-desc">Ecosystem: vocabulary games, short plays, philosophy forums.</div>
-      <a href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank" class="dir-link">[EXECUTE]</a>
+<!-- RESEARCH & DESK SPREAD -->
+<section class="grid" id="research">
+  <div class="col-half">
+    <div class="section-head">Current Scholarship</div>
+    <h2 class="headline">Nature as an <em>Active</em> Participant.</h2>
+    <div class="body-copy">
+      <p>My research argues that nature is not a passive backdrop to human meaning-making — it is an active participant. Through zoosemiotics and phytosemiotics, I examine how animals, plants, and ecosystems generate and transmit signs.</p>
+      <p>I am also developing a theory of aesthetics that treats aesthetic experience not as taste, but as individuality in motion — the moment a person becomes more fully themselves through an encounter with beauty.</p>
+      
+      <div class="pull-quote">
+        "Kuṟuntokai in Acrostic Verse: A complete translation of the classical Tamil Sangam anthology into English."
+      </div>
+      
+      <p>Foregrounding female gaze, emotional agency, and narrative dominance. Written from within the tradition. <strong>[In Progress · Unpublished]</strong></p>
     </div>
-    <div class="dir-item">
-      <div class="dir-name">CRYPTIC_CLUES</div>
-      <div class="dir-desc">Department-specific cryptic crosswords. Mini Turing tests for ESL.</div>
-      <a href="https://andrewveda.github.io/cryptic/" target="_blank" class="dir-link">[EXECUTE]</a>
-    </div>
-    <div class="dir-item">
-      <div class="dir-name">QUOTE_A_DAY</div>
-      <div class="dir-desc">A student-contributed quote archive. Living document of class thought.</div>
-      <a href="https://andrewveda.github.io/a-quote-a-day/" target="_blank" class="dir-link">[EXECUTE]</a>
-    </div>
-    <div class="dir-item">
-      <div class="dir-name">WORDLE_BLITZ</div>
-      <div class="dir-desc">5-minute countdown Wordle sprint. Vocabulary under pressure.</div>
-      <a href="https://andrewveda.github.io/SRM-VEC-English-PWA/wordleblitz" target="_blank" class="dir-link">[EXECUTE]</a>
-    </div>
-    <div class="dir-item">
-      <div class="dir-name">VOX_VELOCITY</div>
-      <div class="dir-desc">IELTS & GRE-level vocabulary game. Learn by doing, not memorising.</div>
-      <a href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/vox-velocity-directory" target="_blank" class="dir-link">[EXECUTE]</a>
-    </div>
-    <div class="dir-item">
-      <div class="dir-name">SHORT_PLAYS</div>
-      <div class="dir-desc">Dialogue-completion plays exploring Zen, psychology, and self-dev.</div>
-      <a href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/stories" target="_blank" class="dir-link">[EXECUTE]</a>
+    <div class="links-block">
+      <a href="https://scholar.google.com/citations?user=CU7TljcAAAAJ" target="_blank">Google Scholar</a>
+      <a href="https://orcid.org/0000-0002-1226-6856" target="_blank">ORCID</a>
+      <a href="https://medium.com/@andrewveda" target="_blank">Medium</a>
     </div>
   </div>
-
-  <!-- PEDAGOGY -->
-  <div id="pedagogy" class="row" style="flex-direction: column;">
-    <div class="label">~/teaching/pedagogy</div>
-    <h2>PEDAGOGY</h2>
-    <p>The classroom is a design problem. Every session is an intervention — <strong style="color:#fff;">designed to shift how a student thinks</strong>, not just what they know.</p>
-    <p>Students learn best when they feel safe to explore, question, experiment, and improve. My teaching blends clarity, curiosity, creativity, and agency. My current obsession: the cryptic crossword as a pedagogy of ambiguity.</p>
-    <p class="prompt">
-      <a href="https://medium.com/@andrewveda/teachers-log-introducing-cryptic-crosswords-in-tertiary-level-esl-classrooms-13a500596038" target="_blank" class="a-link">[READ_LOG:_CRYPTIC_CROSSWORDS]</a>
-    </p>
+  
+  <div class="col-half bordered">
+    <div class="section-head">Currently On My Desk</div>
+    <ul class="catalog-list" style="grid-template-columns: 1fr;">
+      <li class="catalog-item">
+        <div class="catalog-title">Chess Stories for Children</div>
+        <div class="catalog-desc">A series where the pieces come alive and teach strategy through narrative.</div>
+      </li>
+      <li class="catalog-item">
+        <div class="catalog-title">Math Rock & Rap</div>
+        <div class="catalog-desc">Odd time signatures, polyrhythm, lyrical density — what complexity sounds like when it grooves.</div>
+      </li>
+      <li class="catalog-item">
+        <div class="catalog-title">Cryptic Crossword Platform</div>
+        <div class="catalog-desc">Teaching students to sit with ambiguity, delay closure, and enjoy not knowing yet.</div>
+      </li>
+      <li class="catalog-item" style="border-bottom: none;">
+        <div class="catalog-title">Philosophy Debate Forum</div>
+        <div class="catalog-desc">A platform where critical thinking is the only currency. Structured disagreement, deep inquiry.</div>
+      </li>
+    </ul>
   </div>
+</section>
 
-  <!-- CHESS -->
-  <div id="chess" class="row" style="flex-direction: column;">
-    <div class="label">~/logic/chess</div>
-    <h2>CHESS</h2>
-    <p>Chess taught me that clarity is not the absence of complexity — it is complexity made navigable. That lesson lives in every class I teach.</p>
-    <p class="prompt" style="color: var(--dim);">"EVER TRIED. EVER FAILED. NO MATTER. TRY AGAIN. FAIL AGAIN. FAIL BETTER." — BECKETT</p>
-    <p class="prompt">
-      <a href="https://www.chess.com/member/andrewveda" target="_blank" class="a-link">[VIEW_CHESS.COM_PROFILE]</a>
-    </p>
+<!-- BUILDING SPREAD -->
+<section class="grid" id="building">
+  <div style="grid-column: span 12;">
+    <div class="section-head">Digital Pedagogy</div>
+    <h2 class="headline">Every project is a <em>pedagogical argument</em> made in code.</h2>
+    <ul class="catalog-list">
+      <li class="catalog-item">
+        <div class="catalog-title">SRM VEC English</div>
+        <div class="catalog-desc">A Progressive Web App housing an entire pedagogical ecosystem: vocabulary games, short plays, and philosophy forums. Built for and with students.</div>
+        <a class="catalog-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank">Open App ↗</a>
+      </li>
+      <li class="catalog-item">
+        <div class="catalog-title">Cryptic Clues</div>
+        <div class="catalog-desc">Department-specific cryptic crosswords — anagrams, acrostics, charades, homophones. Miniature Turing tests for ESL learners.</div>
+        <a class="catalog-link" href="https://andrewveda.github.io/cryptic/" target="_blank">Try Live ↗</a>
+      </li>
+      <li class="catalog-item">
+        <div class="catalog-title">Wordle Blitz</div>
+        <div class="catalog-desc">5-minute countdown Wordle sprint with bonus time for speed and efficiency. Vocabulary under pressure.</div>
+        <a class="catalog-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/wordleblitz" target="_blank">Play Game ↗</a>
+      </li>
+      <li class="catalog-item">
+        <div class="catalog-title">Vox Velocity</div>
+        <div class="catalog-desc">IELTS & GRE-level vocabulary game. Learn by doing, not memorising.</div>
+        <a class="catalog-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/vox-velocity-directory" target="_blank">Play Game ↗</a>
+      </li>
+      <li class="catalog-item">
+        <div class="catalog-title">Short Plays</div>
+        <div class="catalog-desc">Dialogue-completion plays exploring Zen, psychology, and self-development. Concepts learned through character, not lecture.</div>
+        <a class="catalog-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/stories" target="_blank">Read Plays ↗</a>
+      </li>
+      <li class="catalog-item">
+        <div class="catalog-title">A Quote A Day</div>
+        <div class="catalog-desc">A student-contributed quote archive. Wisdom, wit, and wonder collected daily — a living document of a classroom's intellectual life.</div>
+        <a class="catalog-link" href="https://andrewveda.github.io/a-quote-a-day/" target="_blank">Read Today's ↗</a>
+      </li>
+    </ul>
   </div>
+</section>
 
-  <!-- CONTACT -->
-  <div id="contact" class="row" style="flex-direction: column; border-bottom: none;">
-    <div class="label">~/network/contact</div>
-    <h2>GET IN TOUCH</h2>
-    <p>Available for talks, workshops, and collaborations on language, literature, pedagogy, semiotics, and game-based learning. I respond to interesting ideas.</p>
-    <p class="prompt">
-      <a href="https://x.com/andrewveda" target="_blank" class="a-link">[CONNECT_ON_X]</a>
-    </p>
-    <p style="font-size: 0.8rem; color: var(--dim); padding-top: 40px; text-align: center;">
-      SYS_HALT // (C) 2026 // END_OF_FILE
-    </p>
+<!-- PEDAGOGY & CHESS SPREAD -->
+<section class="grid" id="pedagogy" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+  <div class="col-half">
+    <div class="section-head">Philosophy of Practice</div>
+    <h2 class="headline">The classroom is a <em>design</em> problem.</h2>
+    <div class="body-copy">
+      <p>Every session is an intervention — designed to shift how a student thinks, not just what they know. Students learn best when they feel safe to explore, question, experiment, and improve.</p>
+      <p>My teaching blends clarity, curiosity, creativity, and agency. My current obsession: the cryptic crossword as a pedagogy of ambiguity — training students to hold multiple meanings simultaneously, to delay closure, to enjoy not knowing yet.</p>
+    </div>
+    <div class="links-block">
+      <a href="https://medium.com/@andrewveda/teachers-log-introducing-cryptic-crosswords-in-tertiary-level-esl-classrooms-13a500596038" target="_blank">Read: Cryptic Crosswords in ESL</a>
+    </div>
   </div>
-
-</div>
+  
+  <div class="col-half bordered" id="chess">
+    <div class="section-head">The Board</div>
+    <h2 class="headline" style="font-size: clamp(2.5rem, 4vw, 4.5rem);">Complexity made <em>navigable</em>.</h2>
+    <p style="font-size: 1.2rem; margin-bottom: 20px;">Chess taught me that clarity is not the absence of complexity. That lesson lives in every class I teach.</p>
+    <div class="pull-quote" style="font-size: 1.5rem; color: var(--ink); border: none;">
+      "Ever tried. Ever failed. No matter. Try again. Fail again. Fail better."<br>
+      <span style="font-family: var(--sans); font-size: 0.8rem; font-style: normal; text-transform: uppercase; color: var(--accent); letter-spacing: 0.1em;">— Samuel Beckett</span>
+    </div>
+    <div class="links-block">
+      <a href="https://www.chess.com/member/andrewveda" target="_blank">Chess.com Profile</a>
+      <a href="https://x.com/andrewveda" target="_blank" id="contact">X / Twitter</a>
+    </div>
+    <div style="margin-top: 40px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #888; border-top: var(--border-thin); padding-top: 10px;">
+      Available for talks, workshops, and collaborations. © 2026.
+    </div>
+  </div>
+</section>
 
 </body>
 </html>
