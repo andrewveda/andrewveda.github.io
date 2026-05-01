@@ -265,6 +265,32 @@ h1{
     grid-template-columns:1fr;
   }
 }
+  /* LEFT — make rigid */
+.left{
+  width:50%;
+  height:100vh;
+  overflow:hidden;   /* was auto */
+  padding:60px;
+  background:var(--bg);
+}
+
+/* RIGHT — make scrollable */
+.right{
+  width:50%;
+  height:100vh;
+  overflow-y:auto;   /* was hidden */
+  background:white;
+  border-left:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+}
+
+/* viewer should NOT block scroll */
+.viewer{
+  flex:1;
+  padding:40px;
+  overflow:visible;  /* was hidden */
+}
 </style>
 </head>
 
