@@ -7,8 +7,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-/* ================= ROOT ================= */
-
+<style>
 :root{
   --teal:#0e2a35;
   --gold:#b8922a;
@@ -34,32 +33,37 @@ body{
   font-family:var(--sans);
   background:var(--bg);
   color:var(--ink);
-  height:100vh;
-  overflow:hidden; /* prevent page scroll */
 }
 
-/* ================= MAIN SPLIT ================= */
+/* ================= MAIN ================= */
 
 .main{
   display:flex;
-  height:100vh;
+  align-items:stretch;
 }
 
-/* ================= LEFT (FIXED PANEL) ================= */
+/* ================= LEFT (RIGID) ================= */
 
 .left{
   width:50%;
-  height:100vh;
   padding:60px;
   background:var(--bg);
 
   position:sticky;
   top:0;
-
+  height:100vh;
   overflow:hidden;
 }
 
-/* HEADER */
+/* ================= RIGHT (SCROLLABLE PAGE) ================= */
+
+.right{
+  width:50%;
+  background:white;
+  border-left:1px solid var(--border);
+}
+
+/* ================= HEADER ================= */
 
 .header{
   display:flex;
@@ -85,7 +89,7 @@ h1{
   color:var(--muted);
 }
 
-/* TAGLINE */
+/* ================= TAGLINE ================= */
 
 .tagline{
   font-style:italic;
@@ -93,7 +97,7 @@ h1{
   max-width:45ch;
 }
 
-/* PROJECT GRID */
+/* ================= PROJECT GRID ================= */
 
 .projects{
   display:grid;
@@ -139,17 +143,6 @@ h1{
 
 .card a:hover{
   color:var(--gold);
-}
-
-/* ================= RIGHT (SCROLLABLE) ================= */
-
-.right{
-  width:50%;
-  height:100vh;
-  overflow-y:auto;
-  background:white;
-
-  border-left:1px solid var(--border); /* magazine spine */
 }
 
 /* ================= TABS ================= */
@@ -209,7 +202,7 @@ h1{
   font-size:0.95rem;
 }
 
-/* ================= FOOTER (INSIDE RIGHT SCROLL) ================= */
+/* ================= FOOTER (PART OF RIGHT FLOW) ================= */
 
 .footer-links{
   display:flex;
@@ -232,7 +225,6 @@ h1{
   color:var(--muted);
   text-decoration:none;
   flex-shrink:0;
-  transition:color 0.2s ease;
 }
 
 .footer-links a:hover{
@@ -240,6 +232,7 @@ h1{
 }
 
 /* separators */
+
 .footer-links a::after{
   content:"·";
   margin-left:28px;
@@ -250,39 +243,30 @@ h1{
   content:"";
 }
 
-/* scrollbar subtle */
-.footer-links::-webkit-scrollbar{
-  height:6px;
-}
-.footer-links::-webkit-scrollbar-thumb{
-  background:rgba(0,0,0,0.15);
-  border-radius:3px;
-}
-
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:900px){
 
-  body{
-    overflow:auto;
-  }
-
   .main{
     flex-direction:column;
-    height:auto;
   }
 
-  .left,
+  .left{
+    position:relative;
+    height:auto;
+    overflow:visible;
+    width:100%;
+  }
+
   .right{
     width:100%;
-    height:auto;
-    position:relative;
   }
 
   .projects{
     grid-template-columns:1fr;
   }
 }
+</style>
 </head>
 
 <body>
