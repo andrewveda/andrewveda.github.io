@@ -8,6 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+/* ================= ROOT ================= */
+
 :root{
   --teal:#0e2a35;
   --gold:#b8922a;
@@ -30,37 +32,28 @@
 /* ================= BODY ================= */
 
 body{
+  height:100vh;
+  overflow:hidden; /* no page scroll */
   font-family:var(--sans);
   background:var(--bg);
   color:var(--ink);
 }
 
-/* ================= MAIN ================= */
+/* ================= MAIN SPLIT ================= */
 
 .main{
   display:flex;
-  align-items:stretch;
+  height:100vh;
 }
 
-/* ================= LEFT (RIGID) ================= */
+/* ================= LEFT (ONLY SCROLL AREA) ================= */
 
 .left{
   width:50%;
+  height:100vh;
+  overflow-y:auto;
   padding:60px;
   background:var(--bg);
-
-  position:sticky;
-  top:0;
-  height:100vh;
-  overflow:hidden;
-}
-
-/* ================= RIGHT (SCROLLABLE PAGE) ================= */
-
-.right{
-  width:50%;
-  background:white;
-  border-left:1px solid var(--border);
 }
 
 /* ================= HEADER ================= */
@@ -145,6 +138,18 @@ h1{
   color:var(--gold);
 }
 
+/* ================= RIGHT (FIXED PANEL) ================= */
+
+.right{
+  width:50%;
+  height:100vh;
+  overflow:hidden;
+  background:white;
+  border-left:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+}
+
 /* ================= TABS ================= */
 
 .tabs{
@@ -175,7 +180,9 @@ h1{
 /* ================= CONTENT ================= */
 
 .viewer{
+  flex:1;
   padding:40px;
+  overflow:hidden; /* no scroll here */
 }
 
 .slide{
@@ -202,15 +209,16 @@ h1{
   font-size:0.95rem;
 }
 
-.footer-links{
-  display:flex;
-  gap:28px;
-  padding:30px 40px;
-  border-top:1px solid var(--border);
-  background:var(--bg);
+/* ================= FOOTER (INSIDE LEFT FLOW) ================= */
 
-  overflow-x:auto;
-  white-space:nowrap;
+.footer-links{
+  margin-top:40px;
+  padding-top:20px;
+  border-top:1px solid var(--border);
+
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
 
   font-family:var(--serif);
   font-style:italic;
@@ -222,42 +230,35 @@ h1{
   text-transform:uppercase;
   color:var(--muted);
   text-decoration:none;
-  flex-shrink:0;
 }
 
 .footer-links a:hover{
   color:var(--gold);
 }
 
-/* separators */
-
-.footer-links a::after{
-  content:"·";
-  margin-left:28px;
-  color:rgba(0,0,0,0.2);
-}
-
-.footer-links a:last-child::after{
-  content:"";
-}
-
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:900px){
 
+  body{
+    overflow:auto;
+    height:auto;
+  }
+
   .main{
     flex-direction:column;
-  }
-
-  .left{
-    position:relative;
     height:auto;
-    overflow:visible;
-    width:100%;
   }
 
+  .left,
   .right{
     width:100%;
+    height:auto;
+    overflow:visible;
+  }
+
+  .viewer{
+    overflow:visible;
   }
 
   .projects{
@@ -325,7 +326,14 @@ h1{
       </div>
 
     </div>
-
+<div class="footer-links">
+  <a href="https://andrewveda.github.io/" target="_blank">Website</a>
+  <a href="https://orcid.org/0000-0002-1226-6856" target="_blank">ORCID</a>
+  <a href="https://medium.com/@andrewveda" target="_blank">Medium</a>
+  <a href="https://www.chess.com/member/andrewveda" target="_blank">Chess.com</a>
+  <a href="https://x.com/andrewveda" target="_blank">@andrewveda</a>
+  <a href="https://lichess.org/av94" target="_blank">Lichess</a>
+</div>
   </div>
 
 
@@ -368,14 +376,7 @@ h1{
         <h2>Chess</h2>
         <p>Top 0.3% globally. Strategy as cognition.</p>
       </div>
-<div class="footer-links">
-  <a href="https://andrewveda.github.io/" target="_blank">Website</a>
-  <a href="https://orcid.org/0000-0002-1226-6856" target="_blank">ORCID</a>
-  <a href="https://medium.com/@andrewveda" target="_blank">Medium</a>
-  <a href="https://www.chess.com/member/andrewveda" target="_blank">Chess.com</a>
-  <a href="https://x.com/andrewveda" target="_blank">@andrewveda</a>
-  <a href="https://lichess.org/av94" target="_blank">Lichess</a>
-</div>
+
     </div>
 
   </div>
