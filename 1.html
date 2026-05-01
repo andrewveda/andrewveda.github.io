@@ -222,6 +222,89 @@ h1{
 .footer-links a:last-child::after {
   content: "";
 }
+  /* ================= LAYOUT ================= */
+
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  font-family:var(--sans);
+}
+
+/* MAIN SPLIT AREA */
+.main{
+  display:flex;
+  flex:1;
+  overflow:hidden;
+}
+
+/* LEFT + RIGHT */
+.left{
+  width:50%;
+  height:100%;
+  overflow:hidden;
+}
+
+.right{
+  width:50%;
+  height:100%;
+  overflow-y:auto;
+}
+
+/* ================= FOOTER ================= */
+
+.footer-links{
+  width:100%;
+  display:flex;
+  gap:28px;
+  padding:16px 40px;
+
+  border-top:1px solid rgba(0,0,0,0.08);
+  background:var(--bg);
+
+  overflow-x:auto;
+  white-space:nowrap;
+}
+
+/* scrollbar (clean) */
+.footer-links::-webkit-scrollbar{
+  height:6px;
+}
+.footer-links::-webkit-scrollbar-thumb{
+  background:rgba(0,0,0,0.15);
+  border-radius:3px;
+}
+
+/* links */
+.footer-links a{
+  font-size:0.72rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  text-decoration:none;
+  flex-shrink:0;
+
+  transition:color 0.2s ease;
+}
+
+.footer-links a:hover{
+  color:var(--gold);
+}
+
+/* OPTIONAL: editorial separators */
+.footer-links a::after{
+  content:"·";
+  margin-left:28px;
+  color:rgba(0,0,0,0.2);
+}
+.footer-links a:last-child::after{
+  content:"";
+}
+  .footer-links{
+  font-family:var(--serif);
+  font-style:italic;
+}
 </style>
 </head>
 
@@ -326,6 +409,7 @@ h1{
       <p>Top 0.3% globally. Strategy as cognition.</p>
     </div>
 
+</div>
   </div>
 <div class="footer-links">
   <a href="https://andrewveda.github.io/" target="_blank">Website</a>
@@ -334,7 +418,6 @@ h1{
   <a href="https://www.chess.com/member/andrewveda" target="_blank">Chess.com</a>
   <a href="https://x.com/andrewveda" target="_blank">@andrewveda</a>
   <a href="https://lichess.org/av94" target="_blank">Lichess</a>
-</div>
 </div>
 
 <script>
