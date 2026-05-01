@@ -9,14 +9,13 @@
 
 <style>
 
-/* ================= BASE ================= */
-
 :root{
   --teal:#0e2a35;
   --gold:#b8922a;
-  --cream:#f7f3ec;
+  --bg:#f7f3ec;
   --ink:#1a1a18;
   --muted:#7a7468;
+  --border:rgba(0,0,0,0.08);
   --serif:'Playfair Display', serif;
   --sans:'Instrument Sans', sans-serif;
 }
@@ -25,98 +24,97 @@
 
 body{
   font-family:var(--sans);
-  background:var(--cream);
-  color:var(--ink);
-  scroll-behavior:smooth;
+  display:flex;
+  height:100vh;
+  overflow:hidden;
 }
 
-/* ================= PAGE 1 ================= */
+/* ================= LEFT PAGE ================= */
 
-.hero{
-  min-height:100vh;
-  background:var(--teal);
-  color:white;
+.left{
+  width:50%;
+  background:var(--bg);
+  padding:60px;
   display:flex;
   flex-direction:column;
-  justify-content:center;
-  padding:80px 60px 40px;
 }
 
-.hero-top{
+/* HEADER */
+
+.header{
   display:flex;
   align-items:center;
   gap:18px;
   margin-bottom:20px;
 }
 
-.hero-top img{
+.header img{
   width:70px;
   height:70px;
   object-fit:cover;
-  border-radius:2px;
+  border-radius:4px;
 }
 
 h1{
   font-family:var(--serif);
-  font-size:3.5rem;
+  font-size:2.6rem;
 }
 
-.hero-role{
-  font-size:0.8rem;
-  opacity:0.5;
+.role{
+  font-size:0.75rem;
+  color:var(--muted);
 }
 
-.hero-body{
-  font-family:var(--serif);
+/* TAGLINE */
+
+.tagline{
   font-style:italic;
+  margin-bottom:30px;
   max-width:45ch;
-  margin:20px 0 30px;
-  opacity:0.8;
 }
 
-/* BUILDING APPS (UNCHANGED STRUCTURE) */
+/* PROJECT GRID */
 
 .projects{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-top:20px;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  border:1px solid var(--border);
 }
 
-.proj{
+.card{
+  padding:20px;
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
   background:white;
-  color:black;
-  padding:16px;
-  border-radius:4px;
 }
 
-.proj-name{
-  font-weight:600;
+.card:nth-child(2n){
+  border-right:none;
+}
+
+.card h3{
+  font-family:var(--serif);
+  font-size:1rem;
   margin-bottom:6px;
 }
 
-.proj-desc{
+.card p{
   font-size:0.8rem;
+  color:var(--muted);
   margin-bottom:10px;
 }
 
-.proj a{
+.card a{
   font-size:0.75rem;
-  color:var(--gold);
+  color:var(--teal);
+  text-transform:uppercase;
 }
 
-/* SCROLL DOWN */
+/* ================= RIGHT PAGE ================= */
 
-.scroll-down{
-  margin-top:40px;
-  font-size:0.75rem;
-  opacity:0.6;
-}
-
-/* ================= PAGE 2 ================= */
-
-.slideshow{
-  height:100vh;
+.right{
+  width:50%;
   background:white;
   display:flex;
   flex-direction:column;
@@ -126,15 +124,15 @@ h1{
 
 .tabs{
   display:flex;
-  gap:24px;
-  padding:18px 60px;
-  border-bottom:1px solid rgba(0,0,0,0.08);
+  gap:20px;
+  padding:20px 40px;
+  border-bottom:1px solid var(--border);
 }
 
 .tab{
   font-size:0.75rem;
+  letter-spacing:0.1em;
   text-transform:uppercase;
-  letter-spacing:0.12em;
   cursor:pointer;
   color:var(--muted);
 }
@@ -148,13 +146,13 @@ h1{
 
 .viewer{
   flex:1;
-  padding:40px 60px;
+  padding:40px;
   overflow:auto;
 }
 
 .slide{
   display:none;
-  max-width:720px;
+  max-width:600px;
 }
 
 .slide.active{
@@ -163,30 +161,31 @@ h1{
 
 .slide h2{
   font-family:var(--serif);
-  font-size:2rem;
-  margin-bottom:16px;
+  font-size:1.8rem;
+  margin-bottom:14px;
 }
 
 .slide p{
-  margin-bottom:14px;
+  margin-bottom:12px;
   line-height:1.7;
 }
 
-/* FADE EFFECT */
+/* SMOOTH FADE */
 
 .slide{
   opacity:0;
-  transition:opacity 0.4s ease;
+  transition:opacity 0.3s ease;
 }
 
 .slide.active{
   opacity:1;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= MOBILE ================= */
 
 @media(max-width:900px){
-  .projects{grid-template-columns:1fr;}
+  body{flex-direction:column;}
+  .left,.right{width:100%;height:auto;}
 }
 
 </style>
@@ -194,52 +193,69 @@ h1{
 
 <body>
 
-<!-- PAGE 1 -->
+<!-- LEFT PAGE -->
 
-<section class="hero">
+<div class="left">
 
-  <div class="hero-top">
+  <div class="header">
     <img src="images/andrewveda.jpeg">
     <div>
       <h1>Andrew Veda</h1>
-      <div class="hero-role">SRM Valliammai Engineering College · Chennai</div>
+      <div class="role">SRM Valliammai Engineering College · Chennai</div>
     </div>
   </div>
 
-  <div class="hero-body">
+  <div class="tagline">
     Teacher. Translator. Builder of tools that make thinking irresistible.
   </div>
 
-  <!-- BUILDING APPS -->
+  <!-- PROJECTS (MATCHING YOUR SCREENSHOT STYLE) -->
+
   <div class="projects">
 
-    <div class="proj">
-      <div class="proj-name">SRM VEC English — Student Learning App</div>
-      <div class="proj-desc">A full ecosystem of vocabulary games and tools.</div>
-      <a href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank">Open →</a>
+    <div class="card">
+      <h3>SRM VEC English — Student Learning App</h3>
+      <p>A Progressive Web App housing vocabulary games, short plays, forums and more.</p>
+      <a href="#">Open App →</a>
     </div>
 
-    <div class="proj">
-      <div class="proj-name">Cryptic Clues</div>
-      <div class="proj-desc">Crosswords for ESL learners.</div>
-      <a href="https://andrewveda.github.io/cryptic/" target="_blank">Try →</a>
+    <div class="card">
+      <h3>Cryptic Clues</h3>
+      <p>Department-specific cryptic crosswords. Miniature Turing tests for ESL learners.</p>
+      <a href="#">Try Live →</a>
     </div>
 
-    <div class="proj">
-      <div class="proj-name">A Quote A Day</div>
-      <div class="proj-desc">Student-generated wisdom archive.</div>
-      <a href="https://andrewveda.github.io/a-quote-a-day/" target="_blank">Read →</a>
+    <div class="card">
+      <h3>A Quote A Day</h3>
+      <p>A student-contributed quote archive. A living document of classroom thought.</p>
+      <a href="#">Read Today →</a>
+    </div>
+
+    <div class="card">
+      <h3>Wordle Blitz</h3>
+      <p>5-minute countdown Wordle sprint. Vocabulary under pressure.</p>
+      <a href="#">Play →</a>
+    </div>
+
+    <div class="card">
+      <h3>Vox Velocity</h3>
+      <p>IELTS & GRE-level vocabulary game. Learn by doing.</p>
+      <a href="#">Play →</a>
+    </div>
+
+    <div class="card">
+      <h3>Short Plays</h3>
+      <p>Dialogue-based learning exploring philosophy and psychology.</p>
+      <a href="#">Read →</a>
     </div>
 
   </div>
 
-  <div class="scroll-down">Scroll ↓</div>
+</div>
 
-</section>
+<!-- RIGHT PAGE -->
 
-<!-- PAGE 2 -->
-
-<section class="slideshow">
+<div class="right">
 
   <div class="tabs">
     <div class="tab active" onclick="show('about',this)">About</div>
@@ -254,19 +270,18 @@ h1{
     <div id="about" class="slide active">
       <h2>About</h2>
       <p>English professor. Classical Tamil reader and writer. Chess player in the top 0.3% globally.</p>
-      <p>Builder of learning software. None of these are separate pursuits — they are the same curiosity.</p>
+      <p>Builder of learning software. The same curiosity, different directions.</p>
     </div>
 
     <div id="research" class="slide">
       <h2>Research</h2>
-      <p>Nature is an active participant in meaning-making.</p>
+      <p>Nature is not a passive backdrop — it is an active participant in meaning-making.</p>
       <p>Zoosemiotics. Phytosemiotics. Aesthetics as individuality.</p>
     </div>
 
     <div id="teaching" class="slide">
       <h2>Teaching</h2>
-      <p>The classroom is a design problem.</p>
-      <p>Curiosity can be engineered.</p>
+      <p>The classroom is a design problem. Every session is an intervention.</p>
     </div>
 
     <div id="pedagogy" class="slide">
@@ -281,7 +296,7 @@ h1{
 
   </div>
 
-</section>
+</div>
 
 <script>
 function show(id, el){
