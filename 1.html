@@ -673,6 +673,29 @@ a.contact-btn:hover { background: var(--gold); }
 .left-inner {
   justify-content: space-between;
 }
+
+  /* ─── MAKE ENTIRE PROJECT CARD CLICKABLE ───────── */
+
+/* make anchor fill the whole card */
+.proj a.proj-link {
+  position: absolute;
+  inset: 0;                 /* fill entire card */
+  z-index: 2;
+  opacity: 0;               /* keep invisible but clickable */
+}
+
+/* keep text above for readability */
+.proj-name,
+.proj-desc,
+.proj-icon {
+  position: relative;
+  z-index: 1;
+}
+
+/* preserve hover effect on full card */
+.proj:hover {
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
