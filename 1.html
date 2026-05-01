@@ -20,7 +20,7 @@
   --ink-2:       #3a3630;
   --ink-3:       #7c766c;
   --rule:        rgba(28,26,22,0.09);
-  --left-w:      340px;
+  --left-w:      50vw;
   --serif-disp:  'Playfair Display', Georgia, serif;
   --serif-body:  'Crimson Pro', Georgia, serif;
   --sans:        'Instrument Sans', system-ui, sans-serif;
@@ -70,7 +70,7 @@ img { display:block; max-width:100%; }
   position: relative; z-index: 1;
   display: flex; flex-direction: column;
   height: 100%;
-  padding: 32px 28px 0;
+  padding: 32px 36px 0;
 }
 
 /* identity block */
@@ -155,7 +155,7 @@ img { display:block; max-width:100%; }
 .projects {
   flex: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1px;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.05);
@@ -183,7 +183,8 @@ img { display:block; max-width:100%; }
 }
 .proj:hover::after { transform: scaleX(1); }
 
-.proj-wide { grid-column: span 2; }
+.proj-wide { grid-column: span 3; flex-direction: row; gap: 16px; align-items: flex-start; }
+.proj-wide .proj-body { flex: 1; }
 
 .proj-icon { font-size: 0.85rem; margin-bottom: 5px; line-height: 1; }
 .proj-name {
@@ -273,7 +274,7 @@ img { display:block; max-width:100%; }
 /* prose content */
 .prose {
   padding: 52px 64px 80px 48px;
-  max-width: 680px;
+  max-width: 100%;
   flex: 1;
 }
 
@@ -500,7 +501,7 @@ a.contact-btn:hover { background: var(--teal-mid); }
   }
   .left-inner { padding: 28px 22px 0; }
   .projects { grid-template-columns: 1fr 1fr; }
-  .proj-wide { grid-column: span 2; }
+  .proj-wide { grid-column: span 2; flex-direction: column; }
 
   .right {
     height: auto;
