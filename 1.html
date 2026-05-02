@@ -217,17 +217,28 @@ img { display: block; max-width: 100%; }
   margin-top: 12px;
   display: flex;
   flex-wrap: wrap;
-  gap: 3px 12px;
+  gap: 4px 2px;
 }
 .left-footer a {
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  transition: color 0.15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  color: var(--ink-2);
+  transition: color 0.15s, background 0.15s;
 }
-.left-footer a:hover { color: var(--gold); }
+.left-footer a:hover {
+  color: var(--gold);
+  background: var(--gold-fill);
+}
+.left-footer a svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  fill: currentColor;
+}
 
 /* ── RIGHT ── */
 .right {
@@ -557,11 +568,13 @@ a.contact-btn:hover { background: var(--gold); }
   /* ── Left panel ── */
   .left {
     height: auto;
+    overflow: visible;        /* ← was hidden on desktop, clipping the footer */
     border-right: none;
     border-bottom: 1px solid var(--rule);
   }
 
   .left-inner {
+    height: auto;
     padding: 24px 20px 0;
     justify-content: flex-start;
   }
