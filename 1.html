@@ -522,8 +522,8 @@ a.essay-btn:hover { background: var(--gold-fill); border-color: var(--gold-rule)
   color: rgba(255,255,255,0.35);
 }
 
-/* make gallery images show pointer */
-.gallery img { cursor: zoom-in; }
+/* make gallery images and hero photo show zoom cursor */
+.gallery img, .id-photo { cursor: zoom-in; }
 
 a.contact-btn {
   display: inline-flex; align-items: center; gap: 8px;
@@ -1008,10 +1008,15 @@ a.contact-btn:hover { background: var(--gold); }
   function prev() { if (current > 0) { current--; render(); } }
   function next() { if (current < images.length - 1) { current++; render(); } }
 
-  // Attach to gallery images
+  // Attach to hero photo + gallery images
+  const heroPhoto = document.querySelector('.id-photo');
+  if (heroPhoto) images.push(heroPhoto);
+  if (heroPhoto) {
+    heroPhoto.addEventListener('click', () => open(0));
+  }
   document.querySelectorAll('.gallery img').forEach((img, i) => {
     images.push(img);
-    img.addEventListener('click', () => open(i));
+    img.addEventListener('click', () => open(i + 1));
   });
 
   lbClose.addEventListener('click', close);
