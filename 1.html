@@ -570,27 +570,6 @@ a.contact-btn:hover { background: var(--gold); }
     overflow: visible;
   }
 
-  /* chevron toggle indicator */
-  .proj-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-    color: var(--ink-3);
-    transition: transform 0.25s ease, color 0.15s;
-  }
-  .proj-toggle svg {
-    width: 14px;
-    height: 14px;
-    display: block;
-  }
-  .proj.expanded .proj-toggle {
-    transform: rotate(180deg);
-    color: var(--gold);
-  }
-
   /* when expanded, stack content vertically and show CTA */
   .proj.expanded {
     flex-wrap: wrap;
@@ -885,33 +864,19 @@ a.contact-btn:hover { background: var(--gold); }
 </div>
 
 <script>
-/* ── Mobile: expand/collapse project cards ── */
+/* ── Mobile: expand/collapse project cards on tap ── */
 function initMobileCards() {
   if (window.innerWidth > 820) return;
-
-  const chevronSVG = `<svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>`;
 
   document.querySelectorAll('.proj').forEach(card => {
     if (card._mobileInit) return;
     card._mobileInit = true;
 
-    // Inject chevron
-    const toggle = document.createElement('span');
-    toggle.className = 'proj-toggle';
-    toggle.setAttribute('aria-label', 'Expand');
-    toggle.innerHTML = chevronSVG;
-    card.appendChild(toggle);
-
     card.addEventListener('click', function(e) {
-      const isLink = e.target.closest('a.proj-link');
-      // First tap on link: expand the card, don't navigate yet
-      if (isLink && !this.classList.contains('expanded')) {
-        e.preventDefault();
-      }
+      // CTA links always navigate — never intercept them
+      if (e.target.closest('a.proj-link')) return;
+      // Tap anywhere else on the card toggles expand
       this.classList.toggle('expanded');
-      toggle.setAttribute('aria-label', this.classList.contains('expanded') ? 'Collapse' : 'Expand');
     });
   });
 }
