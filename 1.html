@@ -735,6 +735,20 @@ a.contact-btn:hover { background: var(--gold); }
   .desk-list { grid-template-columns: 1fr; }
 }
 
+  /* ── Footer: wrap into two neat rows on mobile ── */
+  .left-footer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+    padding: 14px 0 18px;
+  }
+  .left-footer a {
+    flex: 0 0 25%;   /* 4 per row → wraps to 4+3 */
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    padding: 4px 0;
+  }
+
 @media (max-width: 480px) {
   h2 { font-size: 1.45rem; }
   .right-nav a { padding: 11px 9px 9px; font-size: 0.67rem; }
