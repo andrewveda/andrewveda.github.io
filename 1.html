@@ -490,22 +490,21 @@ h2 {
     position: relative;
 }
 
-/* Add this new class for the horizontal links */
 .cta-group {
+    float: right; /* Floats the container to the right of the text */
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: 16px; /* Space between the links */
-    margin-top: 4px;
+    flex-direction: column; /* Stacks the links vertically */
+    align-items: flex-end; /* Aligns the links to the right edge */
+    gap: 8px; /* Controls the vertical spacing between the links */
+    margin-left: 20px; /* Gives breathing room between the text and the links */
+    margin-top: 2px; /* Fine-tunes alignment with the first line of text */
 }
-   .cta-group {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px; 
-    margin-left: 12px;
-    float: right; /* Pushes the group to the far right of the last text line */
-    white-space: nowrap; /* Prevents the buttons from stacking on top of each other */
+
+/* Ensure the parent can clear the float if the text is too short */
+.proj-desc::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 </style>
 </head>
@@ -529,10 +528,9 @@ h2 {
 <div class="featured-proj">
         <div class="proj-name">📱 SRM VEC English Student App</div>
         <div class="proj-desc">
-          A gamified learning app (PWA) that turns English learning into a daily mission, strengthening skills and making students of SRM Valliammai Engineering College fall in love with consistent learning.
           
-          <!-- Now nested INSIDE the description block as a span -->
-          <span class="cta-group">
+          <!-- The floating group MUST go before the text to wrap properly -->
+          <div class="cta-group">
             <a class="cta-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/wordleblitz" target="_blank">
               Play <span>&rarr;</span>
             </a>
@@ -542,7 +540,9 @@ h2 {
             <a class="cta-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank">
               Open <span>&rarr;</span>
             </a>
-          </span>
+          </div>
+
+          A gamified learning app (PWA) that turns English learning into a daily mission, strengthening skills and making students of SRM Valliammai Engineering College fall in love with consistent learning.
           
         </div>
       </div>
