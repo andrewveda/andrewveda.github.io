@@ -769,263 +769,186 @@ a.contact-btn:hover { background: var(--gold); }
   bottom: 10px;
 }
 /* ═══════════════════════════════════════════════
-   POLYMATH CABINET v2
-   3-COLUMN LUXURY DASHBOARD
+   EXHIBIT CABINET STYLE
+   Paste at very end of stylesheet
 ═══════════════════════════════════════════════ */
 
 /* remove table feeling */
 .projects{
   background:transparent !important;
   border:none !important;
-  gap:14px !important;
-  padding:4px !important;
+  gap:22px !important;
+  padding-top:22px;
+  position:relative;
 }
 
-/* floating cards */
+/* decorative separator */
+.projects::before{
+  content:"✦";
+  position:absolute;
+  top:-6px;
+  left:50%;
+  transform:translateX(-50%);
+  color:rgba(154,111,30,.55);
+  font-size:.9rem;
+}
+
+/* cards */
 .proj{
   position:relative;
-  overflow:hidden;
+  overflow:visible;
+
+  text-align:center;
+
+  padding:78px 18px 18px !important;
+
+  background:#f8f5ef !important;
 
   border:none !important;
-  border-radius:12px;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.30),
-      rgba(255,255,255,.08)
-    ) !important;
+  border-radius:10px !important;
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.75),
-    0 4px 12px rgba(0,0,0,.04);
+    0 2px 4px rgba(0,0,0,.03),
+    0 10px 24px rgba(0,0,0,.04) !important;
 
   transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    background .25s ease;
+    transform .18s ease,
+    box-shadow .18s ease !important;
 }
 
-/* floating effect */
 .proj:hover{
-  transform:translateY(-4px);
+  transform:translateY(-2px);
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.8),
-    0 12px 28px rgba(154,111,30,.10),
-    0 4px 10px rgba(0,0,0,.05);
+    0 8px 18px rgba(0,0,0,.06),
+    0 16px 34px rgba(0,0,0,.08) !important;
 }
 
-/* kill old underline */
+/* remove existing gold underline */
 .proj::after{
   display:none !important;
 }
 
-/* magical watermark */
+/* medallion base */
 .proj::before{
-  content:"✦";
+  width:58px;
+  height:58px;
 
   position:absolute;
 
+  top:14px;
   left:50%;
-  top:48%;
 
-  transform:translate(-50%,-50%);
+  transform:translateX(-50%);
 
-  font-size:4rem;
+  border-radius:50%;
 
-  color:rgba(154,111,30,.05);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-  z-index:0;
+  font-size:1.4rem;
 
-  pointer-events:none;
-}
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    0 4px 12px rgba(0,0,0,.08);
 
-/* jewel glow */
-.proj .proj-name,
-.proj .proj-desc{
-  position:relative;
   z-index:2;
 }
 
-.proj::selection{
-  background:rgba(154,111,30,.15);
+/* individual medallions */
+
+.proj:nth-child(2)::before{
+  content:"🧩";
+  background:#f2e5e6;
 }
 
-/* centre glow */
-.proj{
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(196,154,60,.08),
-      transparent 55%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.30),
-      rgba(255,255,255,.08)
-    ) !important;
+.proj:nth-child(3)::before{
+  content:"✦";
+  background:#f5eddc;
 }
 
-/* different magical glows */
-
-.proj:nth-child(2){
-  background:
-    radial-gradient(circle at center,
-      rgba(255,180,80,.12),
-      transparent 58%),
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.30),
-      rgba(255,255,255,.08)
-    ) !important;
+.proj:nth-child(4)::before{
+  content:"⚡";
+  background:#e6eadb;
 }
 
-.proj:nth-child(3){
-  background:
-    radial-gradient(circle at center,
-      rgba(120,160,255,.12),
-      transparent 58%),
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.30),
-      rgba(255,255,255,.08)
-    ) !important;
+.proj:nth-child(5)::before{
+  content:"💬";
+  background:#dfe7f3;
 }
 
-.proj:nth-child(4){
-  background:
-    radial-gradient(circle at center,
-      rgba(180,120,255,.12),
-      transparent 58%),
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.30),
-      rgba(255,255,255,.08)
-    ) !important;
+.proj:nth-child(6)::before{
+  content:"📖";
+  background:#ece1f0;
 }
 
-.proj:nth-child(5){
-  background:
-    radial-gradient(circle at center,
-      rgba(80,210,180,.12),
-      transparent 58%),
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.30),
-      rgba(255,255,255,.08)
-    ) !important;
-}
-
-.proj:nth-child(6){
-  background:
-    radial-gradient(circle at center,
-      rgba(255,120,160,.10),
-      transparent 58%),
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.30),
-      rgba(255,255,255,.08)
-    ) !important;
-}
-
-.proj:nth-child(7){
-  background:
-    radial-gradient(circle at center,
-      rgba(220,190,90,.12),
-      transparent 58%),
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.30),
-      rgba(255,255,255,.08)
-    ) !important;
+.proj:nth-child(7)::before{
+  content:"📚";
+  background:#f3dfd5;
 }
 
 /* hero card */
 .proj-wide{
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(196,154,60,.12),
-      transparent 60%
-    ),
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.42),
-      rgba(154,111,30,.04)
-    ) !important;
-}
+  padding-top:20px !important;
+  text-align:left;
 
-/* brass plaque titles */
-.proj-name{
-  display:inline-block;
-
-  padding:4px 10px;
-
-  margin:0 auto 10px auto !important;
-
-  border-radius:4px;
-
-  border:1px solid rgba(154,111,30,.18);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.60),
-      rgba(154,111,30,.06)
-    );
+  background:#f8f5ef !important;
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.8);
-
-  text-align:center;
+    0 2px 4px rgba(0,0,0,.03),
+    0 10px 24px rgba(0,0,0,.04) !important;
 }
 
-/* richer text */
+/* remove medallion from hero card */
+.proj-wide::before{
+  display:none !important;
+}
+
+/* typography */
+
+.proj-name{
+  text-align:center !important;
+
+  margin-bottom:10px !important;
+
+  font-size:1.1rem !important;
+}
+
 .proj-desc{
-  color:#746d63 !important;
+  text-align:center !important;
+
+  color:#766f65 !important;
+
   line-height:1.6 !important;
 }
 
-/* CTA */
-.proj::before{
-  pointer-events:none;
+/* hero card text left aligned */
+.proj-wide .proj-name,
+.proj-wide .proj-desc{
+  text-align:left !important;
 }
 
+/* CTA */
+.proj a.proj-link{
+  font-size:.74rem !important;
+  letter-spacing:.08em !important;
+  color:#9a6f1e !important;
+}
+
+/* hide old CTA label */
 .proj[data-cta]::after{
   display:none !important;
 }
 
-/* elegant CTA colour */
-.proj:hover .proj-name{
-  border-color:rgba(154,111,30,.35);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.75),
-      rgba(154,111,30,.10)
-    );
-}
-
-/* cabinet background */
+/* softer background */
 .left{
   background:
-    radial-gradient(
-      circle at top left,
-      rgba(196,154,60,.08),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at bottom right,
-      rgba(196,154,60,.05),
-      transparent 35%
-    ),
     linear-gradient(
       180deg,
-      #ede8de,
-      #e9e2d5
-    );
+      #efe9df 0%,
+      #ece5d8 100%
+    ) !important;
 }
 </style>
 <meta name="robots" content="index, follow">
