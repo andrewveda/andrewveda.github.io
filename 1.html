@@ -768,169 +768,263 @@ a.contact-btn:hover { background: var(--gold); }
 .proj::before {
   bottom: 10px;
 }
+/* ═══════════════════════════════════════════════
+   POLYMATH CABINET v2
+   3-COLUMN LUXURY DASHBOARD
+═══════════════════════════════════════════════ */
+
+/* remove table feeling */
 .projects{
-  gap:12px !important;
   background:transparent !important;
   border:none !important;
-  padding:6px;
+  gap:14px !important;
+  padding:4px !important;
 }
 
-/* individual exhibit cards */
+/* floating cards */
 .proj{
+  position:relative;
+  overflow:hidden;
+
+  border:none !important;
+  border-radius:12px;
+
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,.35),
+      rgba(255,255,255,.30),
       rgba(255,255,255,.08)
     ) !important;
 
-  border:1px solid rgba(154,111,30,.16) !important;
-
-  border-radius:8px !important;
-
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.7),
-    inset 0 -10px 20px rgba(154,111,30,.03),
-    0 2px 8px rgba(0,0,0,.03);
+    inset 0 1px 0 rgba(255,255,255,.75),
+    0 4px 12px rgba(0,0,0,.04);
 
   transition:
     transform .25s ease,
     box-shadow .25s ease,
-    border-color .25s ease !important;
-
-  overflow:hidden;
+    background .25s ease;
 }
 
-/* floating museum-piece effect */
+/* floating effect */
 .proj:hover{
-  transform:translateY(-3px);
-
-  border-color:rgba(154,111,30,.32) !important;
+  transform:translateY(-4px);
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.7),
-    0 10px 25px rgba(154,111,30,.12),
-    0 4px 12px rgba(0,0,0,.05);
+    inset 0 1px 0 rgba(255,255,255,.8),
+    0 12px 28px rgba(154,111,30,.10),
+    0 4px 10px rgba(0,0,0,.05);
 }
 
-/* remove old underline effect */
+/* kill old underline */
 .proj::after{
   display:none !important;
 }
 
-/* brass plaque title */
+/* magical watermark */
+.proj::before{
+  content:"✦";
+
+  position:absolute;
+
+  left:50%;
+  top:48%;
+
+  transform:translate(-50%,-50%);
+
+  font-size:4rem;
+
+  color:rgba(154,111,30,.05);
+
+  z-index:0;
+
+  pointer-events:none;
+}
+
+/* jewel glow */
+.proj .proj-name,
+.proj .proj-desc{
+  position:relative;
+  z-index:2;
+}
+
+.proj::selection{
+  background:rgba(154,111,30,.15);
+}
+
+/* centre glow */
+.proj{
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(196,154,60,.08),
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.30),
+      rgba(255,255,255,.08)
+    ) !important;
+}
+
+/* different magical glows */
+
+.proj:nth-child(2){
+  background:
+    radial-gradient(circle at center,
+      rgba(255,180,80,.12),
+      transparent 58%),
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.30),
+      rgba(255,255,255,.08)
+    ) !important;
+}
+
+.proj:nth-child(3){
+  background:
+    radial-gradient(circle at center,
+      rgba(120,160,255,.12),
+      transparent 58%),
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.30),
+      rgba(255,255,255,.08)
+    ) !important;
+}
+
+.proj:nth-child(4){
+  background:
+    radial-gradient(circle at center,
+      rgba(180,120,255,.12),
+      transparent 58%),
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.30),
+      rgba(255,255,255,.08)
+    ) !important;
+}
+
+.proj:nth-child(5){
+  background:
+    radial-gradient(circle at center,
+      rgba(80,210,180,.12),
+      transparent 58%),
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.30),
+      rgba(255,255,255,.08)
+    ) !important;
+}
+
+.proj:nth-child(6){
+  background:
+    radial-gradient(circle at center,
+      rgba(255,120,160,.10),
+      transparent 58%),
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.30),
+      rgba(255,255,255,.08)
+    ) !important;
+}
+
+.proj:nth-child(7){
+  background:
+    radial-gradient(circle at center,
+      rgba(220,190,90,.12),
+      transparent 58%),
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.30),
+      rgba(255,255,255,.08)
+    ) !important;
+}
+
+/* hero card */
+.proj-wide{
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(196,154,60,.12),
+      transparent 60%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.42),
+      rgba(154,111,30,.04)
+    ) !important;
+}
+
+/* brass plaque titles */
 .proj-name{
   display:inline-block;
 
   padding:4px 10px;
 
-  margin:0 auto 12px auto !important;
-
-  border:1px solid rgba(154,111,30,.18);
+  margin:0 auto 10px auto !important;
 
   border-radius:4px;
+
+  border:1px solid rgba(154,111,30,.18);
 
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,.55),
+      rgba(255,255,255,.60),
       rgba(154,111,30,.06)
     );
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.7);
+    inset 0 1px 0 rgba(255,255,255,.8);
 
   text-align:center;
 }
 
-/* refined descriptions */
+/* richer text */
 .proj-desc{
-  color:#756d63 !important;
-  line-height:1.65 !important;
+  color:#746d63 !important;
+  line-height:1.6 !important;
 }
 
-/* elegant CTA */
+/* CTA */
 .proj::before{
-  color:#9a6f1e !important;
-  letter-spacing:.12em !important;
-  font-size:.68rem !important;
-}
-
-/* subtle magical sheen */
-.proj:hover::before{
-  color:#6f4f14 !important;
-}
-
-/* faint mirror-of-erised glow */
-.proj:hover{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.45),
-      rgba(255,255,255,.12)
-    ) !important;
-}
-
-/* wide card becomes hero object */
-.proj-wide{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.45),
-      rgba(154,111,30,.05)
-    ) !important;
-
-  border:1px solid rgba(154,111,30,.22) !important;
-}
-
-/* luxury corners */
-.proj{
-  position:relative;
-}
-
-.proj:before,
-.proj:after{
   pointer-events:none;
 }
 
-/* gold divider under description */
-.proj-desc::after{
-  content:"";
-  display:block;
-
-  width:36px;
-  height:1px;
-
-  margin:12px auto 0;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(154,111,30,.45),
-      transparent
-    );
+.proj[data-cta]::after{
+  display:none !important;
 }
 
-/* richer hover typography */
+/* elegant CTA colour */
 .proj:hover .proj-name{
   border-color:rgba(154,111,30,.35);
 
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,.7),
+      rgba(255,255,255,.75),
       rgba(154,111,30,.10)
     );
 }
 
-/* overall cabinet feel */
+/* cabinet background */
 .left{
   background:
+    radial-gradient(
+      circle at top left,
+      rgba(196,154,60,.08),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(196,154,60,.05),
+      transparent 35%
+    ),
     linear-gradient(
       180deg,
-      #ede8de 0%,
-      #ebe4d7 100%
+      #ede8de,
+      #e9e2d5
     );
 }
 </style>
