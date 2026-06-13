@@ -499,6 +499,14 @@ h2 {
     gap: 16px; /* Space between the links */
     margin-top: 4px;
 }
+   .cta-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px; 
+    margin-left: 12px;
+    float: right; /* Pushes the group to the far right of the last text line */
+    white-space: nowrap; /* Prevents the buttons from stacking on top of each other */
+}
 </style>
 </head>
 <body>
@@ -518,21 +526,24 @@ h2 {
           </div>
         </div>
       </div>
-
-     <div class="featured-proj">
+<div class="featured-proj">
         <div class="proj-name">📱 SRM VEC English Student App</div>
-        <div class="proj-desc">A gamified learning app (PWA) that turns English learning into a daily mission, strengthening skills and making students of SRM Valliammai Engineering College fall in love with consistent learning.</div>
-        
-        <div class="cta-group">
-          <a class="cta-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/wordleblitz" target="_blank">
-            Play <span>&rarr;</span>
-          </a>
-          <a class="cta-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/stories" target="_blank">
-            Read <span>&rarr;</span>
-          </a>
-          <a class="cta-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank">
-            Open <span>&rarr;</span>
-          </a>
+        <div class="proj-desc">
+          A gamified learning app (PWA) that turns English learning into a daily mission, strengthening skills and making students of SRM Valliammai Engineering College fall in love with consistent learning.
+          
+          <!-- Now nested INSIDE the description block as a span -->
+          <span class="cta-group">
+            <a class="cta-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/wordleblitz" target="_blank">
+              Play <span>&rarr;</span>
+            </a>
+            <a class="cta-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/stories" target="_blank">
+              Read <span>&rarr;</span>
+            </a>
+            <a class="cta-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank">
+              Open <span>&rarr;</span>
+            </a>
+          </span>
+          
         </div>
       </div>
 
