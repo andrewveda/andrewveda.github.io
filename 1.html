@@ -485,6 +485,20 @@ h2 {
   margin-bottom: 20px;
   flex-grow: 1;
 }
+   .featured-proj {
+    margin-bottom: 24px; /* Increased to compensate for the removed divider */
+    position: relative;
+}
+
+/* Add this new class for the horizontal links */
+.cta-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 16px; /* Space between the links */
+    margin-top: 4px;
+}
 </style>
 </head>
 <body>
@@ -505,15 +519,23 @@ h2 {
         </div>
       </div>
 
-      <div class="featured-proj">
+     <div class="featured-proj">
         <div class="proj-name">📱 SRM VEC English Student App</div>
         <div class="proj-desc">A gamified learning app (PWA) that turns English learning into a daily mission, strengthening skills and making students of SRM Valliammai Engineering College fall in love with consistent learning.</div>
-        <a class="cta-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank">
-          Open <span>&rarr;</span>
-        </a>
+        
+        <div class="cta-group">
+          <a class="cta-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/wordleblitz" target="_blank">
+            Play <span>&rarr;</span>
+          </a>
+          <a class="cta-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/stories" target="_blank">
+            Read <span>&rarr;</span>
+          </a>
+          <a class="cta-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank">
+            Open <span>&rarr;</span>
+          </a>
+        </div>
       </div>
 
-      <div class="ornate-divider"><span></span></div>
 
       <div class="projects-container">
         <div class="projects-grid">
