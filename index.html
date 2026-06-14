@@ -3,28 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andrew Veda</title>
+<title>Andrew Veda | English Professor, Translator, Chess Player & Educational Technologist</title>
    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="description" content="Andrew Veda — Assistant Professor of English, SRM Valliammai Engineering College, Chennai.">
+<meta name="description" content="Andrew Veda is an Assistant Professor of English, translator of classical Tamil literature, Chess bullet and blitz player in the top 0.3% globally, researcher in fluid intelligence, aesthetics, ESL, semiotics, and creator of gamified educational software.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ─── DESIGN TOKENS ──────────────────────────── */
 :root {
-  --bg-left:    #ede8de;
-  --bg-right:   #faf7f1;
+  --bg-left:    #f5f2eb;
+  --bg-right:   #fdfcf9;
+  --bg-card:    #ffffff;
   --gold:       #9a6f1e;
   --gold-light: #c49a3c;
-  --gold-rule:  rgba(154,111,30,0.2);
+  --gold-rule:  rgba(154,111,30,0.3);
   --gold-fill:  rgba(154,111,30,0.08);
   --ink:        #1e1b15;
   --ink-2:      #3c3830;
   --ink-3:      #8a8278;
-  --rule:       rgba(30,27,21,0.1);
+  --rule:       rgba(30,27,21,0.08);
   --serif-disp: 'Playfair Display', Georgia, serif;
   --serif-body: 'Crimson Pro', Georgia, serif;
   --sans:       'Instrument Sans', system-ui, sans-serif;
+}
+
+/* Subtle noise texture overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -46,201 +57,302 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
 }
 
+/* ── LEFT ── */
 .left {
   background: var(--bg-left);
+  background: radial-gradient(circle at center, #f8f6f0 0%, #ede8de 100%);
   height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: hidden; 
   border-right: 1px solid var(--rule);
+  position: relative;
+}
+
+/* Gold spine — 2px left edge rule, fades at top and bottom */
+.left::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent 2%,
+    var(--gold-light) 12%,
+    var(--gold) 50%,
+    var(--gold-light) 88%,
+    transparent 98%
+  );
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Monogram Watermark */
+.watermark {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    font-family: var(--serif-disp);
+    font-size: 24rem;
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(154, 111, 30, 0.07);
+    line-height: 0.8;
+    letter-spacing: -0.1em;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
 }
 
 .left-inner {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: clamp(20px, 2.5vw, 36px) clamp(20px, 2.8vw, 40px) 0;
+  padding: clamp(12px, 2vw, 24px) clamp(24px, 3.5vw, 40px) 0 calc(clamp(24px, 3.5vw, 40px) + 2px);
+  position: relative;
+  z-index: 1;
 }
 
 .identity {
   flex-shrink: 0;
-  padding-bottom: 0;
-  border-bottom: none;
-  margin-bottom: 16px;
+  margin-bottom: 8px; /* Tighter for 6 cards */
 }
 
 .id-top {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .id-photo {
-  width: 88px; height: 88px;
+  width: 80px; height: 80px; /* Slightly scaled down */
   border-radius: 50%;
   object-fit: cover; object-position: top center;
-  border: 1.5px solid var(--gold-rule);
+  border: 2px solid var(--gold-light);
+  padding: 3px;
+  background: var(--bg-left);
   flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 .id-name {
   font-family: var(--serif-disp);
-  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
   margin: 0;
-  font-weight: 700;
-  line-height: 1.05;
+  font-weight: 500;
+  line-height: 1;
   color: var(--ink);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 .id-name em {
-  font-weight: 500;
+  font-weight: 400;
   font-style: italic;
   color: var(--ink-3);
 }
 .id-role {
-  font-size: 0.95rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
   color: var(--ink-3);
-  margin-top: 3px;
+  margin-top: 5px;
+}
+
+/* Manifesto tagline — the editorial lead */
+.id-manifesto {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.id-manifesto span {
+  display: inline-block;
+  margin: 0 6px;
+  opacity: 0.4;
 }
 
 .id-bio {
   font-family: var(--serif-body);
-  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  font-size: 0.95rem;
   font-style: italic;
-  line-height: 1.55;
-  color: var(--ink-2);
-  margin-bottom: 8px;
+  line-height: 1.4;
+  color: var(--ink-3);
 }
 
-.proj-label { display: none; }
+/* Ornate Divider */
+.ornate-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 6px 0; /* Reduced margin */
+}
+.ornate-divider::before,
+.ornate-divider::after {
+    content: '';
+    height: 1px;
+    background: var(--gold-rule);
+    flex: 1;
+}
+.ornate-divider::before { margin-right: 12px; }
+.ornate-divider::after { margin-left: 12px; }
+.ornate-divider span {
+    display: inline-block;
+    width: 5px; height: 5px;
+    background: var(--gold);
+    transform: rotate(45deg);
+}
 
-.projects {
-  flex: 1;
+/* Featured project */
+.featured-proj {
+    margin-bottom: 6px;
+    position: relative;
+}
+.featured-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 6px;
+}
+.featured-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+.featured-text .proj-name {
+    font-family: var(--serif-disp);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+}
+.featured-text .proj-desc {
+    font-size: 0.75rem;
+    line-height: 1.3;
+    color: var(--ink-3);
+}
+.featured-cta {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--gold-rule);
+    border-radius: 3px;
+    background: var(--gold-fill);
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.featured-cta:hover {
+    color: var(--ink);
+    background: rgba(154,111,30,0.14);
+    border-color: var(--gold-light);
+}
+
+/* 6-card grid adjustments */
+.projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  border-radius: 3px;
-  overflow: hidden;
-  align-content: start;
-  min-height: 0;
-  grid-auto-rows: 1fr;
-  align-content: stretch;
+  grid-template-rows: repeat(2, 1fr); /* Forces two equal-height rows */
+  gap: 10px; 
+  flex: 1; /* Takes up all remaining vertical space */
+  min-height: 0; /* Prevents grid from overflowing the screen height */
+  margin: 6px 0 16px 0; /* Adds breathing room above the footer */
 }
 
-.proj {
-  background: var(--bg-left);
-  padding: clamp(8px, 1.2vw, 14px) clamp(8px, 1.2vw, 14px) clamp(7px, 1.1vw, 13px);
+.proj-card {
+  background: var(--bg-card);
+  border-radius: 6px;
+  padding: 12px 10px;
   display: flex;
   flex-direction: column;
-  transition: background 0.15s;
-  position: relative;
-  min-width: 0;
-  overflow: hidden;
-  height: 100%;
-  cursor: pointer;
-}
-.proj:hover { background: #e6e1d6; }
-.proj::after {
-  content: '';
-  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--gold-rule), var(--gold));
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.2s;
-}
-.proj:hover::after { transform: scaleX(1); }
-
-.proj-wide {
-  grid-column: span 3;
-  flex-direction: row;
-  gap: 14px;
-  align-items: flex-start;
-}
-.proj-wide .proj-body { flex: 1; }
-
-
-.proj-name {
-  font-family: var(--serif-disp);
-  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 3px;
-  line-height: 1.2;
-  position: relative; z-index: 1;
+  align-items: center;
+  justify-content: center; /* Centers the text vertically inside the stretched card */
   text-align: center;
-}
-.proj-desc {
-  font-size: clamp(0.85rem, 1.05vw, 1rem);
-  line-height: 1.5;
-  color: var(--ink-3);
-  margin-bottom: 7px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(255,255,255,0.6);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
   position: relative;
-  z-index: 1;
-
-  text-align: justify;
-  text-wrap: pretty;
-  hyphens: auto;
+}
+.proj-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06), inset 0 0 0 1px rgba(255,255,255,0.8);
 }
 
-/* Desktop: CTA link positioned bottom-right, overlay covers whole card */
-.proj a.proj-link {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  color: transparent;
-  background: transparent;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 10px 12px;
-  font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+.icon-badge {
+    width: 32px; height: 32px; 
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Badge Colors */
+.icon-red    { background: radial-gradient(circle at top left, #d49595, #8a4848); color: white; }
+.icon-gold   { background: radial-gradient(circle at top left, #f7dca1, #c49a3c); color: #4a360a; }
+.icon-green  { background: radial-gradient(circle at top left, #c2d4bc, #6c8a5c); color: #1e3312; }
+.icon-blue   { background: radial-gradient(circle at top left, #a8cce8, #4f86ad); color: #16364d; }
+.icon-purple { background: radial-gradient(circle at top left, #cdbfe3, #7e63a8); color: #2d1e45; }
+.icon-orange { background: radial-gradient(circle at top left, #f7d4b2, #cc8033); color: #4d2b0b; }
+
+.proj-card .proj-name {
+  font-family: var(--serif-disp);
+  font-size: 0.82rem; 
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  /* CTA text hidden on desktop via color:transparent — shown via pseudo */
+  color: var(--ink);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.proj-card .proj-desc {
+  font-size: 0.7rem; 
+  line-height: 1.3;
+  color: var(--ink-3);
+  margin-bottom: 8px; /* Removed flex-grow to keep content perfectly centered */
+}
+.proj-card .cta-link {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
 }
 
-/* Visible CTA label on desktop via ::before */
-.proj::before {
-  content: attr(data-cta);
-  position: absolute;
-  bottom: 10px;
-  right: 12px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gold);
-  z-index: 1;
-  pointer-events: none;
-  transition: color 0.15s;
-}
-.proj:hover::before { color: var(--ink); }
-
+/* 2×4 pill footer */
 .left-footer {
   flex-shrink: 0;
-  padding: 13px 0 15px;
-  border-top: 1px solid var(--rule);
-  margin-top: 12px;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
+  padding: 8px 0 12px;
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
 }
 .left-footer a {
-  flex: 1;
-  text-align: center;
-  font-size: 0.7rem;
+  font-size: 0.58rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--ink-3);
-  transition: color 0.15s;
-  padding: 2px 0;
-  white-space: nowrap;
+  text-align: center;
+  padding: 5px 4px;
+  border: 1px solid var(--gold-rule);
+  border-radius: 20px;
+  background: transparent;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
-.left-footer a:hover { color: var(--gold); }
+.left-footer a:hover {
+  color: var(--gold);
+  border-color: var(--gold-light);
+  background: var(--gold-fill);
+}
 
 /* ── RIGHT ── */
 .right {
@@ -256,26 +368,20 @@ img { display: block; max-width: 100%; }
   flex-shrink: 0;
   background: var(--bg-right);
   border-bottom: 1px solid var(--rule);
-  padding: 0 24px;
+  padding: 0 48px;
   display: flex;
-  gap: 0;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  gap: 24px;
 }
-.right-nav::-webkit-scrollbar { display: none; }
 .right-nav a {
   display: block;
-  padding: 13px 12px 11px;
-  font-size: 0.69rem;
+  padding: 16px 0 14px;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-3);
   border-bottom: 2px solid transparent;
   transition: color 0.15s, border-color 0.15s;
-  white-space: nowrap;
-  flex-shrink: 0;
 }
 .right-nav a:hover { color: var(--ink); }
 .right-nav a.active { color: var(--ink); border-bottom-color: var(--gold); }
@@ -283,494 +389,128 @@ img { display: block; max-width: 100%; }
 .prose-wrap { flex: 1; overflow-y: auto; scroll-behavior: smooth; }
 .prose { padding: 52px 56px 80px 48px; max-width: 68ch; }
 
-.sec { margin-bottom: 64px; }
+.sec { margin-bottom: 72px; }
 .sec:last-child { margin-bottom: 0; }
 
+.sec-label-wrap { margin-bottom: 20px; }
 .sec-label {
-  font-size: 0.69rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 8px;
+}
+.sec-label-divider {
+    display: flex;
+    align-items: center;
+    width: 40px;
+    margin-top: 6px;
+}
+.sec-label-divider::before,
+.sec-label-divider::after {
+    content: ''; height: 1px; background: var(--gold-rule); flex: 1;
+}
+.sec-label-divider span {
+    display: inline-block; width: 4px; height: 4px; background: var(--gold); transform: rotate(45deg); margin: 0 4px;
 }
 
 h2 {
   font-family: var(--serif-disp);
-  font-size: 1.9rem;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.015em;
   color: var(--ink);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .prose p {
   font-family: var(--serif-body);
-  font-size: 1.12rem;
-  line-height: 1.85;
+  font-size: 1.2rem;
+  line-height: 1.8;
   color: var(--ink-2);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .prose p:last-of-type { margin-bottom: 0; }
 
 .sec-rule { width: 100%; height: 1px; background: var(--rule); margin-bottom: 64px; }
-
-.pull {
-  font-family: var(--serif-disp);
-  font-style: italic;
-  font-size: 1.1rem;
-  line-height: 1.65;
-  color: var(--ink-2);
-  border-left: 2px solid var(--gold-light);
-  padding: 12px 0 12px 20px;
-  margin: 24px 0;
-}
-.pull-attr {
-  display: block;
-  margin-top: 8px;
-  font-family: var(--sans);
-  font-style: normal;
-  font-size: 0.69rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-.stats-row {
-  display: flex;
-  gap: 0;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  overflow: hidden;
-  margin: 24px 0;
-}
-.stat-cell {
-  flex: 1;
-  padding: 16px 18px;
-  background: var(--gold-fill);
-  border-right: 1px solid var(--rule);
-}
+.pull { font-family: var(--serif-disp); font-style: italic; font-size: 1.1rem; line-height: 1.65; color: var(--ink-2); border-left: 2px solid var(--gold-light); padding: 12px 0 12px 20px; margin: 24px 0; }
+.pull-attr { display: block; margin-top: 8px; font-family: var(--sans); font-style: normal; font-size: 0.69rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+.stats-row { display: flex; gap: 0; border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; margin: 24px 0; }
+.stat-cell { flex: 1; padding: 16px 18px; background: var(--gold-fill); border-right: 1px solid var(--rule); }
 .stat-cell:last-child { border-right: none; }
-.stat-n {
-  font-family: var(--serif-disp);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.stat-l {
-  font-size: 0.69rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-.currently-label {
-  font-size: 0.69rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin: 28px 0 12px;
-}
-.desk-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  overflow: hidden;
-}
-.desk-item {
-  background: var(--bg-right);
-  padding: 14px 16px;
-  transition: background 0.15s;
-}
+.stat-n { font-family: var(--serif-disp); font-size: 1.5rem; font-weight: 700; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+.stat-l { font-size: 0.69rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.currently-label { font-size: 0.69rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin: 28px 0 12px; }
+.desk-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; }
+.desk-item { background: var(--bg-right); padding: 14px 16px; transition: background 0.15s; }
 .desk-item:hover { background: #f2ede4; }
 .desk-icon { font-size: 1rem; margin-bottom: 6px; line-height: 1; }
-.desk-title {
-  font-family: var(--serif-disp);
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 3px;
-  line-height: 1.2;
-}
+.desk-title { font-family: var(--serif-disp); font-size: 0.88rem; font-weight: 700; color: var(--ink); margin-bottom: 3px; line-height: 1.2; }
 .desk-body { font-size: 0.8rem; line-height: 1.55; color: var(--ink-3); }
 
-.kt {
-  background: var(--gold-fill);
-  border: 1px solid var(--gold-rule);
-  border-left: 3px solid var(--gold-light);
-  border-radius: 2px;
-  padding: 20px 22px;
-  margin: 24px 0;
-  position: relative; overflow: hidden;
-}
-.kt::after {
-  content: 'குறுந்தொகை';
-  position: absolute; bottom: -6px; right: -2px;
-  font-family: var(--serif-disp); font-size: 2.5rem; font-weight: 700;
-  color: rgba(154,111,30,0.07); white-space: nowrap;
-  pointer-events: none; line-height: 1; user-select: none;
-}
-.kt-label { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 7px; }
-.kt h3 { font-family: var(--serif-disp); font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 8px; line-height: 1.25; }
-.kt p { font-family: var(--serif-body); font-size: 0.95rem; line-height: 1.72; color: var(--ink-2); font-style: italic; margin-bottom: 12px; }
-.kt-pill { display: inline-block; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border: 1px solid var(--gold-rule); border-radius: 2px; color: var(--gold); }
+.kt { margin: 24px 0; padding: 20px; background: var(--gold-fill); border: 1px solid var(--gold-rule); border-radius: 4px; }
+.kt-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.kt h3 { font-family: var(--serif-disp); font-size: 1.2rem; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
 
-a.ilink {
-  font-size: 0.75rem; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
+.essay-btn {
+  display: block;
+  margin-top: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: var(--gold);
-  border-bottom: 1px solid var(--gold-rule);
-  padding-bottom: 1px;
-  transition: color 0.15s, border-color 0.15s;
+  text-decoration: none;
+  transition: color 0.15s;
 }
-a.ilink:hover { color: var(--ink); border-color: var(--rule); }
+.essay-btn:hover { color: var(--ink); }
 
-a.essay-btn {
-  display: inline-flex; align-items: center; gap: 7px;
-  margin-top: 16px; padding: 10px 18px;
-  border: 1px solid var(--rule); border-radius: 2px;
-  font-size: 0.72rem; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--ink-2); background: transparent;
-  transition: all 0.18s;
+.ilink {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gold);
+  text-decoration: none;
+  transition: color 0.15s;
 }
-a.essay-btn:hover { background: var(--gold-fill); border-color: var(--gold-rule); color: var(--ink); }
+.ilink:hover { color: var(--ink); }
 
-.gallery {
-  display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin: 20px 0;
-}
-.gallery img { width: 100%; aspect-ratio: 3/2; object-fit: cover; border-radius: 2px; filter: sepia(10%); transition: filter 0.2s, transform 0.2s; }
-.gallery img:hover { filter: sepia(0%); transform: scale(1.025); }
+.chess-links { display: flex; gap: 16px; margin-top: 16px; }
 
-/* ── Lightbox ── */
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background: rgba(15, 12, 8, 0.92);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+.gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 20px 0; }
+.gallery img { border-radius: 4px; width: 100%; height: 140px; object-fit: cover; }
+
+.contact-btn {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.lightbox.open { display: flex; }
-
-.lb-img-wrap {
-  position: relative;
-  max-width: min(90vw, 860px);
-  max-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.lb-img-wrap img {
-  max-width: 100%;
-  max-height: 80vh;
-  object-fit: contain;
-  border-radius: 2px;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-.lb-caption {
-  margin-top: 14px;
-  font-size: 0.72rem;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--gold-rule);
+  border-radius: 4px;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-  text-align: center;
+  color: var(--gold);
+  background: var(--gold-fill);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
+.contact-btn:hover { background: rgba(154,111,30,0.14); border-color: var(--gold-light); color: var(--ink); }
 
-.lb-close {
-  position: fixed;
-  top: 18px; right: 20px;
-  width: 36px; height: 36px;
-  display: flex; align-items: center; justify-content: center;
-  color: rgba(255,255,255,0.6);
-  cursor: pointer;
-  border-radius: 50%;
-  transition: color 0.15s, background 0.15s;
-  background: rgba(255,255,255,0.06);
-  border: none;
-  z-index: 10;
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; height: auto; overflow: visible; }
+  .left, .right { height: auto; overflow: visible; border: none; }
+  .left { border-bottom: 1px solid var(--rule); padding-bottom: 20px; }
+  .projects-grid { grid-template-columns: repeat(3, 1fr); }
+  .right-nav { overflow-x: auto; padding: 0 20px; }
+  .prose { padding: 40px 24px; }
 }
-.lb-close:hover { color: #fff; background: rgba(255,255,255,0.14); }
-
-.lb-arrow {
-  position: fixed;
-  top: 50%; transform: translateY(-50%);
-  width: 44px; height: 44px;
-  display: flex; align-items: center; justify-content: center;
-  color: rgba(255,255,255,0.55);
-  cursor: pointer;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.06);
-  border: none;
-  transition: color 0.15s, background 0.15s;
-  z-index: 10;
+@media (max-width: 600px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .left-footer { grid-template-columns: repeat(2, 1fr); }
 }
-.lb-arrow:hover { color: #fff; background: rgba(255,255,255,0.14); }
-.lb-prev { left: 14px; }
-.lb-next { right: 14px; }
-.lb-arrow.hidden { opacity: 0; pointer-events: none; }
-
-.lb-counter {
-  position: fixed;
-  top: 22px; left: 50%; transform: translateX(-50%);
-  font-size: 0.69rem; font-weight: 600;
-  letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.35);
-}
-
-/* make gallery images and hero photo show zoom cursor */
-.gallery img, .id-photo { cursor: zoom-in; }
-
-a.contact-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 11px 22px; background: var(--ink); color: #f0ebe0;
-  font-size: 0.72rem; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  border-radius: 2px; transition: background 0.18s; margin-top: 18px;
-}
-a.contact-btn:hover { background: var(--gold); }
-.contact-note { display: block; margin-top: 9px; font-family: var(--serif-body); font-size: 0.95rem; color: var(--ink-3); font-style: italic; }
-
-.chess-links { display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
-
-/* ═══════════════════════════════════════════════
-   MOBILE REWRITE — clean, no conflicts
-   Replace ALL existing @media (max-width: 820px)
-   blocks with this single block.
-═══════════════════════════════════════════════ */
-
-@media (max-width: 820px) {
-
-  /* ── Layout ── */
-  body { overflow: auto; }
-
-  .split {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-  }
-
-  /* ── Left panel ── */
-  .left {
-    height: auto;
-    overflow: visible;        /* ← was hidden on desktop, clipping the footer */
-    border-right: none;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .left-inner {
-    height: auto;
-    padding: 24px 20px 0;
-    justify-content: flex-start;
-  }
-
-  /* ── Project grid → compact list ── */
-  .projects {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    overflow: visible;
-    margin-bottom: 4px;
-  }
-
-  /* Each card */
-  .proj,
-  .proj-wide {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 0;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--rule);
-    height: auto;
-    min-height: unset;
-    cursor: pointer;
-  }
-
-  .proj:last-child { border-bottom: none; }
-
-  /* Wide card stacks vertically like the others */
-  .proj-wide {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
-  /* Remove desktop decorations */
-  .proj::after { display: none; }
-  .proj::before { display: none; }
-
-
-
-  /* Text block */
-  .proj-body,
-  .proj > :not(.proj-link):not(.proj-icon) {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .proj-name {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 2px;
-    position: static;
-    z-index: auto;
-    line-height: 1.3;
-  }
-
-  .proj-desc {
-    font-size: 0.82rem;
-    line-height: 1.45;
-    color: var(--ink-3);
-    margin-bottom: 0;
-    position: static;
-    z-index: auto;
-    /* truncate to 2 lines by default */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
-
-  /* expanded state — set by JS */
-  .proj.expanded .proj-desc {
-    display: block;
-    -webkit-line-clamp: unset;
-    overflow: visible;
-  }
-
-  /* when expanded, stack content vertically and show CTA */
-  .proj.expanded {
-    flex-wrap: wrap;
-    align-items: flex-start;
-  }
-  .proj.expanded .proj-body,
-  .proj.expanded > :not(.proj-link):not(.proj-icon):not(.proj-toggle) {
-    width: 100%;
-  }
-  .proj.expanded .proj-desc {
-    margin-bottom: 10px;
-  }
-  .proj.expanded a.proj-link {
-    margin-top: 4px;
-    width: 100%;
-    justify-content: flex-start !important;
-    padding-left: 0 !important;
-    color: var(--gold) !important;
-  }
-
-  /* CTA link — RIGHT side, always visible */
-  .proj a.proj-link {
-    /* Reset ALL desktop overrides */
-    position: static !important;
-    inset: unset !important;
-    color: var(--gold) !important;
-    background: transparent !important;
-    opacity: 1 !important;
-    text-indent: 0 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: flex-end !important;
-    padding: 0 !important;
-    font-size: 0.7rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.08em !important;
-    text-transform: uppercase !important;
-    flex-shrink: 0 !important;
-    white-space: nowrap !important;
-    gap: 3px !important;
-    z-index: auto !important;
-  }
-
-  .proj a.proj-link svg {
-    position: static;
-    z-index: auto;
-    color: var(--gold);
-  }
-
-  /* Right panel */
-  .right {
-    height: auto;
-    overflow: visible;
-    border-left: none;
-  }
-
-  .prose-wrap { overflow: visible; }
-
-  .prose {
-    padding: 32px 20px 60px;
-    max-width: 100%;
-  }
-
-  .right-nav {
-    padding: 0 20px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Stats */
-  .stats-row { flex-wrap: wrap; }
-  .stat-cell { flex: 1 1 45%; }
-
-  /* Gallery */
-  .gallery { grid-template-columns: 1fr 1fr; }
-
-  /* Desk list */
-  .desk-list { grid-template-columns: 1fr; }
-}
-
-  /* ── Footer: wrap into two neat rows on mobile ── */
-  .left-footer {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px 0;
-    padding: 14px 0 18px;
-  }
-  .left-footer a {
-    flex: 0 0 25%;   /* 4 per row → wraps to 4+3 */
-    font-size: 0.68rem;
-    letter-spacing: 0.04em;
-    padding: 4px 0;
-  }
-
-@media (max-width: 480px) {
-  h2 { font-size: 1.45rem; }
-  .right-nav a { padding: 11px 9px 9px; font-size: 0.67rem; }
-}
-.proj {
-  justify-content: center;
-}
-
-.proj::before {
-  bottom: 10px;
-}
-
 </style>
-<meta name="robots" content="index, follow">
+
+   <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://andrewveda.github.io/">
 
 <!-- Open Graph -->
@@ -827,84 +567,90 @@ a.contact-btn:hover { background: var(--gold); }
 <div class="split">
 
   <aside class="left">
+    <div class="watermark">AV</div>
     <div class="left-inner">
+
+      <!-- Identity -->
       <div class="identity">
         <div class="id-top">
           <img class="id-photo" src="images/andrewveda.jpeg" alt="Andrew Veda">
           <div>
             <h1 class="id-name">Andrew <em>Veda</em></h1>
             <div class="id-role">SRM Valliammai Engineering College · Chennai</div>
-            <p class="id-bio">Teacher. Translator. Builder of tools for the polymathic mind.</p>
           </div>
+        </div>
+        <div class="id-manifesto">Chess<span>◆</span>Language<span>◆</span>Systems<span>◆</span>Thinking</div>
+        <p class="id-bio">Teacher. Translator. Builder of tools for the polymathic mind.</p>
+      </div>
+
+      <div class="ornate-divider"><span></span></div>
+
+      <!-- Featured project -->
+      <div class="featured-proj">
+        <div class="featured-label">Featured Project</div>
+        <div class="featured-row">
+          <div class="featured-text">
+            <div class="proj-name">SRM VEC English Student App</div>
+            <div class="proj-desc">A gamified PWA that turns English learning into a daily mission.</div>
+          </div>
+          <a class="featured-cta" href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank">Open App →</a>
         </div>
       </div>
 
-      <div class="projects">
+      <div class="ornate-divider"><span></span></div>
 
-        <div class="proj proj-wide" data-cta="Open">
-          <div class="proj-body">
-            <div class="proj-name">SRM VEC English Student App 📱</div>
-            <div class="proj-desc">A gamified learning app (PWA) that turns English learning into a daily mission, strengthening skills and making students of SRM Valliammai Engineering College fall in love with consistent learning.</div>
-            <a class="proj-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/" target="_blank">
-              Open <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 4.5h7M5 2l3 2.5L5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </div>
-        </div>
+      <!-- 6 cards, no scroll wrapper -->
+      <div class="projects-grid">
 
-        <div class="proj" data-cta="Try">
-          <div class="proj-name">🧩 Cryptic Clues</div>
+        <a class="proj-card" href="https://andrewveda.github.io/cryptic/" target="_blank">
+          <div class="icon-badge icon-red">🧩</div>
+          <div class="proj-name">Cryptic Clues</div>
           <div class="proj-desc">Fluid-intelligence training for creative-critical thinking</div>
-          <a class="proj-link" href="https://andrewveda.github.io/cryptic/" target="_blank">
-            Try <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 4.5h7M5 2l3 2.5L5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
+          <div class="cta-link">Try →</div>
+        </a>
 
-        <div class="proj" data-cta="Read">
-          <div class="proj-name">✦ A Quote A Day</div>
+        <a class="proj-card" href="https://andrewveda.github.io/a-quote-a-day/" target="_blank">
+          <div class="icon-badge icon-gold">♠️</div>
+          <div class="proj-name">A Quote A Day</div>
           <div class="proj-desc">Student-contributed wisdom. Personal reflection, daily.</div>
-          <a class="proj-link" href="https://andrewveda.github.io/a-quote-a-day/" target="_blank">
-            Read <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 4.5h7M5 2l3 2.5L5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
+          <div class="cta-link">Read →</div>
+        </a>
 
-        <div class="proj" data-cta="Play">
-          <div class="proj-name">⚡ Wordle Blitz</div>
+        <a class="proj-card" href="https://andrewveda.github.io/SRM-VEC-English-PWA/wordleblitz" target="_blank">
+          <div class="icon-badge icon-green">⚡</div>
+          <div class="proj-name">Wordle Blitz</div>
           <div class="proj-desc">Vocabulary under pressure</div>
-          <a class="proj-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/wordleblitz" target="_blank">
-            Play <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 4.5h7M5 2l3 2.5L5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
+          <div class="cta-link">Play →</div>
+        </a>
+        
+        <a class="proj-card" href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/vox-velocity-directory" target="_blank">
+            <div class="icon-badge icon-blue">🗣️</div>
+            <div class="proj-name">Vox Velocity</div>
+            <div class="proj-desc">IELTS &amp; GRE vocabulary, letter by letter</div>
+            <div class="cta-link">Play <span>&rarr;</span></div>
+        </a>
 
-        <div class="proj" data-cta="Play">
-          <div class="proj-name">🗣️ Vox Velocity</div>
-          <div class="proj-desc">IELTS &amp; GRE vocabulary, letter by letter</div>
-          <a class="proj-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/vox-velocity-directory" target="_blank">
-            Play <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 4.5h7M5 2l3 2.5L5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
+        <a class="proj-card" href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/stories" target="_blank">
+            <div class="icon-badge icon-purple">📖</div>
+            <div class="proj-name">Short Plays</div>
+            <div class="proj-desc">Interactive stories and conversations</div>
+            <div class="cta-link">Read <span>&rarr;</span></div>
+        </a>
 
-        <div class="proj" data-cta="Read">
-          <div class="proj-name">📖 Short Plays</div>
-          <div class="proj-desc">Interactive stories and conversations</div>
-          <a class="proj-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/stories" target="_blank">
-            Read <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 4.5h7M5 2l3 2.5L5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-
-        <div class="proj" data-cta="Try">
-          <div class="proj-name">📚 Book Insights</div>
-          <div class="proj-desc">Nonfiction condensed into match-the-following games</div>
-          <a class="proj-link" href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/bookinsights" target="_blank">
-            Try <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 4.5h7M5 2l3 2.5L5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
+        <a class="proj-card" href="https://andrewveda.github.io/SRM-VEC-English-PWA/buttons/bookinsights" target="_blank">
+            <div class="icon-badge icon-orange">📚</div>
+            <div class="proj-name">Book Insights</div>
+            <div class="proj-desc">Nonfiction condensed into match-the-following games</div>
+            <div class="cta-link">Try <span>&rarr;</span></div>
+        </a>
 
       </div>
 
+      <!-- 2×4 pill footer -->
       <div class="left-footer">
         <a href="https://github.com/andrewveda" target="_blank">GitHub</a>
-  <a href="https://andrewveda.hcommons.org/" target="_blank">Humanities Commons</a>
-         <a href="https://orcid.org/0000-0002-1226-6856" target="_blank">ORCID</a>
+        <a href="https://andrewveda.hcommons.org/" target="_blank">H·Commons</a>
+        <a href="https://orcid.org/0000-0002-1226-6856" target="_blank">ORCID</a>
         <a href="https://medium.com/@andrewveda" target="_blank">Medium</a>
         <a href="https://scholar.google.com/citations?user=CU7TljcAAAAJ" target="_blank">Scholar</a>
         <a href="https://www.chess.com/member/andrewveda" target="_blank">Chess.com</a>
@@ -918,19 +664,22 @@ a.contact-btn:hover { background: var(--gold); }
   <main class="right" id="rightPanel">
 
     <nav class="right-nav" id="rightNav">
-      <a href="#about"        class="nav-link active">About</a>
-      <a href="#research"     class="nav-link">Research</a>
-      <a href="#pedagogy"     class="nav-link">Pedagogy</a>
-      <a href="#chess"        class="nav-link">Chess</a>
+      <a href="#about" class="nav-link active">About</a>
+      <a href="#research" class="nav-link">Research</a>
+      <a href="#pedagogy" class="nav-link">Pedagogy</a>
+      <a href="#chess" class="nav-link">Chess</a>
       <a href="#publications" class="nav-link">Publications</a>
-      <a href="#contact"      class="nav-link">Contact</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </nav>
 
     <div class="prose-wrap" id="proseWrap">
       <div class="prose">
 
         <div class="sec" id="about">
-          <div class="sec-label">About</div>
+          <div class="sec-label-wrap">
+            <div class="sec-label">About</div>
+            <div class="sec-label-divider"><span></span></div>
+          </div>
           <h2>In pursuit of polymathic thinking</h2>
           <p>I treat learning as the highest form of self-creation. As a bullet chess player in the top 0.3% globally, I bring logic and strategic thinking into the classroom. Not as metaphor, but as method.</p>
           <p>I design structured, gamified learning experiences that help students gain clarity and confidence in language. What begins as learning English is meant to lead somewhere broader: the ability to think across contexts, disciplines, and difficulties.</p>
@@ -962,10 +711,9 @@ a.contact-btn:hover { background: var(--gold); }
             <div class="kt-label">Translation Project</div>
             <h3>Kuṟuntokai in Acrostic Verse</h3>
             <p>A complete translation of the classical Tamil Sangam anthology into English acrostic verse (all 402 poems), foregrounding female gaze, emotional agency, and narrative dominance. Written from within the tradition.</p>
-      <a class="essay-btn" href="https://zenodo.org/records/20119928" target="_blank">The Guilty Reader: Acrostic Form and the Recovery of Intimate Address in Sangam Tamil Translation→</a>
+            <a class="essay-btn" href="https://zenodo.org/records/20119928" target="_blank">The Guilty Reader: Acrostic Form and the Recovery of Intimate Address in Sangam Tamil Translation →</a>
           </div>
           <a class="ilink" href="https://scholar.google.com/citations?user=CU7TljcAAAAJ" target="_blank">View Google Scholar profile →</a>
-        
         </div>
 
         <div class="sec-rule"></div>
@@ -977,9 +725,8 @@ a.contact-btn:hover { background: var(--gold); }
           <p>My current obsession is the cryptic crossword as a pedagogy of ambiguity: training students to hold multiple meanings simultaneously, to delay closure, to enjoy not knowing yet.</p>
           <p>Everything I do is aimed at instilling in my students the desire to become the best version of who they can be. A classroom designed not just for competence, but for polymathic growth. Learning English is the door. Thinking anywhere is the destination.</p>
           <a class="essay-btn" href="https://medium.com/@andrewveda/teachers-log-introducing-cryptic-crosswords-in-tertiary-level-esl-classrooms-13a500596038" target="_blank">Read: Cryptic Crosswords in ESL Classrooms →</a>
-                  <a class="essay-btn" href="https://osf.io/preprints/psyarxiv/qw2pm_v2" target="_blank">Cryptic Re-perception: A Cognitive Framework for Creative-Critical Thinking →</a>
+          <a class="essay-btn" href="https://osf.io/preprints/psyarxiv/qw2pm_v2" target="_blank">Cryptic Re-perception: A Cognitive Framework for Creative-Critical Thinking →</a>
           <a class="essay-btn" href="https://osf.io/preprints/edarxiv/wd32j_v1" target="_blank">Cryptic Re-perception: A Neuroscience-Informed Pedagogical Framework for AI-Structured Argumentative Writing in Indian Tertiary ESL Classrooms →</a>
-
         </div>
 
         <div class="sec-rule"></div>
@@ -987,11 +734,9 @@ a.contact-btn:hover { background: var(--gold); }
         <div class="sec" id="chess">
           <div class="sec-label">Chess</div>
           <h2>The game that sharpens everything.</h2>
-          <p>Chess taught me that clarity is not the absence of complexity. It is complexity made navigable. I am an active rapid, blitz, and bullet player, rated 2200+ in both blitz and bullet, placing me in the top 0.3% globally. In chess, every game is a catalogue of small failures and overlooked possibilities. They are lessons waiting to be discovered. </p>
-              <p>Whether a result is recorded as a win or a loss, it emerges from someone's failure to find the best move. For chess players, the search for the best move, a double exclamatory brilliancy, matters more than the destination of a checkmate born of a blunder. Chess therefore teaches a rare kind of accountability. There is nowhere to hide. There is no one else to blame, and every mistake is an opportunity for growth.</p>
-
-<p>That is why chess players develop an unusual relationship with failure. We do not merely endure it. We study it, embracing antifragility and return stronger because of it. The pursuit of perfection is the willingness to confront one's mistakes honestly and improve. It is a celebration of failure. That lesson lives in every class I teach.
-         </p>
+          <p>Chess taught me that clarity is not the absence of complexity. It is complexity made navigable. I am an active rapid, blitz, and bullet player, rated 2200+ in both blitz and bullet, placing me in the top 0.3% globally. In chess, every game is a catalogue of small failures and overlooked possibilities. They are lessons waiting to be discovered.</p>
+          <p>Whether a result is recorded as a win or a loss, it emerges from someone's failure to find the best move. For chess players, the search for the best move, a double exclamatory brilliancy, matters more than the destination of a checkmate born of a blunder. Chess therefore teaches a rare kind of accountability. There is nowhere to hide. There is no one else to blame, and every mistake is an opportunity for growth.</p>
+          <p>That is why chess players develop an unusual relationship with failure. We do not merely endure it. We study it, embracing antifragility and return stronger because of it. The pursuit of perfection is the willingness to confront one's mistakes honestly and improve. It is a celebration of failure. That lesson lives in every class I teach.</p>
           <div class="pull">"Ever tried. Ever failed. No matter. Try again. Fail again. Fail better."<span class="pull-attr">Samuel Beckett</span></div>
           <div class="chess-links">
             <a class="ilink" href="https://www.chess.com/member/andrewveda" target="_blank">Chess.com profile →</a>
@@ -1026,122 +771,10 @@ a.contact-btn:hover { background: var(--gold); }
 
       </div>
     </div>
-
   </main>
 </div>
 
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-  <button class="lb-close" id="lbClose" aria-label="Close">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-  </button>
-  <div class="lb-counter" id="lbCounter"></div>
-  <button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
-  <div class="lb-img-wrap">
-    <img id="lbImg" src="" alt="">
-  </div>
-  <div class="lb-caption" id="lbCaption"></div>
-  <button class="lb-arrow lb-next" id="lbNext" aria-label="Next">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
-</div>
-
 <script>
-/* ── Lightbox ── */
-(function() {
-  const lb      = document.getElementById('lightbox');
-  const lbImg   = document.getElementById('lbImg');
-  const lbCap   = document.getElementById('lbCaption');
-  const lbCtr   = document.getElementById('lbCounter');
-  const lbClose = document.getElementById('lbClose');
-  const lbPrev  = document.getElementById('lbPrev');
-  const lbNext  = document.getElementById('lbNext');
-
-  let images = [];
-  let current = 0;
-
-  function open(index) {
-    current = index;
-    render();
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    lbImg.focus();
-  }
-
-  function close() {
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function render() {
-    const img = images[current];
-    lbImg.src = img.src;
-    lbImg.alt = img.alt;
-    lbCap.textContent = img.alt;
-    lbCtr.textContent = (current + 1) + ' / ' + images.length;
-    lbPrev.classList.toggle('hidden', current === 0);
-    lbNext.classList.toggle('hidden', current === images.length - 1);
-  }
-
-  function prev() { if (current > 0) { current--; render(); } }
-  function next() { if (current < images.length - 1) { current++; render(); } }
-
-  // Attach to hero photo + gallery images
-  const heroPhoto = document.querySelector('.id-photo');
-  if (heroPhoto) images.push(heroPhoto);
-  if (heroPhoto) {
-    heroPhoto.addEventListener('click', () => open(0));
-  }
-  document.querySelectorAll('.gallery img').forEach((img, i) => {
-    images.push(img);
-    img.addEventListener('click', () => open(i + 1));
-  });
-
-  lbClose.addEventListener('click', close);
-  lbPrev.addEventListener('click', prev);
-  lbNext.addEventListener('click', next);
-
-  // Click backdrop to close
-  lb.addEventListener('click', e => { if (e.target === lb) close(); });
-
-  // Keyboard nav
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') close();
-    if (e.key === 'ArrowLeft') prev();
-    if (e.key === 'ArrowRight') next();
-  });
-
-  // Swipe support for mobile
-  let touchStartX = 0;
-  lb.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  lb.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); }
-  }, { passive: true });
-})();
-
-
-function initMobileCards() {
-  if (window.innerWidth > 820) return;
-
-  document.querySelectorAll('.proj').forEach(card => {
-    if (card._mobileInit) return;
-    card._mobileInit = true;
-
-    card.addEventListener('click', function(e) {
-      // CTA links always navigate — never intercept them
-      if (e.target.closest('a.proj-link')) return;
-      // Tap anywhere else on the card toggles expand
-      this.classList.toggle('expanded');
-    });
-  });
-}
-
-initMobileCards();
-
 /* ── Nav scroll highlighting ── */
 const proseWrap = document.getElementById('proseWrap');
 const sections  = [...document.querySelectorAll('.sec[id]')];
