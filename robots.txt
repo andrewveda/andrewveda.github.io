@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://andrewveda.github.io/sitemap.xml
+Sitemap: https://andrewveda.com/sitemap.xml
