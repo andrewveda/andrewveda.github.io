@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Andrew Veda — To the Edge of the Universe</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--card:#fffdf8;--ink:#1e1b15;--ink3:#7a7268;--gold:#9a6f1e;--goldf:rgba(154,111,30,.12);--pill:rgba(255,253,248,.88);
+--serif:'Playfair Display',Georgia,serif;--sans:'Instrument Sans',system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--card:#1b1a22;--ink:#f3eee2;--ink3:#a9a39a;--gold:#e0b45a;--goldf:rgba(224,180,90,.13);--pill:rgba(27,26,34,.85)}}
+:root[data-theme="dark"]{--card:#1b1a22;--ink:#f3eee2;--ink3:#a9a39a;--gold:#e0b45a;--goldf:rgba(224,180,90,.13);--pill:rgba(27,26,34,.85)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:#05060f;font-family:var(--sans);touch-action:none;overscroll-behavior:none}
+canvas#g{position:fixed;inset:0;width:100%;height:100%;display:block}
+#hud{position:fixed;top:0;left:0;right:0;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 0;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none}
+.pill{background:var(--pill);color:var(--ink);border:1px solid var(--goldf);border-radius:99px;padding:7px 13px;font-size:.74rem;font-weight:600;letter-spacing:.04em;backdrop-filter:blur(8px)}
+.pill b{color:var(--gold)}
+#mm{width:110px;height:82px;border-radius:8px;border:1px solid var(--goldf);background:rgba(8,10,24,.7)}
+#btns{position:fixed;top:calc(54px + env(safe-area-inset-top,0px));left:12px;max-width:calc(100% - 140px);display:flex;flex-wrap:wrap;gap:8px}
+#btns button{font-family:inherit;min-height:40px;cursor:pointer}
+#card{position:fixed;z-index:5;left:50%;bottom:0;width:min(560px,calc(100% - 20px));transform:translate(-50%,115%);transition:transform .35s cubic-bezier(.2,.9,.3,1);background:var(--card);color:var(--ink);border:1px solid var(--goldf);border-radius:18px 18px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));box-shadow:0 -10px 40px rgba(0,0,0,.4);max-height:54vh;overflow-y:auto;touch-action:pan-y}
+#card.on{transform:translate(-50%,0)}
+.k{font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+#card h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:3px 30px 4px 0;line-height:1.15}
+#cm{font-size:.72rem;color:var(--gold);font-weight:600;margin-bottom:8px}
+#card p{font-family:Georgia,serif;font-size:1rem;line-height:1.55;color:var(--ink3);margin-bottom:8px}
+#links{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+#links a,#bo button,#bn{color:var(--gold);border:1px solid var(--goldf);background:var(--goldf);border-radius:99px;padding:9px 14px;font-size:.78rem;font-weight:600;text-decoration:none;min-height:38px;display:flex;align-items:center;font-family:inherit;cursor:pointer;text-align:left}
+.xb,.bx{position:absolute;top:10px;right:12px;background:none;border:0;color:var(--ink3);font-size:1.5rem;width:40px;height:40px;cursor:pointer}
+.bx{top:2px;right:2px;font-size:1.3rem;width:32px;height:32px}
+#cx,.go{display:block;background:var(--gold);color:#fff;border:0;border-radius:99px;padding:13px 28px;font-size:.88rem;font-weight:600;cursor:pointer;min-height:46px}
+#cx{width:100%;margin-top:12px}
+#bub{position:fixed;z-index:6;left:0;top:0;width:max-content;max-width:230px;background:var(--card);color:var(--ink);border:1px solid var(--goldf);border-radius:14px;padding:9px 12px;font-size:.78rem;line-height:1.4;box-shadow:0 6px 24px rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .25s}
+#bub.on{opacity:1}#bub.q{pointer-events:auto;max-width:250px;padding:12px 30px 12px 12px}
+#bub b{display:block;margin-bottom:8px;font-family:var(--serif);font-size:.88rem}
+#bo{display:flex;flex-direction:column;gap:6px}#bf{margin:8px 0 6px;color:var(--ink3)}
+#era{position:fixed;left:0;right:0;top:20%;text-align:center;color:#fff;font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,6vw,2.4rem);text-shadow:0 2px 14px #000;pointer-events:none;opacity:0;transition:opacity 1s;padding:0 16px}
+#era.on{opacity:1}#era small{display:block;font-family:var(--sans);font-style:normal;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#ffd86b;margin-top:6px}
+#toast{position:fixed;left:50%;top:36%;transform:translate(-50%,-10px);z-index:7;background:var(--pill);color:var(--ink);border:1px solid var(--goldf);border-radius:99px;padding:8px 14px;font-size:.78rem;font-weight:600;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#sbar{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.05em;text-shadow:0 1px 6px #000;pointer-events:none;opacity:.8}
+.ov{position:fixed;inset:0;z-index:9;display:flex;align-items:center;justify-content:center;background:rgba(5,6,15,.72);backdrop-filter:blur(6px);padding:16px;transition:opacity .4s}
+.ov.off{opacity:0;pointer-events:none}
+.ov>div{position:relative;background:var(--card);color:var(--ink);border-radius:20px;padding:26px 22px;max-width:420px;width:100%;max-height:88vh;overflow-y:auto;text-align:center;touch-action:pan-y}
+.ov h1,.ov h2{font-family:var(--serif);font-weight:600;margin:6px 0}.ov h1{font-size:2rem}.ov h2{font-size:1.4rem}
+.ov p{font-family:Georgia,serif;color:var(--ink3);line-height:1.5;margin:10px 0 16px;font-size:.95rem}
+.go{margin:8px auto 0}
+#cl>*{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;margin:6px 0;border:1px solid var(--goldf);border-radius:12px;font-size:.84rem;font-weight:600;text-decoration:none;color:var(--gold);background:var(--goldf);text-align:left}
+#cl span{color:var(--ink3);background:none}#cl small{color:var(--ink3);font-weight:400;font-size:.72rem;text-align:right}
+#modes{display:flex;gap:8px;justify-content:center;margin:0 0 14px}#modes button{font-family:inherit;background:var(--goldf);color:var(--gold);border:1px solid var(--goldf);border-radius:99px;padding:10px 16px;font-size:.82rem;font-weight:600;cursor:pointer;min-height:42px}#modes button.on{background:var(--gold);color:#fff}
+</style>
+</head>
+<body>
+<canvas id="g"></canvas>
+<div id="hud"><div class="pill">✦ <b id="cnt">0</b>/<span id="tot"></span> · ❓ <b id="qc">0</b>/<span id="qt"></span> · 🥚 <b id="ec">0</b>/<span id="et"></span></div><canvas id="mm" width="220" height="164"></canvas></div>
+<div id="btns"><button id="vb" class="pill">🚀 Cockpit</button><button id="ab" class="pill">🕹 Manual</button><button id="lb" class="pill">🔗 <b id="lc">0</b>/<span id="lt"></span></button><div class="pill" id="tel" style="display:flex;align-items:center"></div></div>
+<div id="card"><button class="xb" id="x" aria-label="Close">×</button><div class="k" id="ck"></div><h3 id="ct"></h3><div id="cm"></div><p id="cp"></p><div id="links"></div><button id="cx">Continue flight ▸</button></div>
+<div id="bub"></div><div id="era"></div><div id="toast"></div><div id="sbar">◯ Each ring is 10× farther than the last</div>
+<div class="ov off" id="col"><div><button class="xb" id="cc" aria-label="Close">×</button><div class="k">Your collection</div><h2>Links collected</h2><p style="margin:4px 0 10px">Visit a destination to collect its links.</p><div id="cl"></div><button class="go" id="cpy">Copy collected links</button></div></div>
+<div class="ov" id="intro"><div><div class="k">Chess ◆ Language ◆ Systems ◆ Thinking</div><h1>Andrew Veda</h1>
+<p>Take the helm. Touch and drag anywhere to steer (drag farther for more thrust). On a keyboard use arrows or WASD. Thirteen destinations are spread evenly from the Sun to the edge of the observable universe, each ring 10× farther than the last. Visiting one collects its links 🔗. Answer ❓ beacons, hunt 🥚 hidden easter eggs, and the universe expands. The flight pauses while you read. Press C for cockpit view. Pick Autopilot to let the ship visit every destination and collect every link; touch the screen to take over.</p>
+<div id="modes"><button id="mman" class="on">🕹 Manual</button><button id="mauto">🤖 Autopilot</button></div><button class="go" id="go">Launch 🚀</button></div></div>
+
+<script>
+const K0=140,LY=63241,RMAX=16.47*K0,R=Math.random,$=id=>document.getElementById(id);
+const J=(Date.now()-946728000000)/864e5,PL=(a,r)=>(((a+r*J)%360)+360)%360;
+const P0=(a,d)=>{const L=d>.1?Math.log10(d)+1:0,q=a*Math.PI/180;return{x:L*K0*Math.cos(q),y:-L*K0*Math.sin(q)}};
+const B=(n,g,a,d,r,s,c,k,t,b,f,m,l)=>{const p=P0(a,d);return{n,g,x:p.x,y:p.y,o:Math.hypot(p.x,p.y),r,s,c,k,t,b,f,m,l}};
+const E=(n,a,d,r,s,txt)=>{const p=P0(a,d);return{egg:1,n,x:p.x,y:p.y,o:Math.hypot(p.x,p.y),r,s,txt}};
+const APP='SRM VEC English App',U='https://andrewveda.github.io/';
+const D=[
+B('Sun','About',0,0,28,'sun',['#fff6c0','#f29b1d'],'About','In pursuit of polymathic thinking','Assistant Professor of English, classical Tamil translator and bullet chess player in the top 0.3% globally. I design gamified learning so that learning English becomes the ability to think anywhere.','The Sun holds 99.86% of all the mass in the Solar System.','1.39 million km wide · 109 Earths across',[['Medium','https://medium.com/@andrewveda'],['GitHub','https://github.com/andrewveda']]),
+B('Earth','Contact',PL(100.46,.98561),1,12,'earth',['#8fd0ff','#1f5fa8'],'Get in touch','Contact','The best place to reach me is X. You will also find me on GitHub and Medium.','Earth is the densest planet in the Solar System.','1 AU from the Sun · sunlight takes 8 min 20 s',[['@andrewveda on X','https://twitter.com/andrewveda'],['GitHub','https://github.com/andrewveda']]),
+B('Pluto','Jigsaw',PL(238.93,.003976),39.48,8,'plain',['#f1e0cc','#a58a6e'],'Pluto — '+APP,'Jigsaw','Connecting quotes, ideas and language.','Pluto has not finished one orbit since its discovery in 1930. Its year lasts 248 Earth years.','39.5 AU on average · light takes 5.5 hours',[['Open →',U+'jigsaw/']]),
+B('Sedna','Cryptic Clues',275.5,937,9,'plain',['#d98a6a','#7a2f1f'],'Sedna — '+APP,'Cryptic Clues','Fluid-intelligence training for creative-critical thinking.','Sedna takes about 11,400 years to orbit the Sun.','Shown at its farthest, 937 AU · light takes about 5 days',[['Open →',U+'cryptic/']]),
+B('Oort Cloud','Vox Velocity',160,3e4,32,'oort',['#bcd7ff','#4a6aa8'],'Oort Cloud — '+APP,'Vox Velocity','IELTS & GRE vocabulary, letter by letter.','No one has seen the Oort Cloud directly. It may hold trillions of icy bodies, and long-period comets come from it.','Shown at 30,000 AU · light takes about 6 months',[['Open →',U+'SRM-VEC-English-PWA/buttons/vox-velocity-directory']]),
+B('Sirius','Knight Trainer',104,8.6*LY,16,'star',['#e8f1ff','#7aa8ff'],'Featured project','Knight Trainer','800,000+ knight puzzles, powered by Stockfish, one of the world\'s strongest chess engines.','Sirius is the brightest star in our night sky.','8.6 light-years away · about 81 trillion km',[['Open Knight Trainer',U+'knight-trainer/']]),
+B('Antares','Chess',249.7,550*LY,18,'star',['#ffb089','#d62d1a'],'Chess','The game that sharpens everything','Rated 2200+ in blitz and bullet. Chess teaches accountability: there is nowhere to hide, and every mistake is an opportunity for growth. Fail better.','Antares means "rival of Mars", and this red supergiant is big enough to swallow Mars\'s orbit.','About 550 light-years away',[['Chess.com','https://www.chess.com/member/andrewveda'],['Lichess','https://lichess.org/av94'],['The Knight essay','https://medium.com/@andrewveda/why-every-chess-player-falls-for-the-knight-and-knight-forks-6e88ed599ea1']]),
+B('Eta Carinae','Wordle Blitz',202,7500*LY,20,'neb',['#ffc890','#b04a9a'],'Eta Carinae — '+APP,'Wordle Blitz','Vocabulary under pressure.','In the 1840s Eta Carinae erupted and briefly became the second brightest star in the sky.','About 7,500 light-years away',[['Open →',U+'SRM-VEC-English-PWA/wordleblitz']]),
+B('Large Magellanic Cloud','Book Insights',311.6,160000*LY,24,'gal',['#d6e4ff','#7fa0e0'],'Large Magellanic Cloud — '+APP,'Book Insights','Nonfiction condensed into match-the-following games.','This dwarf galaxy orbits the Milky Way. Magellan\'s crew noted it on their voyage around the world.','About 160,000 light-years away',[['Open →',U+'SRM-VEC-English-PWA/buttons/bookinsights']]),
+B('Andromeda','Publications',28,2.5e6*LY,38,'gal',['#cfd8ff','#6a5acd'],'Academic work','Publications & Talks','Journal articles, conference papers, invited lectures and workshops across literature, semiotics, pedagogy and translation, including translation workshops at Loyola College, Chennai.','Andromeda is heading toward the Milky Way and holds around a trillion stars.','2.5 million light-years away · its light left before modern humans existed',[['Google Scholar','https://scholar.google.com/citations?user=CU7TljcAAAAJ'],['ORCID','https://orcid.org/0000-0002-1226-6856'],['H·Commons','https://andrewveda.hcommons.org/']]),
+B('Virgo Cluster','Teaching',182,54e6*LY,30,'clu',['#ffe9b8','#d9a45a'],'Teaching','A classroom for polymaths','The classroom is a design problem. Every session is an intervention meant to shift how a student thinks. My current obsession: the cryptic crossword as a pedagogy of ambiguity.','The Virgo Cluster holds well over a thousand galaxies, and our own is drifting toward it.','About 54 million light-years away',[['Cryptic Crosswords in ESL','https://medium.com/@andrewveda/teachers-log-introducing-cryptic-crosswords-in-tertiary-level-esl-classrooms-13a500596038'],['Cognitive Framework','https://osf.io/preprints/psyarxiv/qw2pm_v2'],['Neuroscience Framework','https://osf.io/preprints/edarxiv/wd32j_v1']]),
+B('Bullet Cluster','Research',130,3.7e9*LY,30,'clu',['#ff6fa8','#5aa0ff'],'Research','Scholarship','Zoosemiotics and phytosemiotics: nature as an active participant in meaning-making. Also a theory of aesthetics as individuality in motion, and a translation of all 402 Kuṟuntokai poems into English acrostic verse.','In the Bullet Cluster two clusters collided, and the gravity stayed with invisible dark matter instead of the gas.','About 3.7 billion light-years away',[['The Guilty Reader','https://zenodo.org/records/20119928'],['Google Scholar','https://scholar.google.com/citations?user=CU7TljcAAAAJ']]),
+B('Cosmic Microwave Background','Quote A Day',330,46.5e9*LY,40,'cmb',['#ffb27a','#c0428a'],'The edge of the universe — '+APP,'A Quote A Day','Student-contributed wisdom. Personal reflection, daily.','The cosmic microwave background is the oldest light there is, released about 380,000 years after the Big Bang.','13.8 billion years old · about 46 billion light-years away now',[['Open →',U+'a-quote-a-day/']])];
+const NB=D.length;
+[['Mercury',252.25,4.09234,.387,6,'plain',['#cfc6bb','#6e655b'],'A day on Mercury, sunrise to sunrise, lasts about 176 Earth days.'],
+['Venus',181.98,1.60213,.723,9,'plain',['#fff0c0','#d6a35a'],'Venus spins backwards, and one spin takes longer than one trip around the Sun.'],
+['Mars',355.45,.52403,1.524,8,'mars',['#f0956a','#8f3a20'],'Olympus Mons on Mars is the tallest known volcano in the Solar System, about 22 km high.'],
+['Jupiter',34.4,.08309,5.203,16,'jup',['#f1d9b5','#b7794a'],'Jupiter\'s Great Red Spot is a storm wider than Earth that has raged for centuries.'],
+['Saturn',49.95,.03347,9.537,14,'sat',['#f3e2b0','#b8975a'],'Saturn is less dense than water. A big enough bathtub would float it.'],
+['Uranus',313.24,.011733,19.19,10,'plain',['#d9fbff','#6cc7d1'],'Uranus rolls around the Sun tipped on its side, at a tilt of about 98°.'],
+['Neptune',304.88,.0059822,30.07,10,'plain',['#8fb4ff','#2a45b8'],'Neptune has the fastest winds in the Solar System, over 2,000 km/h.']]
+.forEach(a=>D.push(B(a[0],'',PL(a[1],a[2]),a[3],a[4],a[5],a[6],'','','',a[7],'',[])));
+[['How long does sunlight take to reach Earth?',['8 seconds','8 minutes','8 hours'],'About 8 min 20 s to cross 150 million km.',1.9,300],
+['Which planet is hottest?',['Mercury','Venus','Mars'],'Venus: its thick CO₂ atmosphere traps heat at about 465 °C, hotter than Mercury.',4.8,60],
+['How many Earths fit across the Sun?',['19','109','1,090'],'About 109 Earths would line up across the Sun.',7.6,200],
+['Which star is closest to the Sun?',['Sirius','Proxima Centauri','Betelgeuse'],'Proxima Centauri, 4.24 light-years away.',9.9,10],
+['The Milky Way is shaped like a…',['Ring','Barred spiral','Plain ball'],'A barred spiral, roughly 100,000 light-years across.',12.9,260],
+['How old is the universe?',['4.6 billion years','13.8 billion years','100 billion years'],'About 13.8 billion years. (Earth is 4.5 billion.)',14.5,80]]
+.forEach(q=>{const a=q[4]*Math.PI/180;D.push({q:q[0],o:q[1],a:1,e:q[2],x:q[3]*K0*Math.cos(a),y:-q[3]*K0*Math.sin(a),r:20,s:'q'})});
+[E('Voyager 1',256,170,10,'egg','Voyager 1 left the Solar System in 2012 and carries a golden record of Earth\'s sounds. It is about to be one light-day from Earth.'),
+E('Halley\'s Comet',351,35,10,'egg','Halley\'s Comet is climbing back inward from its 2023 aphelion. It returns to the inner Solar System in 2061.'),
+E('Rosetta & Philae',305,4.5,10,'egg','Rosetta landed Philae on comet 67P in 2014. It is named for the Rosetta Stone: a space mission about translation.'),
+E('Planet Nine?',40,500,10,'egg','Hypothetical! Some astronomers think a distant ninth planet lurks out here. Nobody has found it. This marker is a guess.'),
+E('♞ Fork!',15,2000,12,'kn','A knight fork: one move, two targets. Chess players dream of this, and so does every explorer.'),
+E('Magrathea',60,5e6,12,'egg','Don\'t panic. The answer to life, the universe and everything is 42. Nobody remembers the question.'),
+E('Agastya',105.1,310*LY,10,'egg','Canopus is Agastya in Indian tradition, named for the sage credited with Tamil grammar.'),
+E('Tabby\'s Star',323,1470*LY,10,'egg','Tabby\'s Star dimmed in strange, irregular ways. Aliens were suggested. Dust is the likelier suspect.'),
+E('Pillars of Creation',274.6,7000*LY,10,'egg','Columns of gas and dust, about 5 light-years tall, where new stars are being born.'),
+E('Sagittarius A*',266.4,26000*LY,15,'bh','The black hole at the heart of the Milky Way holds about 4 million Suns. The whole galaxy orbits it.'),
+E('Boötes Void',196,700e6*LY,10,'egg','A nearly empty void about 330 million light-years across. Live inside it and you would think the universe was empty.'),
+E('GN-z11',148,32e9*LY,10,'egg','One of the earliest galaxies ever seen: it shines as it was 400 million years after the Big Bang.')].forEach(e=>D.push(e));
+D.forEach((d,i)=>d.dy=((i*37)%9-4)*7);
+const NE=D.filter(d=>d.egg).length;
+$('tot').textContent=NB;$('qt').textContent=6;$('et').textContent=NE;
+const LKM=new Map(),LK=[];D.forEach(d=>{if(d.k)d.l.forEach(l=>{let e=LKM.get(l[1]);if(!e){e={l:l[0],u:l[1],src:[]};LKM.set(l[1],e);LK.push(e)}e.src.push(d.n)})});
+$('lt').textContent=LK.length;
+const BE=[0,3.1,6.9,10.5,12.9,16.47],BC=['rgba(255,200,90,.07)','rgba(90,140,255,.05)','rgba(150,120,255,.08)','rgba(80,200,200,.05)','rgba(255,150,120,.04)'],DC=['','#9ac4ff','#c9c2ff','#9fe3e3','#ffd2b8'];
+const DOTS=[];[0,160,400,120,380].forEach((n,b)=>{for(let i=0;i<n;i++){const L=BE[b]+R()*(BE[b+1]-BE[b]),a=R()*6.283;DOTS.push({x:L*K0*Math.cos(a),y:L*K0*Math.sin(a),k:R(),b:b})}});
+const ERA=[[0,'The Solar System','Planets orbit within 40 AU of the Sun'],[3.1,'Interstellar space','The nearest star is 4.2 light-years away'],[6.9,'The Milky Way','100,000 light-years across, 100+ billion stars'],[10.5,'The Local Group','Andromeda is 2.5 million light-years away'],[12.9,'The Observable Universe','93 billion light-years across, hundreds of billions of galaxies']];
+const RG=[['1 AU',1],['10 AU',10],['100 AU',100],['1,000 AU',1e3],['1 light-year',LY],['10 ly',10*LY],['100 ly',100*LY],['1,000 ly',1e3*LY],['10,000 ly',1e4*LY],['100,000 ly',1e5*LY],['1 million ly',1e6*LY],['10 million ly',1e7*LY],['100 million ly',1e8*LY],['1 billion ly',1e9*LY],['10 billion ly',1e10*LY]];
+RG.forEach(r=>r[2]=(Math.log10(r[1])+1)*K0);
+const cv=$('g'),ctx=cv.getContext('2d'),mc=$('mm').getContext('2d'),card=$('card'),bub=$('bub'),tel=$('tel');
+let vw,vh,dpr,z,cock=false,cy=0;
+function rs(){dpr=Math.min(devicePixelRatio||1,2);vw=innerWidth;vh=innerHeight;cv.width=vw*dpr;cv.height=vh*dpr;z=Math.min(vw,vh)<700?.7:1;cy=vh/2}
+addEventListener('resize',rs);rs();
+const ea=D[1],eh=Math.hypot(ea.x,ea.y);
+const P={x:-ea.x/eh*150,y:-ea.y/eh*150,vx:0,vy:0,s:150,bank:0,tr:[]};P.h=Math.atan2(-P.y,-P.x);
+const cam={x:P.x,y:P.y};
+const ST=Array.from({length:240},()=>({u:R()*4000,v:R()*4000,p:[.12,.25,.45][R()*3|0],a:R()*6.283,y:R(),b:R()}));
+const NBL=[['#5b2a86',420],['#1d4e89',500],['#8a2a5b',380],['#1f6f6f',450]].map(n=>({c:n[0],r:n[1],u:R()*3000,v:R()*3000}));
+const GP=Array.from({length:240},(_,i)=>({a:i/240*12,m:i%2*Math.PI,k:R(),s:R()*2+.8}));
+const OD=Array.from({length:70},()=>[R()*6.283,.7+R()*.5,R()]),CL=Array.from({length:10},()=>[R()*6.283,R()*.9,R()*2+1]);
+let stick=null,keys={},seen=new Set(),got=new Set(),eggs=new Set(),col=new Set(),active=null,dismissed=null,t0=0,started=false,colOpen=false,auto=false,dw=0,rainbow=false,ki=0,ex=0,S=1,Z=1,eraIdx=-1;
+const isPaused=()=>!started||colOpen||card.classList.contains('on')||bub.classList.contains('q');
+cv.addEventListener('pointerdown',e=>{if(auto&&!isPaused())setAuto(false);if(!stick&&!isPaused()){stick={id:e.pointerId,ox:e.clientX,oy:e.clientY,x:e.clientX,y:e.clientY};cv.setPointerCapture(e.pointerId)}});
+cv.addEventListener('pointermove',e=>{if(stick&&e.pointerId===stick.id){stick.x=e.clientX;stick.y=e.clientY}});
+const up=e=>{if(stick&&e.pointerId===stick.id)stick=null};
+cv.addEventListener('pointerup',up);cv.addEventListener('pointercancel',up);
+const KK=['arrowup','arrowup','arrowdown','arrowdown','arrowleft','arrowright','arrowleft','arrowright','b','a'];
+addEventListener('keydown',e=>{const k=e.key.toLowerCase();keys[k]=1;ki=k==KK[ki]?ki+1:(k==KK[0]?1:0);if(ki==10){ki=0;rainbow=!rainbow;toast('🥚 Rainbow hyperdrive '+(rainbow?'on':'off'))}});
+addEventListener('keyup',e=>{keys[e.key.toLowerCase()]=0});
+let tt;function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2600)}
+function setAuto(v){auto=v;$('ab').textContent=v?'🤖 Autopilot':'🕹 Manual';$('mauto').classList.toggle('on',v);$('mman').classList.toggle('on',!v);if(started)toast(v?'🤖 Autopilot on. Touch to take over':'🕹 Manual control')}
+$('mman').onclick=()=>setAuto(false);$('mauto').onclick=()=>setAuto(true);$('ab').onclick=()=>setAuto(!auto);
+$('go').onclick=()=>{$('intro').classList.add('off');started=true};
+function renderCol(){$('cl').innerHTML=LK.map(e=>col.has(e.u)?`<a href="${e.u}" target="_blank" rel="noopener">✓ ${e.l}<small>${e.src[0]}</small></a>`:`<span>🔒 ???<small>Find: ${e.src.join(' / ')}</small></span>`).join('')}
+$('lb').onclick=()=>{renderCol();$('col').classList.remove('off');colOpen=true};
+$('cc').onclick=()=>{$('col').classList.add('off');colOpen=false};
+$('cpy').onclick=()=>{const t=LK.filter(e=>col.has(e.u)).map(e=>e.l+': '+e.u).join('\n');(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast('Copied '+col.size+' links')).catch(()=>toast('Copy is not available here'))};
+function collect(d){let n=0;d.l.forEach(l=>{if(!col.has(l[1])){col.add(l[1]);n++}});$('lc').textContent=col.size;if(n)toast('🔗 +'+n+' link'+(n>1?'s':'')+' collected')}
+const hide=()=>{card.classList.remove('on');bub.className=''};
+$('x').onclick=$('cx').onclick=()=>{dismissed=active;hide()};
+function show(d){
+ if(d.q){hide();bub.className='on q';bub.innerHTML=`<button class="bx" id="bc" aria-label="Close">×</button><b>${d.q}</b><div id="bo">${d.o.map((o,i)=>`<button data-i="${i}">${o}</button>`).join('')}</div><p id="bf"></p>`}
+ else if(d.egg){hide();bub.className='on';bub.innerHTML='🥚 <b style="display:inline">'+d.n+'</b><br>'+d.txt;if(!eggs.has(d)){eggs.add(d);$('ec').textContent=eggs.size;toast('🥚 Easter egg found: '+d.n)}}
+ else if(!d.k){hide();bub.className='on';bub.innerHTML='💡 '+d.f}
+ else{$('ck').textContent=d.k;$('ct').textContent=d.t;$('cm').textContent=d.m;$('cp').textContent=d.b;
+  $('links').innerHTML=d.l.map(l=>`<a href="${l[1]}" target="_blank" rel="noopener">${l[0]}</a>`).join('');card.classList.add('on');bub.className='on';bub.innerHTML='💡 '+d.f;collect(d)}}
+bub.onclick=e=>{const t=e.target;if(t.id=='bc'||t.id=='bn'){dismissed=active;hide();return}
+ const b=t.closest('button[data-i]');if(!b||!active||!active.q)return;const ok=+b.dataset.i===active.a;
+ if(ok){got.add(active);$('qc').textContent=got.size}
+ b.style.background=ok?'#2e7d32':'#b3261e';b.style.color='#fff';$('bf').innerHTML=(ok?'✓ Correct! ':'✗ Not quite. ')+active.e+'<br><button id="bn" style="margin-top:8px">Continue ▸</button>'};
+const ang=a=>Math.atan2(Math.sin(a),Math.cos(a));
+function update(dt){
+ let turn=0,spd=150,tgt=null;const at=auto?autoT():null;if(at){const ad=Math.hypot(at.x-P.x,at.y-P.y);tgt=Math.atan2(at.y-P.y,at.x-P.x);spd=ad*Z>220?320:150}
+ if(stick&&!auto){const dx=stick.x-stick.ox,dy=stick.y-stick.oy,m=Math.min(1,Math.hypot(dx,dy)/70);
+  if(cock){const nx=Math.max(-1,Math.min(1,dx/70)),ny=Math.max(-1,Math.min(1,dy/70));P.h+=nx*2.4*dt;turn=nx;spd=150-ny*130}else if(m>.12){tgt=Math.atan2(dy,dx);spd=150+m*150}}
+ if(tgt!==null){const d=ang(tgt-P.h),mx=3.2*dt,s=Math.max(-mx,Math.min(mx,d));P.h+=s;turn=s/dt/3.2}
+ if(keys.arrowleft||keys.a){P.h-=2.8*dt;turn=-1}
+ if(keys.arrowright||keys.d){P.h+=2.8*dt;turn=1}
+ if(keys.arrowup||keys.w)spd=300;if(keys.arrowdown||keys.s)spd=90;
+ P.s+=(spd-P.s)*Math.min(1,dt*3);P.bank+=(turn-P.bank)*Math.min(1,dt*6);
+ const w=P.s/Z;P.vx=Math.cos(P.h)*w;P.vy=Math.sin(P.h)*w;P.x+=P.vx*dt;P.y+=P.vy*dt;
+ const hp=Math.hypot(P.x,P.y);if(hp>RMAX){const q=RMAX/hp;P.x*=q;P.y*=q;P.h+=ang(Math.atan2(-P.y,-P.x)-P.h)*Math.min(1,dt*3)}
+ P.tr.push([P.x-Math.cos(P.h)*20/Z,P.y-Math.sin(P.h)*20/Z]);if(P.tr.length>50)P.tr.shift();
+ cam.x+=(P.x-cam.x)*Math.min(1,dt*4);cam.y+=(P.y-cam.y)*Math.min(1,dt*4);
+ let near=null,nd=1e9;
+ D.forEach(d=>{const k=Math.hypot(d.x-P.x,d.y-P.y);if(k<d.r+45/Z&&k<nd){nd=k;near=d}});
+ if(near!==active){active=near;if(!near){dismissed=null;hide()}else if(near!==dismissed&&!(near.q&&(got.has(near)||auto))){show(near);if(near.k&&!seen.has(near)){seen.add(near);$('cnt').textContent=seen.size}}}
+}
+function halo(x,y,r,c,a){const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,c);g.addColorStop(1,c+'00');ctx.globalAlpha=a;ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill();ctx.globalAlpha=1}
+function orb(x,y,r,c){const g=ctx.createRadialGradient(x-r*.35,y-r*.35,r*.1,x,y,r);g.addColorStop(0,c[0]);g.addColorStop(1,c[1]);ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill()}
+function thing(d,t,x,y){
+ const r=d.r,s=d.s,fd=eggs.has(d);ctx.textAlign='center';ctx.textBaseline='middle';
+ if(s=='q'){const p=1+.15*Math.sin(t*4),q=20*p;ctx.fillStyle=got.has(d)?'#7a6a3a':'#ffd86b';ctx.shadowColor='#ffd86b';ctx.shadowBlur=16;
+  ctx.beginPath();ctx.moveTo(x,y-q);ctx.quadraticCurveTo(x,y,x+q,y);ctx.quadraticCurveTo(x,y,x,y+q);ctx.quadraticCurveTo(x,y,x-q,y);ctx.quadraticCurveTo(x,y,x,y-q);ctx.fill();ctx.shadowBlur=0;
+  ctx.fillStyle='#1e1b15';ctx.font='700 13px sans-serif';ctx.fillText('?',x,y+1);return}
+ if(s=='egg'||s=='bh'||s=='kn'){
+  if(s=='bh'){halo(x,y,r*2.2,'#ffb347',.55);ctx.strokeStyle='#ffb347';ctx.lineWidth=r*.3;ctx.beginPath();ctx.arc(x,y,r*1.25,0,7);ctx.stroke();ctx.fillStyle='#000';ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill()}
+  else if(s=='kn'){halo(x,y,r*2,'#99ffff',.3);ctx.font=`${r*2.4}px serif`;ctx.fillStyle='#fff';ctx.fillText('♞',x,y)}
+  else{halo(x,y,r*2,'#99ffff',.3+.2*Math.sin(t*3+x));const q=r*.8;ctx.fillStyle='#dffcff';ctx.beginPath();ctx.moveTo(x,y-q);ctx.quadraticCurveTo(x,y,x+q,y);ctx.quadraticCurveTo(x,y,x,y+q);ctx.quadraticCurveTo(x,y,x-q,y);ctx.quadraticCurveTo(x,y,x,y-q);ctx.fill()}
+  if(fd){ctx.font=`${r*1.3}px serif`;ctx.fillText('🥚',x+r*1.4,y-r*1.4);ctx.font=`600 ${12/Z}px "Playfair Display",Georgia,serif`;ctx.fillStyle='#fff';ctx.shadowColor='#000';ctx.shadowBlur=6;ctx.fillText(d.n,x,y+r*1.25+10/Z);ctx.shadowBlur=0}
+  return}
+ if(s=='gal'){halo(x,y,r*1.2,'#8f8bff',.35);ctx.save();ctx.translate(x,y);ctx.rotate(-.6);
+  GP.forEach(p=>{const a=p.a+p.m+t*.12,rr=p.a*10+p.k*14;ctx.fillStyle=p.k>.6?'#fff':'#b9b3ff';ctx.globalAlpha=.85;ctx.fillRect(Math.cos(a)*rr*r/130,Math.sin(a)*rr*.4*r/130,p.s+.6/Z,p.s+.6/Z)});
+  ctx.globalAlpha=1;ctx.restore();halo(x,y,r*.3,'#fff6d6',.9)}
+ else if(s=='star'){halo(x,y,r*2.2,d.c[1],.5);ctx.strokeStyle='rgba(215,230,255,.85)';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x-r*1.7,y);ctx.lineTo(x+r*1.7,y);ctx.moveTo(x,y-r*1.7);ctx.lineTo(x,y+r*1.7);ctx.stroke();orb(x,y,r*.5,['#fff',d.c[0]])}
+ else if(s=='oort'){halo(x,y,r*1.6,'#6a8ad8',.2);ctx.fillStyle=d.c[0];OD.forEach(p=>{ctx.fillRect(x+Math.cos(p[0]+t*.05)*r*p[1],y+Math.sin(p[0]+t*.05)*r*p[1],1.5+1.5/Z*p[2],1.5+1.5/Z*p[2])})}
+ else if(s=='clu'){halo(x,y,r*1.5,d.c[1],.25);CL.forEach((p,i)=>{ctx.fillStyle=i%2?d.c[0]:d.c[1];ctx.beginPath();ctx.ellipse(x+Math.cos(p[0])*p[1]*r,y+Math.sin(p[0])*p[1]*r,p[2]*1.8,p[2],p[0],0,7);ctx.fill()})}
+ else if(s=='neb'){halo(x,y,r*2,'#c050b0',.4);ctx.fillStyle='rgba(255,170,90,.55)';ctx.beginPath();ctx.ellipse(x,y-r*.7,r*.45,r*.9,0,0,7);ctx.ellipse(x,y+r*.7,r*.45,r*.9,0,0,7);ctx.fill();orb(x,y,r*.3,['#fff','#ffd8f0'])}
+ else if(s=='cmb'){halo(x,y,r*2.2,'#ff9a6a',.5);orb(x,y,r*.7,d.c);ctx.fillStyle='#ffcfa0';OD.forEach(p=>{ctx.fillRect(x+Math.cos(p[0])*r*(1+p[2]*.4),y+Math.sin(p[0])*r*(1+p[2]*.4),1.5+1.5/Z,1.5+1.5/Z)})}
+ else{
+  if(s=='sun')halo(x,y,r*2.8,'#ffb347',.6);else halo(x,y,r*1.5,d.c[0],.16);
+  if(s=='sat'){ctx.strokeStyle='#d8c690';ctx.lineWidth=r*.25;ctx.beginPath();ctx.ellipse(x,y,r*1.9,r*.55,-.4,Math.PI,6.283);ctx.stroke()}
+  orb(x,y,r,d.c);
+  ctx.save();ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.clip();
+  if(s=='jup'||s=='sat'){for(let i=-4;i<5;i++){ctx.fillStyle=i%2?'rgba(120,70,40,.28)':'rgba(255,240,210,.18)';ctx.fillRect(x-r,y+i*r*.22-r*.05,r*2,r*.13)}}
+  if(s=='earth'){ctx.fillStyle='#4d8f3d';[[-.3,-.1,.35,.25,.5],[.35,.3,.25,.4,-.3],[.1,-.55,.3,.15,0]].forEach(q=>{ctx.beginPath();ctx.ellipse(x+q[0]*r,y+q[1]*r,q[2]*r,q[3]*r,q[4],0,7);ctx.fill()})}
+  if(s=='mars'){ctx.fillStyle='rgba(255,255,255,.8)';ctx.beginPath();ctx.ellipse(x,y-r*.9,r*.35,r*.15,0,0,7);ctx.fill()}
+  ctx.restore();
+  if(s=='sat'){ctx.strokeStyle='#d8c690';ctx.lineWidth=r*.25;ctx.beginPath();ctx.ellipse(x,y,r*1.9,r*.55,-.4,0,Math.PI);ctx.stroke()}}
+ const nr=!cock&&Math.hypot(d.x-P.x,d.y-P.y)*Z<240;
+ ctx.font=`600 ${12/Z}px "Playfair Display",Georgia,serif`;ctx.fillStyle='#fff';ctx.shadowColor='#000';ctx.shadowBlur=6;
+ ctx.fillText(nr&&d.g?d.n+' · '+d.g:d.n,x,y+r*(s=='sat'?1.55:s=='star'||s=='oort'||s=='clu'||s=='cmb'?1.8:1.25)+10/Z);ctx.shadowBlur=0;
+ if(seen.has(d)){ctx.fillStyle='#ffd86b';ctx.fillText('✦',x+r*.9,y-r*.9)}
+}
+function ship(){
+ ctx.save();ctx.translate(P.x,P.y);ctx.rotate(P.h);ctx.scale(1/S,1/S);const w=1-Math.abs(P.bank)*.3,f=12+R()*10+P.s*.07;
+ ctx.fillStyle='#ffb347';ctx.beginPath();ctx.moveTo(-14,-5);ctx.lineTo(-14-f,0);ctx.lineTo(-14,5);ctx.fill();
+ ctx.fillStyle='#d9dde6';ctx.beginPath();ctx.moveTo(28,0);ctx.lineTo(-16,-24*w);ctx.lineTo(-8,0);ctx.lineTo(-16,24*w);ctx.closePath();ctx.fill();
+ ctx.fillStyle='#c0392b';ctx.beginPath();ctx.moveTo(-16,-24*w);ctx.lineTo(-12,-16*w);ctx.lineTo(-19,-12*w);ctx.moveTo(-16,24*w);ctx.lineTo(-12,16*w);ctx.lineTo(-19,12*w);ctx.fill();
+ ctx.fillStyle='#4fd0ff';ctx.beginPath();ctx.ellipse(6,0,9,4,0,0,7);ctx.fill();ctx.restore()}
+const autoT=()=>D.filter(d=>d.k&&!seen.has(d)).sort((a,b)=>a.o-b.o)[0];
+const nextT=()=>{let b=null,bd=1e9;D.forEach(d=>{if(d.k&&!seen.has(d)){const k=Math.hypot(d.x-P.x,d.y-P.y);if(k<bd){bd=k;b=d}}});return[b,bd]};
+function drawTop(t){
+ ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#05060f';ctx.fillRect(0,0,vw,vh);
+ NBL.forEach(n=>{const X=vw+n.r*2,Y=vh+n.r*2,x=(((n.u-cam.x*.2)%X)+X)%X-n.r,y=(((n.v-cam.y*.2)%Y)+Y)%Y-n.r,g=ctx.createRadialGradient(x,y,0,x,y,n.r);
+  g.addColorStop(0,n.c+'66');g.addColorStop(1,n.c+'00');ctx.globalAlpha=1-.8*ex;ctx.fillStyle=g;ctx.fillRect(x-n.r,y-n.r,n.r*2,n.r*2)});ctx.globalAlpha=1;
+ ctx.strokeStyle='#fff';ctx.lineCap='round';const sk=P.s*.1,hx0=Math.cos(P.h),hy0=Math.sin(P.h);
+ ST.forEach(s=>{const x=(((s.u-cam.x*s.p)%vw)+vw)%vw,y=(((s.v-cam.y*s.p)%vh)+vh)%vh;ctx.globalAlpha=(.35+.65*s.b)*(1-.5*ex);ctx.lineWidth=s.p*4;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-hx0*sk*s.p*2,y-hy0*sk*s.p*2);ctx.stroke()});ctx.globalAlpha=1;
+ ctx.setTransform(dpr*Z,0,0,dpr*Z,dpr*(vw/2-cam.x*Z),dpr*(cy-cam.y*Z));
+ for(let b=0;b<5;b++){ctx.fillStyle=BC[b];ctx.beginPath();ctx.arc(0,0,BE[b+1]*K0,0,7);ctx.arc(0,0,BE[b]*K0,0,7,true);ctx.fill()}
+ const hx=vw/(2*Z)+20,hy=vh/Z+20;
+ DOTS.forEach(p=>{if(Math.abs(p.x-cam.x)>hx||Math.abs(p.y-cam.y)>hy)return;ctx.fillStyle=DC[p.b];ctx.globalAlpha=.3+.6*p.k;const s=(1+p.k*2)/Z;ctx.fillRect(p.x,p.y,s,s)});ctx.globalAlpha=1;
+ ctx.lineWidth=1/Z;ctx.strokeStyle='rgba(255,255,255,.13)';
+ D.forEach(d=>{if(!d.q&&!d.egg&&d.o>0&&d.o<3*K0){ctx.beginPath();ctx.arc(0,0,d.o,0,7);ctx.stroke()}});
+ ctx.setLineDash([6/Z,8/Z]);ctx.strokeStyle='rgba(255,216,107,.25)';ctx.fillStyle='rgba(255,216,107,.75)';ctx.font=`600 ${10/Z}px sans-serif`;ctx.textAlign='center';
+ const cd=Math.hypot(cam.x,cam.y),ca=cd>1?Math.atan2(cam.y,cam.x):-Math.PI/2,hd=Math.hypot(hx,hy);
+ RG.concat([['EDGE OF THE OBSERVABLE UNIVERSE',0,RMAX]]).forEach(r=>{if(Math.abs(r[2]-cd)>hd)return;ctx.beginPath();ctx.arc(0,0,r[2],0,7);ctx.stroke();ctx.fillText(r[0],Math.cos(ca)*r[2],Math.sin(ca)*r[2]-5/Z)});
+ ctx.setLineDash([]);
+ D.slice().sort((a,b)=>a.y-b.y).forEach(d=>{d.sx=(d.x-cam.x)*Z+vw/2;d.sy=(d.y-cam.y)*Z+cy;d.sr=Math.max(10,d.r*Z);
+  if(d.sx>-250&&d.sx<vw+250&&d.sy>-250&&d.sy<vh+250)thing(d,t,d.x,d.y)});
+ ctx.globalCompositeOperation='lighter';ctx.strokeStyle='rgba(110,190,255,.8)';
+ for(let i=1;i<P.tr.length;i++){if(rainbow)ctx.strokeStyle=`hsl(${(i*14+t*200)%360},90%,60%)`;ctx.lineWidth=i/4/S;ctx.globalAlpha=i/P.tr.length*.6;ctx.beginPath();ctx.moveTo(P.tr[i-1][0],P.tr[i-1][1]);ctx.lineTo(P.tr[i][0],P.tr[i][1]);ctx.stroke()}
+ ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1;ship();
+ const nt=nextT(),best=nt[0];
+ if(best&&nt[1]*Z>120){const a=Math.atan2(best.y-P.y,best.x-P.x);ctx.save();ctx.translate(P.x+Math.cos(a)*85/S,P.y+Math.sin(a)*85/S);ctx.rotate(a);ctx.scale(1/S,1/S);
+  ctx.fillStyle='#ffd86b';ctx.beginPath();ctx.moveTo(12,0);ctx.lineTo(-8,-9);ctx.lineTo(-4,0);ctx.lineTo(-8,9);ctx.fill();ctx.restore()}
+}
+function drawCock(t){
+ const hy=vh*.42,F=Math.min(vw*.8,vh*.9),c=Math.cos(P.h),s=Math.sin(P.h);
+ ctx.setTransform(dpr,0,0,dpr,0,0);ctx.save();ctx.translate(vw/2,vh/2);ctx.rotate(-P.bank*.22);ctx.translate(-vw/2,-vh/2);
+ ctx.fillStyle='#05060f';ctx.fillRect(-vw,-vh,vw*3,vh*3);ctx.fillStyle='#fff';
+ ST.forEach(st=>{const da=ang(st.a-P.h);if(Math.abs(da)>1.3)return;ctx.globalAlpha=.35+.65*st.b;ctx.fillRect(vw/2+Math.tan(da)*F,st.y*vh,1+st.p*3,1+st.p*3)});ctx.globalAlpha=1;
+ D.map(d=>{const dx=d.x-P.x,dy=d.y-P.y;return[d,dx*c+dy*s,-dx*s+dy*c]}).filter(o=>o[1]>30).sort((a,b)=>b[1]-a[1]).forEach(o=>{
+  const k=F/o[1],d=o[0];d.sx=vw/2+o[2]*k;d.sy=hy+d.dy*k;d.sr=Math.max(10,d.r*k*S);
+  ctx.save();ctx.globalAlpha=Math.min(1,(o[1]-30)/80);ctx.translate(d.sx,d.sy);ctx.scale(k*S,k*S);thing(d,t,0,0);ctx.restore()});
+ ctx.restore();
+ ctx.strokeStyle='#0b0a10';ctx.lineWidth=Math.max(6,vw*.012);ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(vw*.12,hy*1.05);ctx.moveTo(vw,0);ctx.lineTo(vw*.88,hy*1.05);ctx.stroke();
+ const d0=vh*.78;ctx.fillStyle='#16151d';ctx.beginPath();ctx.moveTo(0,vh);ctx.lineTo(0,d0+30);ctx.quadraticCurveTo(vw/2,d0-30,vw,d0+30);ctx.lineTo(vw,vh);ctx.fill();
+ ctx.strokeStyle='rgba(111,200,255,.55)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(vw/2,hy,16,0,7);ctx.moveTo(vw/2-28,hy);ctx.lineTo(vw/2-10,hy);ctx.moveTo(vw/2+10,hy);ctx.lineTo(vw/2+28,hy);ctx.stroke();
+ const Rg=Math.min(vw,vh)*.075,gy=vh*.9,gx=[vw*.27,vw*.73];
+ gx.forEach(x=>{ctx.fillStyle='#0d0c12';ctx.strokeStyle='#c49a3c';ctx.beginPath();ctx.arc(x,gy,Rg,0,7);ctx.fill();ctx.stroke()});
+ ctx.strokeStyle='#f3eee2';ctx.lineWidth=3;let a=-Math.PI*1.15+(P.s-90)/210*Math.PI*1.3;ctx.beginPath();ctx.moveTo(gx[0],gy);ctx.lineTo(gx[0]+Math.cos(a)*Rg*.85,gy+Math.sin(a)*Rg*.85);ctx.stroke();
+ const best=nextT()[0];
+ if(best){const dx=best.x-P.x,dy=best.y-P.y,r=Math.atan2(-dx*s+dy*c,dx*c+dy*s);ctx.strokeStyle='#ffd86b';ctx.beginPath();ctx.moveTo(gx[1],gy);ctx.lineTo(gx[1]+Math.sin(r)*Rg*.85,gy-Math.cos(r)*Rg*.85);ctx.stroke()}
+ ctx.fillStyle='#a9a39a';ctx.font='600 10px sans-serif';ctx.textAlign='center';ctx.fillText('THRUST',gx[0],gy+Rg+13);ctx.fillText('NEXT TARGET',gx[1],gy+Rg+13)}
+function hud(){
+ ctx.setTransform(dpr,0,0,dpr,0,0);
+ if(stick){const dx=stick.x-stick.ox,dy=stick.y-stick.oy,m=Math.hypot(dx,dy),k=Math.min(1,70/(m||1));
+  ctx.strokeStyle='rgba(255,255,255,.7)';ctx.fillStyle='rgba(196,154,60,.4)';ctx.lineWidth=2;
+  ctx.beginPath();ctx.arc(stick.ox,stick.oy,70,0,7);ctx.stroke();ctx.beginPath();ctx.arc(stick.ox+dx*k,stick.oy+dy*k,26,0,7);ctx.fill();ctx.stroke()}
+ mc.clearRect(0,0,220,164);const sc=76/RMAX;
+ mc.strokeStyle='rgba(255,255,255,.12)';RG.forEach(r=>{mc.beginPath();mc.arc(110,82,r[2]*sc,0,7);mc.stroke()});
+ mc.strokeStyle='#ffd86b';mc.beginPath();mc.arc(110,82,RMAX*sc,0,7);mc.stroke();
+ D.forEach(d=>{if(d.egg&&!eggs.has(d))return;if(!d.q&&!d.egg&&!d.k)return;mc.fillStyle=d.egg?'#7ff':d.q?(got.has(d)?'#c49a3c':'#6fb3ff'):seen.has(d)?'#ffd86b':'rgba(200,200,210,.8)';mc.beginPath();mc.arc(110+d.x*sc,82+d.y*sc,d.k?3:2,0,7);mc.fill()});
+ mc.fillStyle='#ff6a4d';mc.beginPath();mc.arc(110+P.x*sc,82+P.y*sc,4,0,7);mc.fill()}
+const SUP='⁰¹²³⁴⁵⁶⁷⁸⁹';
+function fx(n){if(n<10)return n.toFixed(1);if(n<1e5)return Math.round(n).toLocaleString('en');const k=Math.floor(Math.log10(n));return (n/10**k).toFixed(1)+'×10'+String(k).split('').map(c=>SUP[c]).join('')}
+function fd(a){if(a<1e4)return (a<10?a.toFixed(1):Math.round(a).toLocaleString('en'))+' AU';return fx(a/LY)+' ly'}
+function cosmos(dt){
+ ex+=(Math.min(1,(seen.size+got.size+eggs.size)/26)-ex)*Math.min(1,dt*.8);S=1-.62*ex;Z=cock?1:z*S;
+ cy+=((card.classList.contains('on')||bub.classList.contains('q')?.3:.5)*vh-cy)*Math.min(1,dt*4);
+ const hp=Math.hypot(P.x,P.y),L=hp/K0,a=L>0?10**(L-1):0,pv=isPaused()?0:1,rho=hp||1,rk=a*1.496e8,
+  vr=pv*(P.vx*P.x+P.vy*P.y)/rho/K0,vt=pv*Math.abs(P.vx*P.y-P.vy*P.x)/rho/K0,
+  sp=Math.hypot(rk*Math.LN10*vr,L>.02?rk*vt/L:0)/299792;
+ const i=ERA.reduce((q,x,j)=>L>=x[0]?j:q,0);
+ if(started&&i!==eraIdx){eraIdx=i;const b=$('era');b.innerHTML=ERA[i][1]+'<small>'+ERA[i][2]+'</small>';b.classList.add('on');clearTimeout(cosmos.t);cosmos.t=setTimeout(()=>b.classList.remove('on'),4200)}
+ const s2='☀ '+fd(a)+' · ⚡ '+fx(sp)+'c';if(tel.textContent!==s2)tel.textContent=s2;
+ $('sbar').style.display=cock?'none':''}
+function bubPos(){if(!active||!bub.className)return;const w=bub.offsetWidth,h=bub.offsetHeight,d=active;let x=d.sx+d.sr+10;if(x+w>vw-8)x=d.sx-d.sr-10-w;x=Math.max(8,x);
+ const lim=card.classList.contains('on')?vh*.46:vh-20,y=Math.min(Math.max(d.sy-h/2,96),lim-h);bub.style.left=x+'px';bub.style.top=y+'px'}
+function draw(t){if(cock)drawCock(t);else drawTop(t);hud()}
+const vb=$('vb');function tg(){cock=!cock;vb.textContent=cock?'🗺 Map':'🚀 Cockpit'}
+vb.onclick=tg;addEventListener('keydown',e=>{if(e.key.toLowerCase()==='c')tg()});
+let last=performance.now();
+function loop(n){const dt=Math.min(.05,(n-last)/1000);last=n;t0+=dt;if(auto&&card.classList.contains('on')){dw+=dt;if(dw>4.5){dw=0;$('cx').onclick()}}else dw=0;if(auto&&started&&!isPaused()&&!autoT()){setAuto(false);toast('🔗 All links collected!');setTimeout(()=>{renderCol();$('col').classList.remove('off');colOpen=true},1300)}if(!isPaused())update(dt);cosmos(dt);draw(t0);bubPos();requestAnimationFrame(loop)}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
